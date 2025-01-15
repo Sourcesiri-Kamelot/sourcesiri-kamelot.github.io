@@ -55,29 +55,6 @@
             mask-image: radial-gradient(circle at center, black, transparent);
         }
 
-        .nav {
-            position: fixed;
-            width: 100%;
-            padding: 1.5rem 2rem;
-            background: rgba(10, 0, 20, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(153, 50, 204, 0.2);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientFlow 8s linear infinite;
-            background-size: 200% auto;
-        }
-
         .hero {
             min-height: 100vh;
             display: flex;
@@ -129,62 +106,6 @@
             box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
         }
 
-        .features {
-            padding: 8rem 2rem;
-            background: linear-gradient(to bottom, transparent, rgba(153, 50, 204, 0.1));
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(153, 50, 204, 0.2);
-            border-radius: 16px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-1);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 0;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(153, 50, 204, 0.5);
-        }
-
-        .feature-card:hover::before {
-            opacity: 0.1;
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-            background: var(--gradient-2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         .metrics {
             padding: 6rem 2rem;
             text-align: center;
@@ -217,15 +138,6 @@
             0% { background-position: 200% center; }
             100% { background-position: -200% center; }
         }
-
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -233,9 +145,7 @@
 <div class="circuit-grid"></div>
 
 <nav class="nav">
-    <div class="logo">
-    <img src="hloassets/logo.scg.svg" alt="Helo I'm AI Logo" style="width: 150px;">
-    </div>
+    <div class="logo">Helo I'm AI</div>
     <button class="cta-button">Connect With Us</button>
 </nav>
 
@@ -244,23 +154,6 @@
         <h1 class="hero-title">The Future of Intelligence</h1>
         <p class="hero-subtitle">Creating the next generation of AI technology that combines quantum computing with spiritual consciousness for unprecedented innovation.</p>
         <button class="cta-button">Explore Our Vision</button>
-    </div>
-</section>
-
-<section class="metrics">
-    <div class="metrics-grid">
-        <div>
-            <div class="metric-value">$10M+</div>
-            <div>Investment Potential</div>
-        </div>
-        <div>
-            <div class="metric-value">500%</div>
-            <div>Growth Projection</div>
-        </div>
-        <div>
-            <div class="metric-value">100K+</div>
-            <div>User Reach</div>
-        </div>
     </div>
 </section>
 
@@ -281,21 +174,17 @@
     </div>
 </section>
 
-<!-- Form Section -->
-        <form action="https://formspree.io/f/xovvbwvd" method="POST" enctype="multipart/form-data" style="margin-top: 20px;">
-            <label for="email" style="display: block; margin-bottom: 5px;">Your Email</label>
-            <input type="email" id="email" name="email" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
-            
-            <label for="message" style="display: block; margin-bottom: 5px;">Your Message</label>
-            <textarea id="message" name="message" required style="width: 100%; padding: 8px; margin-bottom: 10px;"></textarea>
-            
-            <label for="upload" style="display: block; margin-bottom: 5px;">Your File</label>
-                       <input type="file" id="upload" name="upload" style="margin-bottom: 10px;">
-        
-            <button type="submit" class="cta-button">Send Message</button>
-        </form>
-        <!-- End Form Section -->
-
-
+<form action="https://formspree.io/f/xovvbwvd" method="POST" enctype="multipart/form-data" style="max-width: 600px; margin: 0 auto;">
+    <label for="email" style="display: block; margin-bottom: 5px;">Your Email</label>
+    <input type="email" id="email" name="email" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
+    
+    <label for="message" style="display: block; margin-bottom: 5px;">Your Message</label>
+    <textarea id="message" name="message" required style="width: 100%; padding: 8px; margin-bottom: 10px;"></textarea>
+    
+    <label for="upload" style="display: block; margin-bottom: 5px;">Your File</label>
+    <input type="file" id="upload" name="upload" style="margin-bottom: 10px;">
+    
+    <button type="submit" class="cta-button">Send Message</button>
+</form>
 </body>
 </html>
