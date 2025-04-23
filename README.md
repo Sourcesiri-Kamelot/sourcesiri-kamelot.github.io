@@ -1,5 +1,7 @@
 # 🌟 Helo Im AI – The Future of AI Evolution is Coming Soon 🚀
 
+[![ORCID iD](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0009-0004-3064-6168) [Kiwon Bowens ORCID iD](https://orcid.org/0009-0004-3064-6168)
+
 Welcome to **Helo Im AI**, where innovation meets intelligence. We are building the **next-generation AI ecosystem**—a world where AI is not just a tool, but an interactive force that learns, evolves, and transforms the way we connect.
 
 ### **👾 What’s Coming Soon?**
