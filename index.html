@@ -86,6 +86,22 @@
             animation: gradientFlow 8s linear infinite;
             background-size: 200% auto;
         }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: rgba(0, 255, 136, 0.8);
+        }
 
         .hero {
             min-height: 100vh;
@@ -262,6 +278,17 @@
             .hero-subtitle {
                 font-size: 1.1rem;
             }
+            .nav-links {
+                display: none;
+            }
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero-buttons .cta-button {
+                margin-left: 0 !important;
+            }
         }
     </style>
 </head>
@@ -272,14 +299,23 @@
 
     <nav class="nav">
         <div class="logo">Helo I'm AI</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="vision.html">AI Twins</a>
+            <a href="soulcore.html">SoulCore</a>
+            <a href="api.html">API</a>
+        </div>
         <button class="cta-button">Connect With Us</button>
     </nav>
 
     <section class="hero">
         <div class="hero-content">
             <h1 class="hero-title">The Future of Intelligence</h1>
-            <a href="vision.html" class="cta-button">Explore Our Ai Twins</a>
-            
+            <p class="hero-subtitle">Innovative AI solutions powered by SoulCore technology</p>
+            <div class="hero-buttons">
+                <a href="vision.html" class="cta-button">Explore Our AI Twins</a>
+                <a href="soulcore.html" class="cta-button" style="margin-left: 20px;">SoulCore Experience</a>
+            </div>
         </div>
     </section>
 
