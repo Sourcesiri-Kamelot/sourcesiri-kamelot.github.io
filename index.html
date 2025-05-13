@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helo I'm AI | Next Generation Intelligence</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.15.0/inter.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <style>
@@ -260,6 +261,90 @@
             outline: none;
             border-color: rgba(153, 50, 204, 0.5);
         }
+        
+        /* Footer Styles */
+        footer {
+            background: rgba(10, 0, 20, 0.9);
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 2;
+            border-top: 1px solid rgba(153, 50, 204, 0.2);
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            gap: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        
+        .social-icons a:hover {
+            background: var(--gradient-2);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        .project-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .project-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .project-links a:hover {
+            color: rgba(0, 255, 136, 0.8);
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(153, 50, 204, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); opacity: 0.5; }
@@ -289,6 +374,9 @@
             .hero-buttons .cta-button {
                 margin-left: 0 !important;
             }
+            .footer-content {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -298,7 +386,7 @@
     <div class="circuit-grid"></div>
 
     <nav class="nav">
-        <div class="logo">Helo I'm AI</div>
+        <div class="logo"><a href="index.html" style="text-decoration: none; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientFlow 8s linear infinite; background-size: 200% auto;">Helo I'm AI</a></div>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="vision.html">AI Twins</a>
@@ -370,6 +458,34 @@
             <button type="submit" class="cta-button">Send Message</button>
         </form>
     </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/heloimai" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Sourcesiri-Kamelot" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://x.com/HeloIm_Ai_inc" target="_blank" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61571047743600" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.youtube.com/@ThegodsHonestTruthai" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Our Projects</h3>
+                <div class="project-links">
+                    <a href="https://Soulcorehub.io" target="_blank">SoulCoreHub.io</a>
+                    <a href="https://www.Soulcorehub.com" target="_blank">SoulCoreHub.com</a>
+                    <a href="https://www.Aibefresh.com" target="_blank">AiBeFresh.com</a>
+                    <a href="https://lilplaybook.com" target="_blank">LilPlaybook.com</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Helo I'm AI Inc. All Rights Reserved.</p>
+            <p>Created by Helo Im AI Inc. Est. 2024</p>
+        </div>
+    </footer>
 
     <script>
         // Initialize particles.js
