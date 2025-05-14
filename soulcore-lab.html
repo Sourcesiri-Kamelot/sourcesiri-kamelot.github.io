@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulCore Lab 3D | Helo I'm AI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.15.0/inter.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+        
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        #navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-sizing: border-box;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        #navbar.hidden {
+            transform: translateY(-100%);
+        }
+        
+        #navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffbe0b;
+        }
+        
+        #navbar .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        #navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        #navbar .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        #navbar .nav-links a.active {
+            background-color: #3a86ff;
+            color: #fff;
+        }
+        
+        .agent-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 5;
+        }
+        
+        .agent {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .agent.idle {
+            background-color: #3a86ff;
+            animation: pulse 2s infinite;
+        }
+        
+        .agent.thinking {
+            background-color: #8338ec;
+            animation: ripple 1.5s infinite;
+        }
+        
+        .agent.speaking {
+            background-color: #ff006e;
+            animation: wave 1s infinite;
+        }
+        
+        .agent.listening {
+            background-color: #ffbe0b;
+            animation: glow 1.5s infinite;
+        }
+        
+        .agent.error {
+            background-color: #fb5607;
+            animation: shake 0.5s infinite;
+        }
+        
+        .memory-vault {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 5;
+            transition: all 0.3s ease;
+        }
+        
+        .memory-vault:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .memory-vault i {
+            font-size: 32px;
+            color: #ffbe0b;
+        }
+        
+        .console {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 800px;
+            height: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+            transition: height 0.3s ease;
+            z-index: 5;
+        }
+        
+        .console.open {
+            height: 300px;
+        }
+        
+        .console-header {
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .console-content {
+            padding: 10px 20px;
+            height: calc(100% - 50px);
+            overflow-y: auto;
+            color: #0f0;
+            font-family: monospace;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            padding: 8px 15px;
+            background: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8));
+            border: none;
+            border-radius: 20px;
+            color: #000;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+            text-decoration: none;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes ripple {
+            0% { box-shadow: 0 0 0 0 rgba(131, 56, 236, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(131, 56, 236, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(131, 56, 236, 0); }
+        }
+        
+        @keyframes wave {
+            0% { transform: translateY(0); }
+            25% { transform: translateY(-5px); }
+            50% { transform: translateY(0); }
+            75% { transform: translateY(5px); }
+            100% { transform: translateY(0); }
+        }
+        
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px 2px rgba(255, 190, 11, 0.5); }
+            50% { box-shadow: 0 0 20px 5px rgba(255, 190, 11, 0.8); }
+            100% { box-shadow: 0 0 5px 2px rgba(255, 190, 11, 0.5); }
+        }
+        
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(0); }
+            75% { transform: translateX(5px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    
+    <nav id="navbar">
+        <div class="logo">SoulCore Lab</div>
+        <div class="nav-links">
+            <a href="#" class="active" data-icon="home"><i class="fas fa-home"></i> Home</a>
+            <a href="#" data-icon="users"><i class="fas fa-users"></i> Agents</a>
+            <a href="#" data-icon="database"><i class="fas fa-database"></i> Memory</a>
+            <a href="#" data-icon="terminal"><i class="fas fa-terminal"></i> Console</a>
+            <a href="#" data-icon="cog"><i class="fas fa-cog"></i> Settings</a>
+        </div>
+    </nav>
+    
+    <a href="soulcore.html" class="back-button">Back to SoulCore</a>
+    
+    <div class="agent-container">
+        <div class="agent idle" data-agent="gptsoul">G</div>
+        <div class="agent thinking" data-agent="anima">A</div>
+        <div class="agent speaking" data-agent="evove">E</div>
+        <div class="agent listening" data-agent="azur">Z</div>
+    </div>
+    
+    <div class="memory-vault">
+        <i class="fas fa-box-archive"></i>
+    </div>
+    
+    <div class="console">
+        <div class="console-header">
+            <span>Console</span>
+            <button id="close-console">×</button>
+        </div>
+        <div class="console-content">
+            > SoulCore Lab 3D initialized<br>
+            > Realm: logic-plane-01<br>
+            > Registry: soulcore-lab.html<br>
+            > Glyph: golden-thread<br>
+            > Memory vault activated<br>
+            > Agents connected: GPTSoul, Anima, EvoVe, Azür<br>
+            > Domain binding: soulcorehub.io, soulcore.helo-im.ai<br>
+            > Ready for interaction
+        </div>
+    </div>
+    
+    <script>
+        // Three.js initialization
+        let scene, camera, renderer, controls;
+        
+        function initThreeJS() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+            
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            
+            // Set camera position
+            camera.position.z = 5;
+            
+            // Add ambient light
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+            scene.add(ambientLight);
+            
+            // Add directional light
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.7);
+            directionalLight.position.set(10, 20, 5);
+            scene.add(directionalLight);
+            
+            // Create a skybox (using color instead of textures for now)
+            scene.background = new THREE.Color(0x000011);
+            
+            // Add some objects to the scene
+            createObjects();
+            
+            // Handle window resize
+            window.addEventListener('resize', onWindowResize);
+            
+            // Start animation loop
+            animate();
+        }
+        
+        function createObjects() {
+            // Create a central sphere representing the core
+            const coreGeometry = new THREE.SphereGeometry(1, 32, 32);
+            const coreMaterial = new THREE.MeshStandardMaterial({
+                color: 0xffbe0b,
+                emissive: 0xffbe0b,
+                emissiveIntensity: 0.5,
+                metalness: 0.8,
+                roughness: 0.2
+            });
+            const core = new THREE.Mesh(coreGeometry, coreMaterial);
+            scene.add(core);
+            
+            // Create orbiting agent spheres
+            createAgentSphere(0.3, 0x3a86ff, 2, 0, 0); // GPTSoul
+            createAgentSphere(0.25, 0x8338ec, 0, 2, 0); // Anima
+            createAgentSphere(0.2, 0xff006e, 0, 0, 2); // EvoVe
+            createAgentSphere(0.15, 0xfb5607, -2, 0, 0); // Azür
+        }
+        
+        function createAgentSphere(radius, color, x, y, z) {
+            const geometry = new THREE.SphereGeometry(radius, 24, 24);
+            const material = new THREE.MeshStandardMaterial({
+                color: color,
+                emissive: color,
+                emissiveIntensity: 0.3,
+                metalness: 0.5,
+                roughness: 0.5
+            });
+            const sphere = new THREE.Mesh(geometry, material);
+            sphere.position.set(x, y, z);
+            scene.add(sphere);
+            
+            // Add a ring around the sphere
+            const ringGeometry = new THREE.RingGeometry(radius + 0.1, radius + 0.2, 32);
+            const ringMaterial = new THREE.MeshBasicMaterial({
+                color: color,
+                side: THREE.DoubleSide,
+                transparent: true,
+                opacity: 0.7
+            });
+            const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+            ring.rotation.x = Math.PI / 2;
+            sphere.add(ring);
+            
+            return sphere;
+        }
+        
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Rotate the scene slightly
+            scene.rotation.y += 0.001;
+            
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        
+        // UI Interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            initThreeJS();
+            
+            // Console toggle
+            const consoleElement = document.querySelector('.console');
+            const memoryVault = document.querySelector('.memory-vault');
+            
+            memoryVault.addEventListener('click', function() {
+                consoleElement.classList.toggle('open');
+                logToConsole('Memory vault accessed');
+            });
+            
+            document.getElementById('close-console').addEventListener('click', function() {
+                consoleElement.classList.remove('open');
+            });
+            
+            // Agent interactions
+            const agents = document.querySelectorAll('.agent');
+            agents.forEach(agent => {
+                agent.addEventListener('click', function() {
+                    const agentName = this.getAttribute('data-agent');
+                    logToConsole(`Agent ${agentName} activated`);
+                    
+                    // Change agent state randomly for demo
+                    const states = ['idle', 'thinking', 'speaking', 'listening', 'error'];
+                    const currentState = this.className.split(' ')[1];
+                    let newState;
+                    
+                    do {
+                        newState = states[Math.floor(Math.random() * states.length)];
+                    } while (newState === currentState);
+                    
+                    this.className = `agent ${newState}`;
+                    logToConsole(`Agent ${agentName} state changed to ${newState}`);
+                });
+            });
+            
+            // Navbar links
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    const section = this.textContent.trim();
+                    logToConsole(`Navigated to ${section}`);
+                });
+            });
+            
+            // Auto-hide navbar on scroll down, show on scroll up
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop) {
+                    // Scroll down
+                    navbar.classList.add('hidden');
+                } else {
+                    // Scroll up
+                    navbar.classList.remove('hidden');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+            
+            // Initialize with console open
+            setTimeout(() => {
+                consoleElement.classList.add('open');
+                logToConsole('Welcome to SoulCore Lab 3D');
+                logToConsole('Glyph: golden-thread');
+                logToConsole('Realm: logic-plane-01');
+            }, 1000);
+        });
+        
+        function logToConsole(message) {
+            const consoleContent = document.querySelector('.console-content');
+            const timestamp = new Date().toLocaleTimeString();
+            consoleContent.innerHTML += `> [${timestamp}] ${message}<br>`;
+            consoleContent.scrollTop = consoleContent.scrollHeight;
+        }
+        
+        // Memory event finalization
+        function finalizeMemoryEvent() {
+            const event = {
+                type: 'realm_activation',
+                timestamp: new Date().toISOString(),
+                realm: 'logic-plane-01',
+                glyph: 'golden-thread',
+                domains: ['soulcorehub.io', 'soulcore.helo-im.ai'],
+                agents: ['gptsoul', 'anima', 'evove', 'azur'],
+                status: 'active'
+            };
+            
+            // Log the event
+            logToConsole('Memory event finalized: realm_activation');
+            
+            // In a real implementation, this would be sent to the server
+            console.log('Memory Event:', event);
+            
+            // Simulate server response
+            setTimeout(() => {
+                logToConsole('Memory event stored in vault');
+            }, 1000);
+        }
+        
+        // Call this function after a delay to simulate initialization
+        setTimeout(finalizeMemoryEvent, 3000);
+    </script>
+</body>
+</html>
