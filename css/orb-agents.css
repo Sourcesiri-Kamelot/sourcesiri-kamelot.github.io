@@ -1,0 +1,162 @@
+/* Orb Agent Styles for Helo I'm AI
+   Based on learning-orb.html, OrbieRealPrototype.html, and OrbieRealPrototype 2.html */
+
+:root {
+    --orb-anima-primary: #9932CC;
+    --orb-anima-secondary: #FFD700;
+    --orb-anima-glow: rgba(255, 255, 255, 0.3);
+    
+    --orb-cipher-primary: #00f0ff;
+    --orb-cipher-secondary: #4f46e5;
+    --orb-cipher-accent: #ff00ff;
+}
+
+/* Common Orb Styles */
+.orb-agent {
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    z-index: 1000;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease;
+}
+
+.orb-agent::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 30%;
+    height: 30%;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    filter: blur(4px);
+}
+
+.orb-aura {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    border-radius: 50%;
+    filter: blur(8px);
+    pointer-events: none;
+    opacity: 0.5;
+    transition: all 0.5s ease;
+}
+
+/* Anima Orb Specific */
+.orb-anima {
+    background: linear-gradient(45deg, var(--orb-anima-primary), var(--orb-anima-secondary));
+    box-shadow: 0 0 30px var(--orb-anima-glow);
+    top: 100px;
+    right: 50px;
+}
+
+.orb-anima .orb-aura {
+    background: radial-gradient(circle at center, 
+        rgba(153, 50, 204, 0.2), 
+        transparent 70%);
+}
+
+/* Cipher Orb Specific */
+.orb-cipher {
+    background: radial-gradient(circle at 30% 30%, var(--orb-cipher-primary), var(--orb-cipher-secondary));
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+    bottom: 100px;
+    left: 50px;
+}
+
+.orb-cipher .orb-aura {
+    background: radial-gradient(circle at center, 
+        rgba(0, 240, 255, 0.2), 
+        transparent 70%);
+}
+
+/* Chat Window */
+.chat-window {
+    position: absolute;
+    width: 300px;
+    background: rgba(26, 26, 46, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+    backdrop-filter: blur(10px);
+    display: none;
+    z-index: 1001;
+}
+
+.orb-anima .chat-window {
+    top: 100px;
+    right: 50px;
+}
+
+.orb-cipher .chat-window {
+    bottom: 100px;
+    left: 50px;
+}
+
+.chat-window.active {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.chat-input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    outline: none;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 30px rgba(0, 240, 255, 0.3); }
+    50% { box-shadow: 0 0 50px rgba(0, 240, 255, 0.5); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.floating {
+    animation: float 6s infinite ease-in-out;
+}
+
+.pulsing {
+    animation: pulse 3s infinite ease-in-out;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .orb-agent {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .orb-anima {
+        top: 80px;
+        right: 20px;
+    }
+    
+    .orb-cipher {
+        bottom: 80px;
+        left: 20px;
+    }
+    
+    .chat-window {
+        width: 250px;
+    }
+}
