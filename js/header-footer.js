@@ -26,31 +26,48 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!document.querySelector('footer')) {
         const footer = document.createElement('footer');
         footer.innerHTML = `
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Connect With Us</h3>
-                    <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/heloimai" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/Sourcesiri-Kamelot" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://x.com/HeloIm_Ai_inc" target="_blank" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.facebook.com/profile.php?id=61571047743600" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.youtube.com/@ThegodsHonestTruthai" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-column">
+                        <h3>Sourcesiri Kamelot</h3>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Products</h3>
+                        <ul>
+                            <li><a href="soulcore.html">SoulCore</a></li>
+                            <li><a href="api.html">API</a></li>
+                            <li><a href="#">Solutions</a></li>
+                            <li><a href="#">Pricing</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Research</a></li>
+                            <li><a href="#">Community</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Connect</h3>
+                        <ul>
+                            <li><a href="https://x.com/HeloIm_Ai_inc" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                            <li><a href="https://www.linkedin.com/in/heloimai" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                            <li><a href="https://github.com/Sourcesiri-Kamelot" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                            <li><a href="https://www.youtube.com/@ThegodsHonestTruthai" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="footer-section">
-                    <h3>Our Projects</h3>
-                    <div class="project-links">
-                        <a href="https://Soulcorehub.io" target="_blank">SoulCoreHub.io</a>
-                        <a href="soulcore-lab.html">SoulCore Lab 3D</a>
-                        <a href="https://www.Soulcorehub.com" target="_blank">SoulCoreHub.com</a>
-                        <a href="https://www.Aibefresh.com" target="_blank">AiBeFresh.com</a>
-                        <a href="https://lilplaybook.com" target="_blank">LilPlaybook.com</a>
-                    </div>
+                <div class="copyright">
+                    <p>&copy; 2025 Sourcesiri Kamelot. All rights reserved.</p>
                 </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Helo I'm AI Inc. All Rights Reserved.</p>
-                <p>Created by Helo Im AI Inc. Est. 2024</p>
             </div>
         `;
         document.body.appendChild(footer);
