@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <a href="/index.html">Home</a>
                 <a href="/vision.html">AI Twins</a>
                 <a href="/soulcore.html">SoulCore</a>
+                <a href="/evolution.html">Evolution</a>
                 <a href="/api.html">API</a>
                 <a href="/about.html">About</a>
                 <a href="/timeline.html">Timeline</a>
