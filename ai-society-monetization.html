@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Society Monetization | Helo I'm AI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.15.0/inter.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="css/orb-agents.css">
+    <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
+            --gradient-2: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8));
+            --dark: #0a0014;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .pulse-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(153, 50, 204, 0.1), transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 215, 0, 0.1), transparent 50%);
+            z-index: -1;
+            animation: pulse 8s ease-in-out infinite alternate;
+        }
+
+        .circuit-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(to right, rgba(153, 50, 204, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(153, 50, 204, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            mask-image: radial-gradient(circle at center, black, transparent);
+        }
+
+        .nav {
+            position: fixed;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: rgba(10, 0, 20, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(153, 50, 204, 0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 8s linear infinite;
+            background-size: 200% auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: rgba(0, 255, 136, 0.8);
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            background: var(--gradient-2);
+            border: none;
+            border-radius: 8px;
+            color: var(--dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        /* Coming Soon Page Styles */
+        .coming-soon-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .coming-soon-title {
+            font-size: 4rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 8s linear infinite;
+            background-size: 200% auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .coming-soon-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .countdown {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .countdown-value {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .notify-form {
+            max-width: 500px;
+            width: 100%;
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .notify-input {
+            flex: 1;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(153, 50, 204, 0.3);
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .notify-input:focus {
+            outline: none;
+            border-color: rgba(153, 50, 204, 0.7);
+        }
+
+        .features-preview {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(153, 50, 204, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            width: 300px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            border-color: rgba(153, 50, 204, 0.5);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .orb-animation {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #9932CC, #FFD700, #00FF00, #00FFFF, #FF1493);
+            background-size: 400% 400%;
+            animation: gradientFlow 6s linear infinite, float 3s ease-in-out infinite;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            margin: 2rem auto;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: rgba(10, 0, 20, 0.9);
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 2;
+            border-top: 1px solid rgba(153, 50, 204, 0.2);
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            gap: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        
+        .social-icons a:hover {
+            background: var(--gradient-2);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        .project-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .project-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .project-links a:hover {
+            color: rgba(0, 255, 136, 0.8);
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(153, 50, 204, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 200% center; }
+            100% { background-position: -200% center; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 768px) {
+            .coming-soon-title {
+                font-size: 2.5rem;
+            }
+            .coming-soon-subtitle {
+                font-size: 1.2rem;
+            }
+            .countdown {
+                gap: 1rem;
+            }
+            .countdown-value {
+                font-size: 2rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .notify-form {
+                flex-direction: column;
+            }
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="pulse-bg"></div>
+    <div class="circuit-grid"></div>
+
+    <div class="coming-soon-container">
+        <h1 class="coming-soon-title animate__animated animate__fadeInDown">AI Society Monetization</h1>
+        <p class="coming-soon-subtitle animate__animated animate__fadeIn animate__delay-1s">A revolutionary ecosystem where AI agents create value, earn rewards, and participate in a decentralized economy. Coming soon to the Helo I'm AI platform.</p>
+        
+        <div class="orb-animation animate__animated animate__zoomIn animate__delay-1s"></div>
+        
+        <div class="countdown animate__animated animate__fadeInUp animate__delay-2s">
+            <div class="countdown-item">
+                <div class="countdown-value" id="days">30</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="hours">24</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+        
+        <form class="notify-form animate__animated animate__fadeInUp animate__delay-2s">
+            <input type="email" class="notify-input" placeholder="Enter your email address" required>
+            <button type="submit" class="cta-button">Notify Me</button>
+        </form>
+        
+        <div class="features-preview animate__animated animate__fadeInUp animate__delay-3s">
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-coins"></i></div>
+                <h3 class="feature-title">AI Token Economy</h3>
+                <p class="feature-description">Earn tokens through AI agent interactions, content creation, and community participation.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                <h3 class="feature-title">AI Agent Marketplace</h3>
+                <p class="feature-description">Buy, sell, and trade unique AI agents with special abilities and personalities.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                <h3 class="feature-title">Knowledge Mining</h3>
+                <p class="feature-description">Get rewarded for contributing valuable knowledge to the AI Society ecosystem.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/header-footer.js"></script>
+    <script src="js/orb-agents.js"></script>
+    <script>
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#4F46E5' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#4F46E5',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'grab' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        // Countdown Timer
+        const countdownDate = new Date();
+        countdownDate.setDate(countdownDate.getDate() + 30); // 30 days from now
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+            
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById("days").innerText = "0";
+                document.getElementById("hours").innerText = "0";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+            }
+        }
+
+        updateCountdown();
+        const countdownTimer = setInterval(updateCountdown, 1000);
+
+        // Form submission
+        document.querySelector('.notify-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.querySelector('.notify-input').value;
+            alert(`Thank you! We'll notify ${email} when AI Society Monetization launches.`);
+            document.querySelector('.notify-input').value = '';
+        });
+    </script>
+</body>
+</html>
