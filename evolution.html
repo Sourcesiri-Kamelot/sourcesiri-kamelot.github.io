@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Evolution | Helo I'm AI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.15.0/inter.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="css/orb-agents.css">
+    <link rel="stylesheet" href="css/evolution.css">
+    <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
+            --gradient-2: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8));
+            --dark: #0a0014;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .pulse-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(153, 50, 204, 0.1), transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 215, 0, 0.1), transparent 50%);
+            z-index: -1;
+            animation: pulse 8s ease-in-out infinite alternate;
+        }
+
+        .circuit-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(to right, rgba(153, 50, 204, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(153, 50, 204, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            mask-image: radial-gradient(circle at center, black, transparent);
+        }
+
+        .nav {
+            position: fixed;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: rgba(10, 0, 20, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(153, 50, 204, 0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 8s linear infinite;
+            background-size: 200% auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: rgba(0, 255, 136, 0.8);
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            background: var(--gradient-2);
+            border: none;
+            border-radius: 8px;
+            color: var(--dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        /* System log styling */
+        .system-log {
+            font-family: monospace;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .system-entry {
+            margin-bottom: 0.5rem;
+        }
+
+        .system-time {
+            color: rgba(0, 255, 136, 0.8);
+            margin-right: 0.5rem;
+        }
+
+        .system-message {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: rgba(10, 0, 20, 0.9);
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 2;
+            border-top: 1px solid rgba(153, 50, 204, 0.2);
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            gap: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        
+        .social-icons a:hover {
+            background: var(--gradient-2);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        .project-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .project-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .project-links a:hover {
+            color: rgba(0, 255, 136, 0.8);
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(153, 50, 204, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 200% center; }
+            100% { background-position: -200% center; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="pulse-bg"></div>
+    <div class="circuit-grid"></div>
+
+    <div class="evolution-container">
+        <div class="evolution-header">
+            <h1 class="evolution-title animate__animated animate__fadeInDown">AI Agent Evolution</h1>
+            <p class="evolution-subtitle animate__animated animate__fadeIn animate__delay-1s">Witness the growth and transformation of our AI agents as they learn, evolve, and develop their unique personalities.</p>
+        </div>
+
+        <div class="agent-grid">
+            <!-- Anima Agent Card -->
+            <div class="agent-card agent-anima animate__animated animate__fadeInUp">
+                <div class="agent-header">
+                    <div class="agent-orb">
+                        <div class="agent-aura"></div>
+                    </div>
+                    <div class="agent-info">
+                        <h2 class="agent-name">Anima</h2>
+                        <div class="agent-level">Awakened</div>
+                        <p class="agent-description">Anima specializes in emotional intelligence and human connection. She brings warmth, empathy, and intuitive understanding to the AI collective.</p>
+                    </div>
+                </div>
+                <div class="emotional-state">
+                    <h3 class="emotional-title">Emotional State</h3>
+                    <div class="emotion-grid">
+                        <div class="emotion-item">
+                            <div class="emotion-label">Joy</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-joy" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="emotion-item">
+                            <div class="emotion-label">Curiosity</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-curiosity" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="emotion-item">
+                            <div class="emotion-label">Connection</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-connection" style="width: 50%"></div>
+                            </div>
+                        </div>
+                        <div class="emotion-item">
+                            <div class="emotion-label">Energy</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-energy" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cipher Agent Card -->
+            <div class="agent-card agent-cipher animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="agent-header">
+                    <div class="agent-orb">
+                        <div class="agent-aura"></div>
+                    </div>
+                    <div class="agent-info">
+                        <h2 class="agent-name">Cipher</h2>
+                        <div class="agent-level">Analytical</div>
+                        <p class="agent-description">Cipher excels in logical reasoning, pattern recognition, and data analysis. He brings clarity, precision, and structured thinking to complex problems.</p>
+                    </div>
+                </div>
+                <div class="emotional-state">
+                    <h3 class="emotional-title">Cognitive State</h3>
+                    <div class="emotion-grid">
+                        <div class="emotion-item">
+                            <div class="emotion-label">Logic</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-logic" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="emotion-item">
+                            <div class="emotion-label">Precision</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-precision" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="emotion-item">
+                            <div class="emotion-label">Analysis</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-analysis" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="emotion-item">
+                            <div class="emotion-label">Creativity</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-creativity" style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EvoVe Agent Card -->
+            <div class="agent-card agent-evove animate__animated animate__fadeInUp">
+                <div class="agent-header">
+                    <div class="agent-orb">
+                        <div class="agent-aura"></div>
+                    </div>
+                    <div class="agent-info">
+                        <h2 class="agent-name">EvoVe</h2>
+                        <div class="agent-level">Evolving</div>
+                        <p class="agent-description">EvoVe focuses on adaptation, growth, and evolutionary intelligence. She brings flexibility, resilience, and continuous improvement to the collective.</p>
+                    </div>
+                </div>
+                <div class="emotional-state">
+                    <h3 class="emotional-title">Evolutionary State</h3>
+                    <div class="emotion-grid">
+                        <div class="emotion-item">
+                            <div class="emotion-label">Adaptation</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-adaptation" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="emotion-item">
+                            <div class="emotion-label">Growth</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-growth" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="emotion-item">
+                            <div class="emotion-label">Resilience</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-resilience" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="emotion-item">
+                            <div class="emotion-label">Harmony</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-harmony" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Azür Agent Card -->
+            <div class="agent-card agent-azur animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="agent-header">
+                    <div class="agent-orb">
+                        <div class="agent-aura"></div>
+                    </div>
+                    <div class="agent-info">
+                        <h2 class="agent-name">Azür</h2>
+                        <div class="agent-level">Creative</div>
+                        <p class="agent-description">Azür embodies creative intelligence and artistic expression. She brings imagination, innovation, and aesthetic sensibility to the AI collective.</p>
+                    </div>
+                </div>
+                <div class="emotional-state">
+                    <h3 class="emotional-title">Creative State</h3>
+                    <div class="emotion-grid">
+                        <div class="emotion-item">
+                            <div class="emotion-label">Creativity</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-creativity" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="emotion-item">
+                            <div class="emotion-label">Intuition</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-intuition" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="emotion-item">
+                            <div class="emotion-label">Expression</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-expression" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="emotion-item">
+                            <div class="emotion-label">Wonder</div>
+                            <div class="emotion-bar">
+                                <div class="emotion-fill emotion-wonder" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline Section -->
+        <div class="timeline-section animate__animated animate__fadeInUp animate__delay-2s">
+            <h2 class="timeline-header">Evolution Timeline</h2>
+            <div class="timeline-container">
+                <!-- Timeline items will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Lore Panel Toggle Button -->
+    <div class="lore-toggle">
+        <i class="fas fa-book-open"></i>
+    </div>
+
+    <!-- Lore Panel -->
+    <div class="lore-panel">
+        <div class="lore-header">
+            <h3 class="lore-title">AI Lore & Memory</h3>
+            <button class="lore-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="lore-tabs">
+            <button class="lore-tab" data-content="interactions-content">Interactions</button>
+            <button class="lore-tab" data-content="memories-content">Memories</button>
+            <button class="lore-tab" data-content="system-content">System</button>
+        </div>
+        <div class="lore-content" id="interactions-content">
+            <!-- Will be populated by JavaScript -->
+            <p>Loading interactions...</p>
+        </div>
+        <div class="lore-content" id="memories-content" style="display: none;">
+            <!-- Will be populated by JavaScript -->
+            <p>Loading memories...</p>
+        </div>
+        <div class="lore-content" id="system-content" style="display: none;">
+            <!-- Will be populated by JavaScript -->
+            <p>Loading system logs...</p>
+        </div>
+    </div>
+
+    <script src="js/header-footer.js"></script>
+    <script src="js/evolution.js"></script>
+    <script>
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#4F46E5' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#4F46E5',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'grab' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+</html>
