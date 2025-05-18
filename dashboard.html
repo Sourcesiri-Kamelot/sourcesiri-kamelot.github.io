@@ -9,6 +9,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.8.2/dist/web3.min.js"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
     <link rel="stylesheet" href="css/orb-agents.css">
     <style>
         :root {
@@ -277,6 +279,29 @@
             box-shadow: 0 5px 15px rgba(153, 50, 204, 0.3);
         }
 
+        /* Placeholder content */
+        .placeholder-content {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .placeholder-content i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .placeholder-content h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Hidden by default, shown when wallet is connected */
+        .requires-connection {
+            display: none;
+        }
+
         /* Footer Styles */
         footer {
             background: rgba(10, 0, 20, 0.9);
@@ -287,80 +312,6 @@
             margin-top: 4rem;
         }
         
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto 2rem;
-            gap: 2rem;
-        }
-        
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        .footer-section h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            background: var(--gradient-2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-size: 1.2rem;
-        }
-        
-        .social-icons a:hover {
-            background: var(--gradient-2);
-            color: var(--dark);
-            transform: translateY(-3px);
-        }
-        
-        .project-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        
-        .project-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .project-links a:hover {
-            color: rgba(0, 255, 136, 0.8);
-            transform: translateX(5px);
-        }
-        
-        .copyright {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.5);
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(153, 50, 204, 0.1);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
         @keyframes pulse {
             0%, 100% { transform: scale(1); opacity: 0.5; }
             50% { transform: scale(1.05); opacity: 0.8; }
@@ -428,7 +379,16 @@
 
             <div class="dashboard-card">
                 <h2 class="card-title"><i class="fas fa-robot"></i> Your AI Orbs</h2>
-                <div class="orb-collection">
+                
+                <!-- Placeholder content (shown when wallet is not connected) -->
+                <div class="placeholder-content">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Connect Your Wallet</h3>
+                    <p>Connect your wallet to view and manage your AI Orbs</p>
+                </div>
+                
+                <!-- Real content (shown when wallet is connected) -->
+                <div class="orb-collection requires-connection">
                     <div class="orb-item">
                         <div class="orb-icon" style="background: linear-gradient(135deg, #9932CC, #FFD700);"></div>
                         <div class="orb-name">Anima</div>
@@ -484,49 +444,60 @@
 
             <div class="dashboard-card">
                 <h2 class="card-title"><i class="fas fa-wallet"></i> Your Dashboard</h2>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
-                    <div>
-                        <div style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7);">Total Balance</div>
-                        <div style="font-size: 1.8rem; font-weight: 700;">$1,234.56</div>
-                    </div>
-                    <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Send</button>
+                
+                <!-- Placeholder content (shown when wallet is not connected) -->
+                <div class="placeholder-content">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Connect Your Wallet</h3>
+                    <p>Connect your wallet to view your balance and transaction history</p>
                 </div>
-                <div style="background: rgba(0, 0, 0, 0.2); border-radius: 12px; padding: 1rem; margin-bottom: 1rem;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <div style="display: flex; align-items: center;">
-                            <div style="width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg, #9932CC, #FFD700); margin-right: 0.5rem;"></div>
-                            <div>HELO</div>
+                
+                <!-- Real content (shown when wallet is connected) -->
+                <div class="requires-connection">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                        <div>
+                            <div style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7);">Total Balance</div>
+                            <div style="font-size: 1.8rem; font-weight: 700;" id="total-balance">$1,234.56</div>
                         </div>
-                        <div>875.4</div>
+                        <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Send</button>
                     </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <div style="display: flex; align-items: center;">
-                            <div style="width: 24px; height: 24px; border-radius: 50%; background: #627EEA; margin-right: 0.5rem;"></div>
-                            <div>ETH</div>
+                    <div id="token-list" style="background: rgba(0, 0, 0, 0.2); border-radius: 12px; padding: 1rem; margin-bottom: 1rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <div style="display: flex; align-items: center;">
+                                <div style="width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg, #9932CC, #FFD700); margin-right: 0.5rem;"></div>
+                                <div>HELO</div>
+                            </div>
+                            <div>875.4</div>
                         </div>
-                        <div>0.25</div>
-                    </div>
-                    <div style="display: flex; justify-content: space-between;">
-                        <div style="display: flex; align-items: center;">
-                            <div style="width: 24px; height: 24px; border-radius: 50%; background: #F7931A; margin-right: 0.5rem;"></div>
-                            <div>BTC</div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <div style="display: flex; align-items: center;">
+                                <div style="width: 24px; height: 24px; border-radius: 50%; background: #627EEA; margin-right: 0.5rem;"></div>
+                                <div>ETH</div>
+                            </div>
+                            <div>0.25</div>
                         </div>
-                        <div>0.01</div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <div style="display: flex; align-items: center;">
+                                <div style="width: 24px; height: 24px; border-radius: 50%; background: #F7931A; margin-right: 0.5rem;"></div>
+                                <div>BTC</div>
+                            </div>
+                            <div>0.01</div>
+                        </div>
                     </div>
-                </div>
-                <div style="font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem;">Recent Activity</div>
-                <div style="background: rgba(0, 0, 0, 0.2); border-radius: 12px; padding: 1rem;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                        <div>Sent HELO</div>
-                        <div style="color: #FF6B6B;">-50 HELO</div>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                        <div>Minted Orb</div>
-                        <div style="color: #FF6B6B;">-100 HELO</div>
-                    </div>
-                    <div style="display: flex; justify-content: space-between;">
-                        <div>Received ETH</div>
-                        <div style="color: #4ECB71;">+0.1 ETH</div>
+                    <div style="font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem;">Recent Activity</div>
+                    <div id="activity-list" style="background: rgba(0, 0, 0, 0.2); border-radius: 12px; padding: 1rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div>Sent HELO</div>
+                            <div style="color: #FF6B6B;">-50 HELO</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div>Minted Orb</div>
+                            <div style="color: #FF6B6B;">-100 HELO</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <div>Received ETH</div>
+                            <div style="color: #4ECB71;">+0.1 ETH</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -535,6 +506,8 @@
 
     <script src="js/header-footer.js"></script>
     <script src="js/orb-agents.js"></script>
+    <script src="js/web3-connect.js"></script>
+    <script src="js/real-time-analytics.js"></script>
     <script>
         // Initialize particles.js
         particlesJS('particles-js', {
