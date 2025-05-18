@@ -10,13 +10,22 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
     <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
+            --gradient-2: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8));
+            --dark: #0a0014;
+        }
+        
         body {
             margin: 0;
             padding: 0;
-            overflow: hidden;
             font-family: 'Inter', sans-serif;
             background-color: #000;
             color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
         }
         
         #canvas-container {
@@ -165,6 +174,7 @@
             overflow: hidden;
             transition: height 0.3s ease;
             z-index: 5;
+            margin-bottom: 20px; /* Add space between console and footer */
         }
         
         .console.open {
@@ -208,6 +218,21 @@
             box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
         }
         
+        /* Main content wrapper to push footer down */
+        .main-content {
+            flex: 1;
+            position: relative;
+            z-index: 2;
+            padding-bottom: 400px; /* Space for the console and agents */
+        }
+        
+        /* Footer positioning fix */
+        footer {
+            position: relative;
+            z-index: 10;
+            margin-top: auto;
+        }
+        
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -241,6 +266,54 @@
             75% { transform: translateX(5px); }
             100% { transform: translateX(0); }
         }
+        
+        /* Responsive styles */
+        @media (max-width: 1024px) {
+            .console {
+                width: 90%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #navbar .nav-links {
+                display: none;
+            }
+            
+            .console {
+                width: 95%;
+            }
+            
+            .agent-container {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .memory-vault {
+                bottom: 20px;
+                left: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .agent {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .memory-vault {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .memory-vault i {
+                font-size: 24px;
+            }
+            
+            .console.open {
+                height: 250px;
+            }
+        }
     </style>
     <link rel="stylesheet" href="css/orb-agents.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -252,15 +325,23 @@
     <nav id="navbar">
         <div class="logo">SoulCore Lab</div>
         <div class="nav-links">
-            <a href="#" class="active" data-icon="home"><i class="fas fa-home"></i> Home</a>
-            <a href="#" data-icon="users"><i class="fas fa-users"></i> Agents</a>
-            <a href="#" data-icon="database"><i class="fas fa-database"></i> Memory</a>
-            <a href="#" data-icon="terminal"><i class="fas fa-terminal"></i> Console</a>
-            <a href="#" data-icon="cog"><i class="fas fa-cog"></i> Settings</a>
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="vision.html"><i class="fas fa-brain"></i> AI Twins</a>
+            <a href="soulcore.html"><i class="fas fa-atom"></i> SoulCore</a>
+            <a href="evolution.html"><i class="fas fa-dna"></i> Evolution</a>
+            <a href="api.html"><i class="fas fa-code"></i> API</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            <a href="timeline.html"><i class="fas fa-clock"></i> Timeline</a>
+            <a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+            <a href="dashboard.html"><i class="fas fa-cube"></i> Web3</a>
         </div>
     </nav>
     
     <a href="soulcore.html" class="back-button">Back to SoulCore</a>
+    
+    <div class="main-content">
+        <!-- This div wraps the main content and helps with layout -->
+    </div>
     
     <div class="agent-container">
         <div class="agent idle" data-agent="gptsoul">G</div>
@@ -438,7 +519,7 @@
             const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
-                    e.preventDefault();
+                    // Don't prevent default here to allow navigation
                     
                     // Remove active class from all links
                     navLinks.forEach(l => l.classList.remove('active'));
@@ -511,6 +592,7 @@
         // Call this function after a delay to simulate initialization
         setTimeout(finalizeMemoryEvent, 3000);
     </script>
+    <!-- Remove the debug nav links that appear at the top -->
     <script src="js/header-footer.js"></script>
     <script src="js/orb-agents.js"></script>
 </body>
