@@ -162,7 +162,7 @@
         
         .console {
             position: fixed;
-            bottom: 0;
+            bottom: 120px; /* Increased to avoid footer overlap */
             left: 50%;
             transform: translateX(-50%);
             width: 80%;
@@ -174,7 +174,6 @@
             overflow: hidden;
             transition: height 0.3s ease;
             z-index: 5;
-            margin-bottom: 20px; /* Add space between console and footer */
         }
         
         .console.open {
@@ -231,6 +230,22 @@
             position: relative;
             z-index: 10;
             margin-top: auto;
+            width: 100%;
+            padding-top: 20px;
+        }
+        
+        /* Hide the default footer that gets injected by header-footer.js */
+        body > footer:not(.custom-footer) {
+            display: none !important;
+        }
+        
+        /* Custom footer for this page */
+        .custom-footer {
+            background: rgba(10, 0, 20, 0.7);
+            padding: 10px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(153, 50, 204, 0.2);
         }
         
         @keyframes pulse {
@@ -281,6 +296,7 @@
             
             .console {
                 width: 95%;
+                bottom: 100px;
             }
             
             .agent-container {
@@ -370,6 +386,11 @@
             > Ready for interaction
         </div>
     </div>
+    
+    <!-- Custom minimal footer that won't interfere with the 3D experience -->
+    <footer class="custom-footer">
+        <p>&copy; 2025 Helo I'm AI Inc. | <a href="index.html">Home</a> | <a href="soulcore.html">SoulCore</a> | <a href="dashboard.html">Web3</a></p>
+    </footer>
     
     <script>
         // Three.js initialization
@@ -592,8 +613,8 @@
         // Call this function after a delay to simulate initialization
         setTimeout(finalizeMemoryEvent, 3000);
     </script>
-    <!-- Remove the debug nav links that appear at the top -->
-    <script src="js/header-footer.js"></script>
+    <!-- We're not using the standard header-footer.js script for this page -->
+    <!-- <script src="js/header-footer.js"></script> -->
     <script src="js/orb-agents.js"></script>
 </body>
 </html>
