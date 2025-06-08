@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Helo Im AI - Web3 Wallet Demo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="../src/styles/wallet-theme.css">
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0f0514, #1a0b2e);
+      color: white;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #9932CC, #FFD700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .hero {
+      text-align: center;
+      margin: 4rem 0;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #9932CC, #FFD700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+    
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(153, 50, 204, 0.2);
+      border-color: rgba(153, 50, 204, 0.3);
+    }
+    
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #9932CC;
+    }
+    
+    .feature-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .wallet-dashboard {
+      display: none;
+    }
+    
+    .wallet-dashboard.active {
+      display: grid;
+    }
+    
+    .placeholder-content {
+      text-align: center;
+      padding: 3rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      margin: 2rem 0;
+    }
+    
+    .placeholder-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, 0.2);
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding: 2rem 0;
+      color: rgba(255, 255, 255, 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">Helo Im AI</div>
+      <button class="connect-wallet-btn">Connect Wallet</button>
+    </header>
+    
+    <div class="hero">
+      <h1>Web3 Wallet Integration Demo</h1>
+      <p>Connect your wallet to explore the future of AI evolution on the blockchain</p>
+    </div>
+    
+    <div class="placeholder-content">
+      <div class="placeholder-icon">
+        <i class="fas fa-wallet"></i>
+      </div>
+      <h2>Connect Your Wallet</h2>
+      <p>Connect your Web3 wallet to access your AI assets, view your balance, and interact with the Helo Im AI ecosystem.</p>
+    </div>
+    
+    <div class="wallet-dashboard requires-connection" style="display: none;">
+      <div class="dashboard-card">
+        <h3>Your Balance</h3>
+        <div id="total-balance" style="font-size: 2rem; margin-bottom: 1rem;">$0.00</div>
+        <div id="token-list" class="token-list"></div>
+      </div>
+      
+      <div class="dashboard-card">
+        <h3>Recent Activity</h3>
+        <div id="activity-list"></div>
+      </div>
+      
+      <div class="dashboard-card" style="grid-column: 1 / -1;">
+        <h3>Your AI Orbs</h3>
+        <div class="orb-collection"></div>
+      </div>
+    </div>
+    
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3 class="feature-title">AI Orbs</h3>
+        <p>Collect and evolve unique AI personalities that learn and grow with you over time.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-project-diagram"></i>
+        </div>
+        <h3 class="feature-title">AI Ecosystem</h3>
+        <p>Join a decentralized network of AI agents that collaborate, share knowledge, and evolve together.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-coins"></i>
+        </div>
+        <h3 class="feature-title">HELO Token</h3>
+        <p>Power the AI evolution economy with HELO tokens, used for training, evolving, and trading AI assets.</p>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <p>&copy; 2025 Helo Im AI. All rights reserved.</p>
+  </footer>
+  
+  <!-- Web3 and dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  
+  <!-- Our wallet component -->
+  <script src="../src/components/WalletConnect/WalletConnect.js"></script>
+  <script src="../src/utils/web3.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Initialize wallet connection
+      const walletConnect = new WalletConnect({
+        buttonSelector: '.connect-wallet-btn',
+        onConnect: handleWalletConnected,
+        onDisconnect: handleWalletDisconnected,
+        theme: 'dark'
+      });
+      
+      // Handle wallet connected
+      async function handleWalletConnected(account, chainId) {
+        console.log(`Wallet connected: ${account} on chain ${chainId}`);
+        
+        // Show dashboard
+        document.querySelector('.placeholder-content').style.display = 'none';
+        document.querySelector('.wallet-dashboard').style.display = 'grid';
+        
+        // Load user data
+        await loadUserData(walletConnect.getWeb3(), account);
+      }
+      
+      // Handle wallet disconnected
+      function handleWalletDisconnected() {
+        console.log('Wallet disconnected');
+        
+        // Hide dashboard
+        document.querySelector('.placeholder-content').style.display = 'block';
+        document.querySelector('.wallet-dashboard').style.display = 'none';
+      }
+      
+      // Load user data
+      async function loadUserData(web3, account) {
+        // Simulate loading delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Mock data for demo
+        const balances = {
+          HELO: 875.4,
+          ETH: 0.25,
+          BTC: 0.01
+        };
+        
+        const nfts = [
+          { id: 1, name: "Anima", level: 7, image: "linear-gradient(135deg, #9932CC, #FFD700)" },
+          { id: 2, name: "Cipher", level: 5, image: "linear-gradient(135deg, #00f0ff, #4f46e5)" },
+          { id: 3, name: "Nova", level: 3, image: "linear-gradient(135deg, #FF1493, #FFD700)" }
+        ];
+        
+        const transactions = [
+          { type: "Sent HELO", amount: "-50 HELO", timestamp: Date.now() - 3600000 },
+          { type: "Minted Orb", amount: "-100 HELO", timestamp: Date.now() - 86400000 },
+          { type: "Received ETH", amount: "+0.1 ETH", timestamp: Date.now() - 172800000 }
+        ];
+        
+        // Update UI
+        updateBalanceUI(balances);
+        updateNFTUI(nfts);
+        updateActivityUI(transactions);
+      }
+      
+      // Update balance UI
+      function updateBalanceUI(balances) {
+        // Update total balance
+        document.querySelector('#total-balance').textContent = '$1,234.56';
+        
+        // Update token list
+        const tokenListElement = document.querySelector('#token-list');
+        tokenListElement.innerHTML = '';
+        
+        for (const [token, amount] of Object.entries(balances)) {
+          const tokenElement = document.createElement('div');
+          tokenElement.className = 'token-item';
+          
+          // Determine token icon background
+          let tokenBg = '#627EEA'; // Default
+          if (token === 'HELO') tokenBg = 'linear-gradient(135deg, #9932CC, #FFD700)';
+          if (token === 'BTC') tokenBg = '#F7931A';
+          
+          tokenElement.innerHTML = `
+            <div style="display: flex; align-items: center;">
+              <div style="width: 24px; height: 24px; border-radius: 50%; background: ${tokenBg}; margin-right: 0.5rem;"></div>
+              <div>${token}</div>
+            </div>
+            <div>${amount}</div>
+          `;
+          
+          tokenListElement.appendChild(tokenElement);
+        }
+      }
+      
+      // Update NFT UI
+      function updateNFTUI(nfts) {
+        const orbCollectionElement = document.querySelector('.orb-collection');
+        orbCollectionElement.innerHTML = '';
+        
+        // Add each NFT
+        nfts.forEach(nft => {
+          const nftElement = document.createElement('div');
+          nftElement.className = 'orb-item';
+          nftElement.innerHTML = `
+            <div class="orb-icon" style="background: ${nft.image};"></div>
+            <div class="orb-name">${nft.name}</div>
+            <div class="orb-level">Level ${nft.level}</div>
+          `;
+          
+          orbCollectionElement.appendChild(nftElement);
+        });
+        
+        // Add "New Orb" button
+        const newOrbElement = document.createElement('div');
+        newOrbElement.className = 'orb-item';
+        newOrbElement.innerHTML = `
+          <div class="orb-icon" style="background: rgba(255, 255, 255, 0.1); border: 2px dashed rgba(255, 255, 255, 0.3);"></div>
+          <div class="orb-name">+ New Orb</div>
+          <div class="orb-level">Mint</div>
+        `;
+        
+        orbCollectionElement.appendChild(newOrbElement);
+      }
+      
+      // Update activity UI
+      function updateActivityUI(transactions) {
+        const activityElement = document.querySelector('#activity-list');
+        activityElement.innerHTML = '';
+        
+        // Add each transaction
+        transactions.forEach((tx, index) => {
+          const txElement = document.createElement('div');
+          
+          // Determine if this is the last item
+          const isLast = index === transactions.length - 1;
+          
+          txElement.style.display = 'flex';
+          txElement.style.justifyContent = 'space-between';
+          txElement.style.marginBottom = isLast ? '0' : '0.5rem';
+          txElement.style.paddingBottom = isLast ? '0' : '0.5rem';
+          txElement.style.borderBottom = isLast ? 'none' : '1px solid rgba(255, 255, 255, 0.1)';
+          
+          // Determine color based on transaction type
+          const isNegative = tx.amount.startsWith('-');
+          const amountColor = isNegative ? '#FF6B6B' : '#4ECB71';
+          
+          txElement.innerHTML = `
+            <div>${tx.type}</div>
+            <div style="color: ${amountColor};">${tx.amount}</div>
+          `;
+          
+          activityElement.appendChild(txElement);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
