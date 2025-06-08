@@ -1,0 +1,154 @@
+/* Global Footer Styles */
+footer {
+    background: rgba(10, 0, 20, 0.9);
+    padding: 50px 0 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    margin-top: 50px;
+    /* Ensure footer stays at the bottom */
+    margin-top: auto;
+}
+
+/* Make sure the footer is always at the bottom */
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-column h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary, #FFD700);
+    background: var(--gradient-2, linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-column ul li a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.footer-column ul li a:hover {
+    color: var(--secondary, #FFD700);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.footer-column ul li a i {
+    margin-right: 5px;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+}
+
+/* Glowing orbs in footer */
+.footer-orb {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.3;
+    filter: blur(10px);
+    z-index: -1;
+    animation: pulse 4s infinite alternate ease-in-out;
+}
+
+.footer-orb-1 {
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at center, var(--primary, #9932CC), transparent 70%);
+    bottom: 20px;
+    left: 10%;
+}
+
+.footer-orb-2 {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at center, var(--secondary, #FFD700), transparent 70%);
+    top: 30px;
+    right: 15%;
+}
+
+.footer-orb-3 {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at center, var(--accent, #0000FF), transparent 70%);
+    bottom: 40px;
+    right: 30%;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .footer-content {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-column {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-column {
+        text-align: center;
+    }
+    
+    .footer-column ul li a {
+        display: block;
+        width: 100%;
+    }
+}
