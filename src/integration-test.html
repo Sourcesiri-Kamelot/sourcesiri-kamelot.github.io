@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Component Integration Test</title>
+    
+    <!-- Existing site CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Web3.js -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
+    
+    <!-- New wallet component styles -->
+    <link rel="stylesheet" href="styles/wallet-theme.css">
+    <link rel="stylesheet" href="components/WalletConnect/WalletConnect.css">
+    
+    <style>
+        body {
+            background: var(--dark);
+            color: var(--light);
+            min-height: 100vh;
+            font-family: var(--font-main);
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .test-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .test-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        
+        .test-section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .test-section h2 {
+            color: var(--evove-color);
+            margin-bottom: 1rem;
+        }
+        
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .test-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .test-card h3 {
+            color: var(--anima-color);
+            margin-bottom: 1rem;
+        }
+        
+        .test-wallet-row {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .test-status {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .test-log {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            max-height: 200px;
+            overflow-y: auto;
+            margin: 1rem 0;
+        }
+        
+        .test-log-entry {
+            margin-bottom: 0.25rem;
+            opacity: 0.8;
+        }
+        
+        .test-log-entry.success {
+            color: var(--evove-color);
+        }
+        
+        .test-log-entry.error {
+            color: #FF6B6B;
+        }
+        
+        .test-log-entry.info {
+            color: var(--azur-color);
+        }
+        
+        @media (max-width: 768px) {
+            .test-container {
+                padding: 1rem;
+            }
+            
+            .test-wallet-row {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <header class="test-header">
+            <h1 class="test-title">Wallet Component Integration Test</h1>
+            <p>Testing the new modular wallet components with the existing SoulCore design system</p>
+        </header>
+        
+        <div class="test-section">
+            <h2><i class="fas fa-cogs"></i> Component Integration Tests</h2>
+            <p>The components below use the new modular system while maintaining compatibility with the existing design.</p>
+            
+            <div class="test-grid">
+                <div class="test-card">
+                    <h3>Main Component</h3>
+                    <p>Full-featured wallet component with balance display and notifications</p>
+                    <div class="test-wallet-row">
+                        <div id="wallet-main"></div>
+                    </div>
+                </div>
+                
+                <div class="test-card">
+                    <h3>Minimal Component</h3>
+                    <p>Simplified wallet component without extra features</p>
+                    <div class="test-wallet-row">
+                        <div id="wallet-minimal"></div>
+                    </div>
+                </div>
+                
+                <div class="test-card">
+                    <h3>Header Integration</h3>
+                    <p>Component designed for navigation headers</p>
+                    <div class="test-wallet-row">
+                        <div id="wallet-header"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2><i class="fas fa-chart-line"></i> Component Status</h2>
+            
+            <div class="test-status">
+                <strong>Connection Status:</strong> <span id="connection-status">Initializing...</span><br>
+                <strong>Active Components:</strong> <span id="component-count">0</span><br>
+                <strong>MetaMask Detected:</strong> <span id="metamask-status">Checking...</span>
+            </div>
+            
+            <h3>Event Log</h3>
+            <div class="test-log" id="event-log">
+                <div class="test-log-entry info">Initializing component test...</div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2><i class="fas fa-code"></i> Integration Code</h2>
+            <p>Example of how to integrate the wallet components:</p>
+            
+            <pre style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 8px; overflow-x: auto;"><code>// Import the wallet component
+import createWalletConnect from './src/components/WalletConnect/WalletConnect.js';
+
+// Create wallet instances with different configurations
+const mainWallet = createWalletConnect('#wallet-main', {
+    showStatus: true,
+    showBalance: true,
+    notifications: true
+});
+
+const headerWallet = createWalletConnect('#wallet-header', {
+    showStatus: false,
+    showBalance: false,
+    notifications: false
+});
+
+// Listen to events
+mainWallet.on('connected', (data) => {
+    console.log('Main wallet connected:', data);
+});
+</code></pre>
+        </div>
+    </div>
+    
+    <script type="module">
+        import createWalletConnect from './components/WalletConnect/WalletConnect.js';
+        
+        // Initialize test components
+        let componentCount = 0;
+        const log = document.getElementById('event-log');
+        const statusEl = document.getElementById('connection-status');
+        const countEl = document.getElementById('component-count');
+        const metamaskEl = document.getElementById('metamask-status');
+        
+        function logEvent(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = `test-log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+        
+        function updateStatus() {
+            countEl.textContent = componentCount;
+            metamaskEl.textContent = window.ethereum ? 'Yes' : 'No';
+        }
+        
+        async function initializeComponents() {
+            try {
+                logEvent('Starting component initialization...', 'info');
+                
+                // Main component with full features
+                const mainWallet = createWalletConnect('#wallet-main', {
+                    showStatus: true,
+                    showBalance: true,
+                    notifications: true
+                });
+                componentCount++;
+                
+                mainWallet.on('connected', (data) => {
+                    logEvent(`Main wallet connected: ${data.account}`, 'success');
+                    statusEl.textContent = 'Connected';
+                });
+                
+                mainWallet.on('disconnected', () => {
+                    logEvent('Main wallet disconnected', 'info');
+                    statusEl.textContent = 'Disconnected';
+                });
+                
+                mainWallet.on('error', (data) => {
+                    logEvent(`Main wallet error: ${data.error}`, 'error');
+                });
+                
+                // Minimal component
+                const minimalWallet = createWalletConnect('#wallet-minimal', {
+                    showStatus: false,
+                    showBalance: false,
+                    notifications: false
+                });
+                componentCount++;
+                
+                minimalWallet.on('connected', (data) => {
+                    logEvent(`Minimal wallet connected: ${data.account}`, 'success');
+                });
+                
+                // Header component
+                const headerWallet = createWalletConnect('#wallet-header', {
+                    showStatus: false,
+                    showBalance: true,
+                    notifications: false
+                });
+                componentCount++;
+                
+                headerWallet.on('connected', (data) => {
+                    logEvent(`Header wallet connected: ${data.account}`, 'success');
+                });
+                
+                updateStatus();
+                logEvent(`Successfully initialized ${componentCount} components`, 'success');
+                statusEl.textContent = 'Ready';
+                
+            } catch (error) {
+                logEvent(`Initialization error: ${error.message}`, 'error');
+                statusEl.textContent = 'Error';
+            }
+        }
+        
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', initializeComponents);
+        
+        // Update status periodically
+        setInterval(updateStatus, 1000);
+    </script>
+</body>
+</html>

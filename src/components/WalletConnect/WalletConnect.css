@@ -6,7 +6,7 @@
  */
 
 /* Import wallet theme */
-@import url('../../../styles/wallet-theme.css');
+@import url('../../styles/wallet-theme.css');
 
 /* Component container */
 .wallet-connect-container {

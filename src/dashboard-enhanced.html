@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Enhanced with Modular Wallet Components</title>
+    
+    <!-- Existing styles -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/project-cards.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Web3.js -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
+    
+    <!-- New modular wallet components -->
+    <link rel="stylesheet" href="styles/wallet-theme.css">
+    <link rel="stylesheet" href="components/WalletConnect/WalletConnect.css">
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a0014, #1a0a2e, #16213e);
+            color: white;
+            min-height: 100vh;
+            font-family: var(--font-main);
+            overflow-x: hidden;
+        }
+        
+        /* Dashboard styles adapted from original */
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(153, 50, 204, 0.2);
+        }
+        
+        .dashboard-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .dashboard-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-fast);
+        }
+        
+        .dashboard-card:hover {
+            border-color: var(--card-border-hover);
+            transform: translateY(-4px);
+        }
+        
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--evove-color);
+        }
+        
+        .enhancement-notice {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 238, 0.1));
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .enhancement-title {
+            color: var(--evove-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .component-showcase {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(153, 50, 204, 0.2);
+        }
+        
+        .feature-item i {
+            color: var(--evove-color);
+            width: 20px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-table th {
+            background: rgba(153, 50, 204, 0.2);
+            color: var(--anima-color);
+            font-weight: 600;
+        }
+        
+        .comparison-table .check {
+            color: var(--evove-color);
+        }
+        
+        .comparison-table .cross {
+            color: #FF6B6B;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .dashboard-title {
+                font-size: 2rem;
+            }
+            
+            .component-showcase {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Web3 AI Society</h1>
+            <!-- Using the new modular wallet component -->
+            <div id="header-wallet"></div>
+        </div>
+        
+        <div class="enhancement-notice">
+            <div class="enhancement-title">🚀 Enhanced with Modular Wallet Components</div>
+            <p>This dashboard now uses the new modular Web3 wallet connect system while maintaining full compatibility with existing functionality.</p>
+            
+            <div class="component-showcase">
+                <!-- Different component configurations -->
+                <div id="wallet-main"></div>
+                <div id="wallet-minimal"></div>
+            </div>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h2 class="card-title"><i class="fas fa-rocket"></i> Component Features</h2>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <i class="fas fa-cube"></i>
+                        <span>ES6 Modules</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Responsive Design</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-palette"></i>
+                        <span>Neon/Cyber Aesthetic</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Error Handling</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-sync"></i>
+                        <span>Account Detection</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <h2 class="card-title"><i class="fas fa-code"></i> Implementation</h2>
+                
+                <p style="margin-bottom: 1rem;">Simple integration in just a few lines:</p>
+                
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; font-size: 0.8rem; overflow-x: auto;"><code>import createWalletConnect from './src/components/WalletConnect/WalletConnect.js';
+
+const wallet = createWalletConnect('#container', {
+  showStatus: true,
+  showBalance: true,
+  notifications: true
+});
+
+wallet.on('connected', (data) => {
+  console.log('Connected:', data.account);
+});</code></pre>
+            </div>
+            
+            <div class="dashboard-card">
+                <h2 class="card-title"><i class="fas fa-chart-bar"></i> Comparison</h2>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Old System</th>
+                            <th>New Modular</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Reusability</td>
+                            <td><i class="fas fa-times cross"></i> Monolithic</td>
+                            <td><i class="fas fa-check check"></i> Modular</td>
+                        </tr>
+                        <tr>
+                            <td>ES6 Modules</td>
+                            <td><i class="fas fa-times cross"></i> No</td>
+                            <td><i class="fas fa-check check"></i> Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Event System</td>
+                            <td><i class="fas fa-minus" style="color: #FFD700;"></i> Basic</td>
+                            <td><i class="fas fa-check check"></i> Advanced</td>
+                        </tr>
+                        <tr>
+                            <td>Configuration</td>
+                            <td><i class="fas fa-times cross"></i> Fixed</td>
+                            <td><i class="fas fa-check check"></i> Flexible</td>
+                        </tr>
+                        <tr>
+                            <td>Accessibility</td>
+                            <td><i class="fas fa-minus" style="color: #FFD700;"></i> Limited</td>
+                            <td><i class="fas fa-check check"></i> Full Support</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="dashboard-card">
+                <h2 class="card-title"><i class="fas fa-cogs"></i> Configuration Options</h2>
+                
+                <p style="margin-bottom: 1rem;">Customize components for different use cases:</p>
+                
+                <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px;">
+                    <div style="margin-bottom: 0.5rem;"><strong>showStatus:</strong> Display connection indicator</div>
+                    <div style="margin-bottom: 0.5rem;"><strong>showBalance:</strong> Show account balance</div>
+                    <div style="margin-bottom: 0.5rem;"><strong>notifications:</strong> Toast notifications</div>
+                    <div style="margin-bottom: 0.5rem;"><strong>theme:</strong> Visual theme variant</div>
+                    <div><strong>autoInit:</strong> Auto-initialize component</div>
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <h2 class="card-title"><i class="fas fa-download"></i> Getting Started</h2>
+                
+                <p style="margin-bottom: 1rem;">Ready to use the new components? Follow these steps:</p>
+                
+                <ol style="padding-left: 1.5rem; line-height: 1.8;">
+                    <li>Include the CSS files</li>
+                    <li>Import the JavaScript module</li>
+                    <li>Create component instance</li>
+                    <li>Listen to events</li>
+                    <li>Enjoy the enhanced UX!</li>
+                </ol>
+                
+                <div style="margin-top: 1rem; padding: 1rem; background: rgba(0, 255, 136, 0.1); border-radius: 8px; border: 1px solid rgba(0, 255, 136, 0.3);">
+                    <strong>💡 Pro Tip:</strong> View the source of this page to see the integration in action!
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module">
+        import createWalletConnect from './components/WalletConnect/WalletConnect.js';
+        
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // Header wallet component (minimal)
+                const headerWallet = createWalletConnect('#header-wallet', {
+                    showStatus: false,
+                    showBalance: true,
+                    notifications: true
+                });
+                
+                // Main demonstration component
+                const mainWallet = createWalletConnect('#wallet-main', {
+                    showStatus: true,
+                    showBalance: true,
+                    notifications: true
+                });
+                
+                // Minimal component for comparison
+                const minimalWallet = createWalletConnect('#wallet-minimal', {
+                    showStatus: false,
+                    showBalance: false,
+                    notifications: false
+                });
+                
+                // Event listeners for demonstration
+                headerWallet.on('connected', (data) => {
+                    console.log('Header wallet connected:', data);
+                });
+                
+                mainWallet.on('connected', (data) => {
+                    console.log('Main wallet connected:', data);
+                });
+                
+                minimalWallet.on('connected', (data) => {
+                    console.log('Minimal wallet connected:', data);
+                });
+                
+                console.log('Dashboard enhanced with modular wallet components');
+                
+            } catch (error) {
+                console.error('Error initializing components:', error);
+            }
+        });
+    </script>
+</body>
+</html>
