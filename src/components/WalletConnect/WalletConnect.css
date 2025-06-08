@@ -1,0 +1,302 @@
+/**
+ * WalletConnect Component Styles
+ * 
+ * Component-specific styles that extend the wallet theme
+ * Includes layout, positioning, and interaction styles
+ */
+
+/* Import wallet theme */
+@import url('../../../styles/wallet-theme.css');
+
+/* Component container */
+.wallet-connect-container {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+}
+
+/* Enhanced connect button with cyber effects */
+.wallet-connect-container .wallet-connect-btn {
+  position: relative;
+  background: linear-gradient(135deg, rgba(10, 0, 20, 0.95), rgba(20, 10, 40, 0.95));
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  backdrop-filter: blur(10px);
+}
+
+.wallet-connect-container .wallet-connect-btn::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #9932CC, #FFD700, #00FF88, #00FFFF);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--wallet-transition-fast);
+}
+
+.wallet-connect-container .wallet-connect-btn:hover::before {
+  opacity: 1;
+}
+
+/* Animated gradient background for connected state */
+.wallet-connect-container .wallet-connect-btn.connected {
+  background: linear-gradient(135deg, #9932CC, #FFD700);
+  background-size: 200% 200%;
+  animation: wallet-gradient-flow 3s ease infinite;
+}
+
+@keyframes wallet-gradient-flow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Icon animations */
+.wallet-connect-container .wallet-connect-btn #wallet-connect-icon {
+  transition: transform var(--wallet-transition-fast);
+}
+
+.wallet-connect-container .wallet-connect-btn:hover #wallet-connect-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.wallet-connect-container .wallet-connect-btn.loading #wallet-connect-icon {
+  animation: wallet-pulse 1.5s infinite;
+}
+
+/* Status indicator enhancements */
+.wallet-connect-container .wallet-status {
+  margin-left: var(--wallet-spacing-md);
+  vertical-align: middle;
+}
+
+.wallet-connect-container .wallet-status-indicator {
+  position: relative;
+}
+
+.wallet-connect-container .wallet-status-indicator::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: inherit;
+  border-radius: inherit;
+  opacity: 0.5;
+  animation: wallet-ping 2s infinite;
+}
+
+@keyframes wallet-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Dropdown positioning and effects */
+.wallet-connect-container .wallet-dropdown {
+  position: absolute;
+  top: calc(100% + var(--wallet-spacing-sm));
+  right: 0;
+  min-width: 300px;
+  max-width: 350px;
+}
+
+/* Enhanced dropdown with glassmorphism */
+.wallet-connect-container .wallet-dropdown {
+  background: rgba(10, 0, 20, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(153, 50, 204, 0.3);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(153, 50, 204, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Account info section styling */
+.wallet-connect-container .wallet-account-info {
+  background: linear-gradient(135deg, rgba(153, 50, 204, 0.1), rgba(0, 255, 136, 0.05));
+  border: 1px solid rgba(153, 50, 204, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.wallet-connect-container .wallet-account-info::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 1.5s ease;
+}
+
+.wallet-connect-container .wallet-account-info:hover::before {
+  left: 100%;
+}
+
+/* Menu option hover effects */
+.wallet-connect-container .wallet-menu-option {
+  position: relative;
+  overflow: hidden;
+}
+
+.wallet-connect-container .wallet-menu-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+  transition: left var(--wallet-transition-medium);
+}
+
+.wallet-connect-container .wallet-menu-option:hover::before {
+  left: 100%;
+}
+
+/* Enhanced copy button */
+.wallet-connect-container .wallet-copy-btn {
+  position: relative;
+  border-radius: var(--wallet-radius-sm);
+}
+
+.wallet-connect-container .wallet-copy-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(0, 255, 136, 0.3), transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all var(--wallet-transition-fast);
+}
+
+.wallet-connect-container .wallet-copy-btn:active::after {
+  width: 30px;
+  height: 30px;
+}
+
+/* Error state enhancements */
+.wallet-connect-container .wallet-error {
+  margin-top: var(--wallet-spacing-md);
+  animation: wallet-shake 0.5s ease-in-out;
+}
+
+@keyframes wallet-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .wallet-connect-container .wallet-dropdown {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) translateY(-10px);
+    min-width: 280px;
+    max-width: calc(100vw - 2rem);
+  }
+  
+  .wallet-connect-container .wallet-dropdown.open {
+    transform: translateX(-50%) translateY(0);
+  }
+  
+  .wallet-connect-container .wallet-status {
+    margin-left: var(--wallet-spacing-sm);
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wallet-connect-container .wallet-connect-btn {
+    padding: var(--wallet-spacing-sm) var(--wallet-spacing-md);
+    font-size: 0.9rem;
+  }
+  
+  .wallet-connect-container .wallet-dropdown {
+    min-width: 260px;
+  }
+  
+  .wallet-connect-container .wallet-account-info {
+    padding: var(--wallet-spacing-sm);
+  }
+  
+  .wallet-connect-container .wallet-account-balance {
+    font-size: 1rem;
+  }
+}
+
+/* Focus management for accessibility */
+.wallet-connect-container .wallet-dropdown.open {
+  outline: 2px solid rgba(0, 255, 136, 0.5);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .wallet-connect-container {
+    display: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .wallet-connect-container .wallet-connect-btn {
+    border-color: white;
+  }
+  
+  .wallet-connect-container .wallet-dropdown {
+    border-color: white;
+    background: black;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .wallet-connect-container * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .wallet-connect-container .wallet-connect-btn::before,
+  .wallet-connect-container .wallet-menu-option::before,
+  .wallet-connect-container .wallet-account-info::before {
+    display: none;
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: light) {
+  .wallet-connect-container .wallet-dropdown {
+    background: rgba(255, 255, 255, 0.95);
+    color: #1a1a1a;
+    border-color: rgba(26, 26, 26, 0.2);
+  }
+  
+  .wallet-connect-container .wallet-account-info {
+    background: linear-gradient(135deg, rgba(153, 50, 204, 0.05), rgba(0, 255, 136, 0.03));
+  }
+}

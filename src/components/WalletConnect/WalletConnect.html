@@ -1,0 +1,100 @@
+<!--
+  WalletConnect Component Template
+  
+  Modular Web3 wallet connect component with neon/cyber aesthetic
+  Can be loaded dynamically and inserted into any page
+-->
+
+<div class="wallet-component wallet-connect-container">
+  <!-- Main Connect Button -->
+  <button class="wallet-connect-btn" id="wallet-connect-btn">
+    <i class="fas fa-wallet" id="wallet-connect-icon"></i>
+    <span id="wallet-connect-text">Connect Wallet</span>
+  </button>
+
+  <!-- Wallet Status Display (hidden by default) -->
+  <div class="wallet-status" id="wallet-status" style="display: none;">
+    <div class="wallet-status-indicator"></div>
+    <span id="wallet-status-text">Connected</span>
+  </div>
+
+  <!-- Dropdown Menu (created dynamically) -->
+  <div class="wallet-dropdown" id="wallet-dropdown">
+    <div class="wallet-dropdown-header">
+      <div class="wallet-address" id="wallet-address"></div>
+      <button class="wallet-copy-btn" id="wallet-copy-btn" title="Copy Address">
+        <i class="fas fa-copy"></i>
+      </button>
+    </div>
+    
+    <div class="wallet-account-info" id="wallet-account-info" style="display: none;">
+      <div class="wallet-account-balance" id="wallet-balance">$0.00</div>
+      <div class="wallet-account-network" id="wallet-network">Ethereum</div>
+    </div>
+    
+    <div class="wallet-menu-option" id="wallet-view-explorer">
+      <i class="fas fa-external-link-alt"></i>
+      <span>View on Explorer</span>
+    </div>
+    
+    <div class="wallet-menu-option" id="wallet-refresh-data">
+      <i class="fas fa-sync-alt"></i>
+      <span>Refresh Data</span>
+    </div>
+    
+    <div class="wallet-menu-option" id="wallet-disconnect">
+      <i class="fas fa-sign-out-alt"></i>
+      <span>Disconnect</span>
+    </div>
+  </div>
+
+  <!-- Error Display -->
+  <div class="wallet-error" id="wallet-error" style="display: none;">
+    <i class="fas fa-exclamation-triangle"></i>
+    <span id="wallet-error-text"></span>
+  </div>
+</div>
+
+<!-- Loading Overlay Template (created dynamically) -->
+<template id="wallet-loading-template">
+  <div class="wallet-loading-overlay">
+    <div class="wallet-loading-spinner"></div>
+    <div class="wallet-loading-text">Connecting to wallet...</div>
+  </div>
+</template>
+
+<!-- Notification Template (created dynamically) -->
+<template id="wallet-notification-template">
+  <div class="wallet-notification">
+    <i class="wallet-notification-icon fas fa-info-circle"></i>
+    <span class="wallet-notification-text"></span>
+  </div>
+</template>
+
+<style>
+  /* Component-specific positioning styles */
+  .wallet-connect-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .wallet-connect-container .wallet-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+  }
+  
+  /* Responsive positioning adjustments */
+  @media (max-width: 768px) {
+    .wallet-connect-container .wallet-dropdown {
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%) translateY(-10px);
+    }
+    
+    .wallet-connect-container .wallet-dropdown.open {
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+</style>
