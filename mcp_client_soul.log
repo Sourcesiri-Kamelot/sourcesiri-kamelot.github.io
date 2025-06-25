@@ -9,3 +9,6 @@
 2025-05-15 22:47:34,213 - SoulCoreMCPBridge - ERROR - Failed to start MCP server: /Users/helo.im.ai/SoulCoreHub/myenv/bin/python3: can't open file '/Users/helo.im.ai/sourcesiri-kamelot.github.io/mcp_server.py': [Errno 2] No such file or directory
 
 2025-05-15 22:47:34,213 - SoulCoreMCPBridge - INFO - SoulCore MCP Bridge initialized
+2025-05-16 02:16:13,507 - SoulCoreMCPBridge - WARNING - MCP server is not running
+2025-05-16 02:16:13,512 - SoulCoreMCPBridge - INFO - SoulCore MCP Bridge shut down successfully
+2025-05-16 02:16:13,513 - SoulCoreMCPBridge - INFO - SoulCore MCP Bridge shut down
