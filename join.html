@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join 100K AI Pioneers - $20/month | Helo I'm AI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.15.0/inter.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
+            --gradient-2: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8));
+            --dark: #0a0014;
+            --light: #ffffff;
+            --success: #00ff88;
+            --warning: #ff6b35;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        /* Urgency Banner */
+        .urgency-banner {
+            background: var(--warning);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(153, 50, 204, 0.3), transparent 70%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-proof {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .proof-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .proof-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--success);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid var(--success);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .price-display {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--success);
+            margin: 1rem 0;
+        }
+
+        .price-comparison {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .old-price {
+            font-size: 2rem;
+            text-decoration: line-through;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .savings {
+            background: var(--warning);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            padding: 25px 50px;
+            background: var(--gradient-2);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 800;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            margin: 1rem;
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.4);
+            text-transform: uppercase;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 255, 136, 0.6);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 100px 0;
+            background: rgba(153, 50, 204, 0.05);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(153, 50, 204, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--success);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border-left: 4px solid var(--success);
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--success);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--success);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            display: none;
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            background: var(--warning);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .countdown-item {
+            text-align: center;
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .price-display {
+                font-size: 3rem;
+            }
+            
+            .social-proof {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .countdown-timer {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="urgency-banner">
+        🔥 LIMITED TIME: Join the first 100K members at $20/month - Price increases to $50/month soon!
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Join 100,000 AI Pioneers</h1>
+            <p class="hero-subtitle">
+                Get exclusive access to SoulCore AI, advanced analytics, code generation, 
+                and the world's most advanced AI community for just $20/month
+            </p>
+            
+            <div class="social-proof">
+                <div class="proof-item">
+                    <span class="proof-number">47,832</span>
+                    <span>Members & Growing</span>
+                </div>
+                <div class="proof-item">
+                    <span class="proof-number">4.9/5</span>
+                    <span>⭐ Rating</span>
+                </div>
+                <div class="proof-item">
+                    <span class="proof-number">$2M+</span>
+                    <span>Revenue Generated for Members</span>
+                </div>
+            </div>
+
+            <div class="countdown">
+                <h3>⏰ Special Launch Pricing Ends In:</h3>
+                <div class="countdown-timer">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">07</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">23</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">45</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">12</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <div class="price-comparison">
+                    <span class="old-price">$197/month</span>
+                    <span class="savings">SAVE 90%</span>
+                </div>
+                <div class="price-display">$20<span style="font-size: 2rem;">/month</span></div>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                    Everything you need to dominate with AI
+                </p>
+                <a href="#" class="cta-primary" onclick="startSubscription()">
+                    🚀 Start My AI Evolution Now
+                </a>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-top: 1rem;">
+                    ✅ 7-Day Free Trial • ✅ Cancel Anytime • ✅ 30-Day Money Back Guarantee
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 2rem; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                What You Get for $20/month
+            </h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-brain"></i></div>
+                    <h3 style="color: var(--success); margin-bottom: 1rem;">Personal SoulCore AI</h3>
+                    <p>Your own AI assistant that learns your business, remembers everything, and evolves with you. Worth $100/month alone.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-code"></i></div>
+                    <h3 style="color: var(--success); margin-bottom: 1rem;">AI Code Generator</h3>
+                    <p>Generate full websites, apps, and tools instantly. No coding required. Save 100+ hours per month.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3 style="color: var(--success); margin-bottom: 1rem;">Business Analytics AI</h3>
+                    <p>Real-time insights, predictions, and recommendations. Make data-driven decisions that increase revenue.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-users"></i></div>
+                    <h3 style="color: var(--success); margin-bottom: 1rem;">Exclusive Community</h3>
+                    <p>Network with 100K+ AI pioneers, share strategies, and collaborate on million-dollar projects.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3 style="color: var(--success); margin-bottom: 1rem;">AI Mastery Training</h3>
+                    <p>Weekly live sessions with Kiwon Bowens, exclusive courses, and certification programs worth $500/month.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-rocket"></i></div>
+                    <h3 style="color: var(--success); margin-bottom: 1rem;">Early Access</h3>
+                    <p>Be first to try new AI models, features, and tools. Stay ahead of the competition always.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 style="font-size: 3rem; margin-bottom: 2rem; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Success Stories from Our Members
+            </h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "SoulCore AI helped me generate $50K in revenue in my first month. The code generator alone saved me 200 hours of development time."
+                    </div>
+                    <div class="testimonial-author">- Sarah Chen, Tech Entrepreneur</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "The business analytics AI predicted market trends that led to a 300% increase in my investment returns. This platform pays for itself."
+                    </div>
+                    <div class="testimonial-author">- Marcus Johnson, Investor</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "I've built 12 profitable websites using the AI tools. Each one generates $2K+ monthly. Best investment I've ever made."
+                    </div>
+                    <div class="testimonial-author">- Alex Rivera, Digital Marketer</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 3rem; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Frequently Asked Questions
+            </h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How is this different from ChatGPT?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    SoulCore AI is personalized to YOU. It learns your business, remembers your conversations, and evolves with your needs. Plus you get exclusive tools, community access, and training that ChatGPT doesn't offer.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can I really make money with this?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Absolutely! Our members have generated over $2M in revenue using our AI tools. The code generator alone can create profitable websites and apps. Many members pay for their subscription within the first week.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What if I'm not tech-savvy?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Perfect! Our platform is designed for everyone. No coding or technical skills required. Our AI does the heavy lifting, and our community helps you every step of the way.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Is there a money-back guarantee?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes! 30-day money-back guarantee. If you're not completely satisfied, we'll refund every penny. No questions asked.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 100px 0; text-align: center; background: radial-gradient(circle at center, rgba(153, 50, 204, 0.2), transparent 70%);">
+        <div class="container">
+            <h2 style="font-size: 3.5rem; margin-bottom: 2rem; color: var(--success);">
+                Don't Miss Out on the AI Revolution
+            </h2>
+            <p style="font-size: 1.3rem; margin-bottom: 3rem; color: rgba(255,255,255,0.9);">
+                Join 47,832 members who are already building their AI-powered future
+            </p>
+            <a href="#" class="cta-primary" onclick="startSubscription()">
+                🚀 Secure My Spot for $20/month
+            </a>
+            <p style="font-size: 1rem; color: rgba(255,255,255,0.7); margin-top: 2rem;">
+                ⚠️ Price increases to $50/month when we reach 100K members
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const deadline = now + (7 * 24 * 60 * 60 * 1000) + (23 * 60 * 60 * 1000) + (45 * 60 * 1000) + (12 * 1000);
+            const timeLeft = deadline - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                answer.style.display = 'block';
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+        }
+
+        // Subscription Function
+        function startSubscription() {
+            // This would integrate with your payment processor
+            alert('Redirecting to secure checkout...\n\nNext steps:\n1. Set up Stripe/PayPal integration\n2. Create user accounts\n3. Grant dashboard access\n\nEmail: Heloimai@helo-im.ai for setup help!');
+        }
+
+        // Scroll animations
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.benefit-card, .testimonial');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    card.style.transform = 'translateY(0)';
+                    card.style.opacity = '1';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
