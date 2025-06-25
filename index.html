@@ -452,18 +452,37 @@
     </section>
 
     <section class="contact-form">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h2 style="background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2rem; margin-bottom: 1rem;">Get In Touch</h2>
+            <p style="color: rgba(255, 255, 255, 0.8); max-width: 600px; margin: 0 auto;">
+                Ready to explore the future of AI? Contact us for inquiries about website builds, research & development, web apps, consultations, and more. 
+                <a href="mailto:heloimai@helo-im.ai" style="color: rgba(0, 255, 136, 0.8); text-decoration: none;">Click here to send feedback or make an inquiry</a>
+            </p>
+        </div>
         <form action="https://formspree.io/f/xovvbwvd" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label>Your email:</label>
-                <input type="email" name="email" required>
+                <input type="email" name="email" required placeholder="your.email@example.com">
+            </div>
+            <div class="form-group">
+                <label>Inquiry Type:</label>
+                <select name="inquiry_type" style="width: 100%; padding: 0.75rem; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(153, 50, 204, 0.2); border-radius: 8px; color: white;">
+                    <option value="general">General Inquiry</option>
+                    <option value="website">Website Development</option>
+                    <option value="research">Research & Development</option>
+                    <option value="webapp">Web Applications</option>
+                    <option value="consultation">Consultation</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="other">Other</option>
+                </select>
             </div>
             <div class="form-group">
                 <label>Your message:</label>
-                <textarea name="message" rows="4" required></textarea>
+                <textarea name="message" rows="4" required placeholder="Tell us about your project or inquiry..."></textarea>
             </div>
             <div class="form-group">
-                <label>Your file:</label>
-                <input type="file" name="upload">
+                <label>Attach file (optional):</label>
+                <input type="file" name="upload" style="width: 100%; padding: 0.75rem; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(153, 50, 204, 0.2); border-radius: 8px; color: white;">
             </div>
             <button type="submit" class="cta-button">Send Message</button>
         </form>
@@ -489,12 +508,22 @@
                     <a href="https://www.Soulcorehub.com" target="_blank">SoulCoreHub.com</a>
                     <a href="https://www.Aibefresh.com" target="_blank">AiBeFresh.com</a>
                     <a href="https://lilplaybook.com" target="_blank">LilPlaybook.com</a>
+                    <a href="https://www.homes2show.com" target="_blank">Homes2Show.com</a>
                 </div>
             </div>
         </div>
         <div class="copyright">
             <p>&copy; 2025 Helo I'm AI Inc. All Rights Reserved.</p>
             <p>Created by Helo Im AI Inc. Est. 2024</p>
+            <div style="margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <a id="cy-effective-orcid-url" class="underline" href="https://orcid.org/0009-0004-3064-6168" target="orcid.widget" rel="me noopener noreferrer" style="vertical-align: top; color: rgba(255, 255, 255, 0.7); text-decoration: none; display: flex; align-items: center;">
+                    <img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"/>
+                    https://orcid.org/0009-0004-3064-6168
+                </a>
+                <img src="images/ORCID.png" alt="ORCID QR Code" style="width: 50px; height: 50px;">
+                <img src="images/heloimai-logotext.png" alt="Helo Im AI Logo" style="width: 100px; height: auto;">
+                <img src="images/heloimai-merch.png" alt="Helo Im AI Merch" style="width: 80px; height: auto;">
+            </div>
         </div>
     </footer>
 
@@ -562,17 +591,4 @@
     <script src="js/header-footer.js"></script>
     <script src="js/orb-agents.js"></script>
 </body>
-      <a
-    id="cy-effective-orcid-url"
-    class="underline"
-    href="https://orcid.org/0009-0004-3064-6168"
-    target="orcid.widget"
-    rel="me noopener noreferrer"
-    style="vertical-align: top">
-    <img
-        src="https://orcid.org/sites/default/files/images/orcid_16x16.png"
-        style="width: 1em; margin-inline-start: 0.5em"
-        alt="ORCID iD icon"/>
-    https://orcid.org/0009-0004-3064-6168
-</a>
 </html>
