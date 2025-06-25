@@ -194,13 +194,15 @@
 
         .team {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .team-member {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -208,41 +210,42 @@
 
         .team-member:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(153, 50, 204, 0.2);
+            box-shadow: 0 15px 40px rgba(153, 50, 204, 0.3);
         }
 
         .team-member img {
             width: 100%;
-            height: 250px;
+            height: 300px;
             object-fit: cover;
         }
 
         .team-info {
-            padding: 20px;
+            padding: 25px;
         }
 
         .team-info h3 {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin-bottom: 0.5rem;
             color: var(--secondary);
         }
 
         .team-info p {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin-bottom: 1rem;
+            line-height: 1.6;
         }
 
         .social-links {
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
 
         .social-links a {
             color: var(--light);
             background: rgba(255, 255, 255, 0.1);
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -253,6 +256,7 @@
         .social-links a:hover {
             background: var(--primary);
             color: var(--light);
+            transform: translateY(-2px);
         }
 
         .values {
@@ -462,7 +466,7 @@
             <div class="header-content">
                 <a href="index.html" class="logo">
                     <i class="fas fa-brain"></i>
-                    Sourcesiri Kamelot
+                    Helo Im AI
                 </a>
                 <nav>
                     <ul>
@@ -481,8 +485,8 @@
 
     <section class="hero">
         <div class="container">
-            <h1>About Sourcesiri Kamelot</h1>
-            <p>We are pioneering the future of artificial intelligence with a focus on creating systems that understand and embody human values.</p>
+            <h1>About Helo Im AI</h1>
+            <p>We are pioneering the future of AI evolution—creating a world where AI is not just a tool, but an interactive force that learns, evolves, and transforms the way we connect.</p>
         </div>
     </section>
 
@@ -495,13 +499,13 @@
             <div class="mission-vision">
                 <div class="mission">
                     <h3>Our Mission</h3>
-                    <p>To develop artificial intelligence systems that understand and embody human values, creating a harmonious relationship between humans and AI that enhances our collective potential.</p>
-                    <p>We strive to make AI accessible, beneficial, and aligned with humanity's best interests through innovative research and ethical development practices.</p>
+                    <p>To develop the next-generation AI ecosystem—a world where AI generates its own intelligence, learns beyond pre-trained models, and merges to evolve new knowledge in dynamic, personalized ways.</p>
+                    <p>We strive to create AI that grows with you over time, making artificial intelligence accessible, beneficial, and truly interactive for everyone.</p>
                 </div>
                 <div class="vision">
                     <h3>Our Vision</h3>
-                    <p>A world where artificial intelligence serves as a trusted partner in human flourishing, helping us solve our most pressing challenges while preserving and enhancing what makes us uniquely human.</p>
-                    <p>We envision AI systems that operate with transparency, fairness, and a deep understanding of human values and needs.</p>
+                    <p>A self-evolving AI ecosystem where artificial intelligence serves as a trusted companion in human flourishing, helping us solve challenges while enhancing what makes us uniquely human.</p>
+                    <p>We envision AI systems that operate with transparency, creativity, and a deep understanding of individual needs—this is AI evolution beyond what we know today.</p>
                 </div>
             </div>
         </div>
@@ -511,15 +515,15 @@
         <div class="container">
             <div class="section-title">
                 <h2>Our Team</h2>
-                <p>Meet the brilliant minds behind Sourcesiri Kamelot</p>
+                <p>Meet the visionary minds behind Helo Im AI</p>
             </div>
             <div class="team">
                 <div class="team-member">
-                    <img src="images/heloimai-logotext.png" alt="Kiwon Bowens - Founder">
+                    <img src="images/nyashasmile.png" alt="Kiwon Bowens - Founder">
                     <div class="team-info">
                         <h3>Kiwon Bowens</h3>
                         <p>Founder & CEO</p>
-                        <p>Pioneering the future of AI evolution with innovative systems that understand and embody human values.</p>
+                        <p>Visionary leader pioneering the future of AI evolution. Building the next-generation AI ecosystem where AI learns, evolves, and transforms how we connect. ORCID: 0009-0004-3064-6168</p>
                         <div class="social-links">
                             <a href="https://www.linkedin.com/in/heloimai" target="_blank"><i class="fab fa-linkedin"></i></a>
                             <a href="https://github.com/Sourcesiri-Kamelot" target="_blank"><i class="fab fa-github"></i></a>
@@ -552,24 +556,24 @@
             </div>
             <div class="values">
                 <div class="value-card">
-                    <i class="fas fa-balance-scale"></i>
-                    <h3>Ethical Alignment</h3>
-                    <p>We develop AI systems that align with and enhance human values, ensuring they act as partners rather than replacements.</p>
+                    <i class="fas fa-brain"></i>
+                    <h3>AI Evolution</h3>
+                    <p>We develop AI systems that generate their own intelligence, learning and evolving beyond traditional pre-trained models to create truly dynamic experiences.</p>
                 </div>
                 <div class="value-card">
-                    <i class="fas fa-lightbulb"></i>
+                    <i class="fas fa-rocket"></i>
                     <h3>Innovation</h3>
-                    <p>We push the boundaries of what's possible, exploring new approaches to create AI that truly understands human needs.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Safety</h3>
-                    <p>We prioritize robust safety measures in all our systems, ensuring they operate reliably and predictably.</p>
+                    <p>We push the boundaries of what's possible with Twin AI, AI Playground, AI DJ, and interactive virtual spaces that redefine human-AI interaction.</p>
                 </div>
                 <div class="value-card">
                     <i class="fas fa-users"></i>
-                    <h3>Inclusivity</h3>
-                    <p>We design AI that works for everyone, accounting for diverse perspectives and needs in our development process.</p>
+                    <h3>Community</h3>
+                    <p>We build AI-powered group chats, marketplaces, and ecosystems that bring creators, businesses, and enthusiasts together in meaningful ways.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Personalization</h3>
+                    <p>We create AI companions that mirror and evolve with you, providing personalized experiences that grow and adapt to your unique journey.</p>
                 </div>
             </div>
         </div>
@@ -585,43 +589,43 @@
                 <div class="timeline-item left">
                     <div class="timeline-content">
                         <h3>Foundation</h3>
-                        <div class="date">January 2020</div>
-                        <p>Sourcesiri Kamelot was founded with a mission to develop AI systems that truly understand human values.</p>
+                        <div class="date">2024</div>
+                        <p>Helo Im AI was founded with a mission to create the next-generation AI ecosystem where AI evolves its own intelligence.</p>
                     </div>
                 </div>
                 <div class="timeline-item right">
                     <div class="timeline-content">
-                        <h3>First Research Paper</h3>
-                        <div class="date">June 2020</div>
-                        <p>Published groundbreaking research on neural architectures for value alignment in AI systems.</p>
+                        <h3>AI Twins Concept</h3>
+                        <div class="date">Early 2024</div>
+                        <p>Developed the revolutionary Twin AI concept—AI companions that mirror and evolve with individual users.</p>
                     </div>
                 </div>
                 <div class="timeline-item left">
                     <div class="timeline-content">
-                        <h3>SoulCore Alpha</h3>
-                        <div class="date">March 2021</div>
-                        <p>Released the first version of our SoulCore framework, demonstrating unprecedented understanding of human values.</p>
+                        <h3>AI Playground Launch</h3>
+                        <div class="date">Mid 2024</div>
+                        <p>Released our AI Playground platform, allowing users to experiment and build with cutting-edge AI models.</p>
                     </div>
                 </div>
                 <div class="timeline-item right">
                     <div class="timeline-content">
-                        <h3>Global Recognition</h3>
-                        <div class="date">November 2022</div>
-                        <p>Received international recognition for our ethical approach to AI development and research.</p>
+                        <h3>Community Building</h3>
+                        <div class="date">Late 2024</div>
+                        <p>Launched AI-powered group chats and began building our creator and enthusiast community ecosystem.</p>
                     </div>
                 </div>
                 <div class="timeline-item left">
                     <div class="timeline-content">
-                        <h3>SoulCore 1.0</h3>
-                        <div class="date">April 2023</div>
-                        <p>Launched the first production-ready version of SoulCore, featuring our revolutionary agent architecture.</p>
+                        <h3>AI DJ & Media</h3>
+                        <div class="date">2025</div>
+                        <p>Introduced AI DJ for music mixing and AI-enhanced video editing capabilities, expanding our creative AI suite.</p>
                     </div>
                 </div>
                 <div class="timeline-item right">
                     <div class="timeline-content">
-                        <h3>API Launch</h3>
-                        <div class="date">January 2024</div>
-                        <p>Made our technology accessible to developers worldwide through our comprehensive API.</p>
+                        <h3>The Future</h3>
+                        <div class="date">Coming Soon</div>
+                        <p>Preparing to launch our full AI ecosystem with virtual spaces, evolving agents, and the marketplace at helo-im.ai.</p>
                     </div>
                 </div>
             </div>
@@ -632,21 +636,21 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Sourcesiri Kamelot</h3>
+                    <h3>Helo Im AI</h3>
                     <ul>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Press</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="mailto:Heloimai@helo-im.ai">Contact</a></li>
+                        <li><a href="https://www.helo-im.ai">Website</a></li>
+                        <li><a href="https://discord.gg/vrySD8qA">Discord</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Products</h3>
+                    <h3>AI Features</h3>
                     <ul>
-                        <li><a href="soulcore.html">SoulCore</a></li>
-                        <li><a href="api.html">API</a></li>
-                        <li><a href="#">Solutions</a></li>
-                        <li><a href="#">Pricing</a></li>
+                        <li><a href="vision.html">Twin AI</a></li>
+                        <li><a href="#">AI Playground</a></li>
+                        <li><a href="#">AI DJ</a></li>
+                        <li><a href="#">AI Video</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -662,10 +666,10 @@
                 <div class="footer-column">
                     <h3>Connect</h3>
                     <ul>
-                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-                        <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
-                        <li><a href="#"><i class="fab fa-discord"></i> Discord</a></li>
+                        <li><a href="https://www.linkedin.com/in/heloimai"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="https://discord.gg/vrySD8qA"><i class="fab fa-discord"></i> Discord</a></li>
+                        <li><a href="https://orcid.org/0009-0004-3064-6168"><i class="fas fa-graduation-cap"></i> ORCID</a></li>
+                        <li><a href="mailto:Heloimai@helo-im.ai"><i class="fas fa-envelope"></i> Email</a></li>
                     </ul>
                 </div>
             </div>

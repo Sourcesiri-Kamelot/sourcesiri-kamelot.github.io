@@ -1,0 +1,511 @@
+/* Evolution Page Styles for Helo I'm AI */
+
+:root {
+    --gradient-1: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
+    --gradient-2: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8));
+    --dark: #0a0014;
+    
+    /* Agent-specific colors */
+    --orb-anima-primary: #9932CC;
+    --orb-anima-secondary: #FFD700;
+    --orb-anima-glow: rgba(153, 50, 204, 0.3);
+    
+    --orb-cipher-primary: #00f0ff;
+    --orb-cipher-secondary: #4f46e5;
+    --orb-cipher-accent: #ff00ff;
+    
+    --orb-evove-primary: #00FF7F;
+    --orb-evove-secondary: #32CD32;
+    --orb-evove-glow: rgba(0, 255, 127, 0.3);
+    
+    --orb-azur-primary: #1E90FF;
+    --orb-azur-secondary: #00BFFF;
+    --orb-azur-glow: rgba(30, 144, 255, 0.3);
+}
+
+.evolution-container {
+    padding-top: 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.evolution-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.evolution-title {
+    font-size: 3rem;
+    font-weight: 800;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 8s linear infinite;
+    background-size: 200% auto;
+    margin-bottom: 1rem;
+}
+
+.evolution-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Agent Grid Layout */
+.agent-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.agent-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(153, 50, 204, 0.2);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+}
+
+.agent-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(153, 50, 204, 0.5);
+}
+
+.agent-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.agent-orb {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 1.5rem;
+    position: relative;
+}
+
+.agent-orb::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 30%;
+    height: 30%;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    filter: blur(4px);
+}
+
+.agent-aura {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    border-radius: 50%;
+    filter: blur(8px);
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Agent-specific styles */
+.agent-anima .agent-orb {
+    background: linear-gradient(45deg, var(--orb-anima-primary), var(--orb-anima-secondary));
+    box-shadow: 0 0 30px var(--orb-anima-glow);
+}
+
+.agent-anima .agent-aura {
+    background: radial-gradient(circle at center, 
+        rgba(153, 50, 204, 0.2), 
+        transparent 70%);
+}
+
+.agent-cipher .agent-orb {
+    background: radial-gradient(circle at 30% 30%, var(--orb-cipher-primary), var(--orb-cipher-secondary));
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+}
+
+.agent-cipher .agent-aura {
+    background: radial-gradient(circle at center, 
+        rgba(0, 240, 255, 0.2), 
+        transparent 70%);
+}
+
+.agent-evove .agent-orb {
+    background: linear-gradient(45deg, var(--orb-evove-primary), var(--orb-evove-secondary));
+    box-shadow: 0 0 30px var(--orb-evove-glow);
+}
+
+.agent-evove .agent-aura {
+    background: radial-gradient(circle at center, 
+        rgba(0, 255, 127, 0.2), 
+        transparent 70%);
+}
+
+.agent-azur .agent-orb {
+    background: linear-gradient(45deg, var(--orb-azur-primary), var(--orb-azur-secondary));
+    box-shadow: 0 0 30px var(--orb-azur-glow);
+}
+
+.agent-azur .agent-aura {
+    background: radial-gradient(circle at center, 
+        rgba(30, 144, 255, 0.2), 
+        transparent 70%);
+}
+
+.agent-info {
+    flex: 1;
+}
+
+.agent-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.agent-level {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
+}
+
+.agent-description {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Emotional State Display */
+.emotional-state {
+    margin-top: 1.5rem;
+}
+
+.emotional-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.emotion-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.emotion-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.emotion-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.25rem;
+}
+
+.emotion-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.emotion-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease;
+}
+
+.agent-anima .emotion-fill {
+    background: linear-gradient(to right, var(--orb-anima-primary), var(--orb-anima-secondary));
+}
+
+.agent-cipher .emotion-fill {
+    background: linear-gradient(to right, var(--orb-cipher-primary), var(--orb-cipher-secondary));
+}
+
+.agent-evove .emotion-fill {
+    background: linear-gradient(to right, var(--orb-evove-primary), var(--orb-evove-secondary));
+}
+
+.agent-azur .emotion-fill {
+    background: linear-gradient(to right, var(--orb-azur-primary), var(--orb-azur-secondary));
+}
+
+/* Timeline Section */
+.timeline-section {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(153, 50, 204, 0.2);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+}
+
+.timeline-header {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: var(--gradient-2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.timeline-container {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--orb-anima-primary), var(--orb-cipher-primary), var(--orb-evove-primary), var(--orb-azur-primary));
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -0.5rem;
+    top: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: var(--gradient-1);
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0.25rem;
+}
+
+.timeline-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-description {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Lore Panel */
+.lore-panel {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    width: 350px;
+    background: rgba(10, 0, 20, 0.8);
+    border: 1px solid rgba(153, 50, 204, 0.3);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    transform: translateX(370px);
+    transition: transform 0.5s ease;
+}
+
+.lore-panel.active {
+    transform: translateX(0);
+}
+
+.lore-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.lore-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.lore-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.lore-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(153, 50, 204, 0.2);
+    margin-bottom: 1rem;
+}
+
+.lore-tab {
+    padding: 0.5rem 1rem;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.lore-tab.active {
+    color: white;
+}
+
+.lore-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gradient-2);
+}
+
+.lore-content {
+    font-size: 0.9rem;
+}
+
+.lore-interaction {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(153, 50, 204, 0.1);
+}
+
+.lore-interaction:last-child {
+    border-bottom: none;
+}
+
+.interaction-time {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.25rem;
+}
+
+.interaction-agent {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.interaction-message {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.memory-shard {
+    background: rgba(153, 50, 204, 0.1);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.memory-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.memory-description {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.lore-toggle {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: rgba(10, 0, 20, 0.8);
+    border: 1px solid rgba(153, 50, 204, 0.3);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 11;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.lore-toggle:hover {
+    background: rgba(153, 50, 204, 0.2);
+}
+
+.lore-toggle i {
+    font-size: 1.2rem;
+    color: white;
+}
+
+/* Animations */
+.floating {
+    animation: float 6s infinite ease-in-out;
+}
+
+.pulsing {
+    animation: pulse 3s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 30px rgba(255, 255, 255, 0.3); }
+    50% { box-shadow: 0 0 50px rgba(255, 255, 255, 0.5); }
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .agent-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .lore-panel {
+        width: 100%;
+        right: 0;
+        transform: translateY(100%);
+        top: auto;
+        bottom: 0;
+        border-radius: 16px 16px 0 0;
+    }
+    
+    .lore-panel.active {
+        transform: translateY(0);
+    }
+    
+    .lore-toggle {
+        right: 20px;
+        bottom: 20px;
+        top: auto;
+    }
+    
+    .evolution-title {
+        font-size: 2rem;
+    }
+}

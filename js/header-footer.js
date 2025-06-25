@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <a href="/index.html">Home</a>
                 <a href="/vision.html">AI Twins</a>
                 <a href="/soulcore.html">SoulCore</a>
+                <a href="/soulcore-lab.html">SoulCore Lab 3D</a>
                 <a href="/evolution.html">Evolution</a>
                 <a href="/api.html">API</a>
                 <a href="/about.html">About</a>
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-column">
-                        <h3>Sourcesiri Kamelot</h3>
+                        <h3>Helo I'm AI</h3>
                         <ul>
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="#">Careers</a></li>
@@ -47,12 +48,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h3>Resources</h3>
+                        <h3>Our Projects</h3>
                         <ul>
-                            <li><a href="#">Documentation</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Research</a></li>
-                            <li><a href="#">Community</a></li>
+                            <li><a href="https://Soulcorehub.io" target="_blank">SoulCoreHub.io</a></li>
+                            <li><a href="soulcore-lab.html">SoulCore Lab 3D</a></li>
+                            <li><a href="https://www.Soulcorehub.com" target="_blank">SoulCoreHub.com</a></li>
+                            <li><a href="https://www.Aibefresh.com" target="_blank">AiBeFresh.com</a></li>
+                            <li><a href="https://lilplaybook.com" target="_blank">LilPlaybook.com</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
@@ -62,11 +64,12 @@ document.addEventListener('DOMContentLoaded', function() {
                             <li><a href="https://www.linkedin.com/in/heloimai" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
                             <li><a href="https://github.com/Sourcesiri-Kamelot" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
                             <li><a href="https://www.youtube.com/@ThegodsHonestTruthai" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
+                            <li><a href="https://discord.gg/vrySD8qA" target="_blank"><i class="fab fa-discord"></i> Discord</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="copyright">
-                    <p>&copy; 2025 Sourcesiri Kamelot. All rights reserved.</p>
+                    <p>&copy; 2025 Helo I'm AI Inc. All rights reserved.</p>
                 </div>
             </div>
         `;
