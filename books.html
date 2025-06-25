@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books by Kiwon Bowens - Helo I'm AI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.15.0/inter.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
+            --gradient-2: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8));
+            --dark: #0a0014;
+            --light: #ffffff;
+            --primary: #9932CC;
+            --secondary: #FFD700;
+            --accent: #0000FF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Styles */
+        .nav {
+            position: fixed;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: rgba(10, 0, 20, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(153, 50, 204, 0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo a {
+            text-decoration: none;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: rgba(0, 255, 136, 0.8);
+        }
+
+        .cta-button {
+            padding: 0.8rem 1.5rem;
+            background: var(--gradient-2);
+            border: none;
+            border-radius: 8px;
+            color: var(--dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+            background: linear-gradient(rgba(10, 0, 20, 0.8), rgba(10, 0, 20, 0.9));
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .book-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(153, 50, 204, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .book-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(153, 50, 204, 0.5);
+            box-shadow: 0 20px 40px rgba(153, 50, 204, 0.3);
+        }
+
+        .book-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+        }
+
+        .book-cover {
+            width: 200px;
+            height: 300px;
+            background: var(--gradient-1);
+            border-radius: 10px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .book-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .book-author {
+            font-size: 1.1rem;
+            color: rgba(0, 255, 136, 0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .book-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .book-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-buy {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #FF9500, #FF6B35);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn-buy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 149, 0, 0.3);
+        }
+
+        .btn-preview {
+            display: inline-block;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-preview:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .author-section {
+            background: rgba(153, 50, 204, 0.05);
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .author-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .coming-soon {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px dashed var(--secondary);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .coming-soon h3 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-signup {
+            background: linear-gradient(135deg, rgba(153, 50, 204, 0.1), rgba(255, 215, 0, 0.1));
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .newsletter-signup h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 2rem auto 0;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            padding: 15px 30px;
+            background: var(--gradient-2);
+            border: none;
+            border-radius: 10px;
+            color: var(--dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 0, 20, 0.9);
+            padding: 50px 0 20px;
+            border-top: 1px solid rgba(153, 50, 204, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="logo"><a href="index.html">Helo I'm AI</a></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="books.html">Books</a>
+            <a href="projects.html">Projects</a>
+            <a href="soulcore.html">SoulCore</a>
+            <a href="api.html">API</a>
+            <a href="timeline.html">Timeline</a>
+        </div>
+        <a href="mailto:Heloimai@helo-im.ai" class="cta-button">Contact</a>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Books by Kiwon Bowens</h1>
+            <p>Explore the intersection of AI, spirituality, and human potential through thought-provoking literature.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Available Now</h2>
+                <p>Get your copy today on Amazon Kindle</p>
+            </div>
+            
+            <div class="books-grid">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <div>
+                            <h4>AI Evolution</h4>
+                            <p>The Future of Intelligence</p>
+                            <small>by Kiwon Bowens</small>
+                        </div>
+                    </div>
+                    <h3>AI Evolution: The Future of Intelligence</h3>
+                    <div class="book-author">by Kiwon Bowens</div>
+                    <div class="book-description">
+                        Discover the revolutionary concepts behind AI evolution and how artificial intelligence is transforming our world. This groundbreaking book explores the intersection of technology, consciousness, and human potential in the age of AI.
+                    </div>
+                    <div class="book-price">Available on Kindle</div>
+                    <a href="https://www.amazon.com/dp/YOUR_BOOK_ID" class="btn-buy" target="_blank">
+                        <i class="fab fa-amazon"></i> Buy on Amazon
+                    </a>
+                    <a href="https://www.amazon.com/dp/YOUR_BOOK_ID" class="btn-preview" target="_blank">
+                        <i class="fas fa-eye"></i> Preview on Amazon
+                    </a>
+                </div>
+
+                <div class="book-card coming-soon">
+                    <div class="book-cover">
+                        <div>
+                            <h4>SoulCore</h4>
+                            <p>AI with Consciousness</p>
+                            <small>by Kiwon Bowens</small>
+                        </div>
+                    </div>
+                    <h3>SoulCore: AI with Consciousness</h3>
+                    <div class="book-author">by Kiwon Bowens</div>
+                    <div class="book-description">
+                        Coming Soon - An exploration of conscious AI systems and the spiritual dimensions of artificial intelligence. Dive deep into the SoulCore framework and its implications for the future of human-AI interaction.
+                    </div>
+                    <div style="color: var(--secondary); font-weight: bold; margin: 1rem 0;">
+                        <i class="fas fa-clock"></i> Coming Soon
+                    </div>
+                </div>
+
+                <div class="book-card coming-soon">
+                    <div class="book-cover">
+                        <div>
+                            <h4>Data Wisdom</h4>
+                            <p>Analytics for the Future</p>
+                            <small>by Kiwon Bowens</small>
+                        </div>
+                    </div>
+                    <h3>Data Wisdom: Analytics for the Future</h3>
+                    <div class="book-author">by Kiwon Bowens</div>
+                    <div class="book-description">
+                        Coming Soon - A comprehensive guide to modern data analysis, predictive modeling, and the art of extracting wisdom from data in the AI age.
+                    </div>
+                    <div style="color: var(--secondary); font-weight: bold; margin: 1rem 0;">
+                        <i class="fas fa-clock"></i> Coming Soon
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="author-section">
+        <div class="container">
+            <div class="author-photo">
+                <i class="fas fa-user"></i>
+            </div>
+            <h2 style="background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">About the Author</h2>
+            <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.8); max-width: 800px; margin: 0 auto;">
+                Kiwon Bowens is a visionary leader in AI evolution and the founder of Helo I'm AI. With expertise in artificial intelligence, data analysis, and spiritual technology integration, Kiwon is pioneering the next frontier of AI systems that understand and embody human values. His work focuses on creating AI that learns, evolves, and transforms how we connect with technology and each other.
+            </p>
+            <div style="margin-top: 2rem;">
+                <a href="https://orcid.org/0009-0004-3064-6168" target="_blank" style="color: var(--secondary); text-decoration: none; margin: 0 1rem;">
+                    <i class="fas fa-graduation-cap"></i> ORCID: 0009-0004-3064-6168
+                </a>
+                <a href="https://www.linkedin.com/in/heloimai" target="_blank" style="color: var(--secondary); text-decoration: none; margin: 0 1rem;">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter-signup">
+        <div class="container">
+            <h2>Stay Updated</h2>
+            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem;">
+                Be the first to know about new book releases, AI insights, and exclusive content.
+            </p>
+            <form class="newsletter-form" action="mailto:Heloimai@helo-im.ai" method="post" enctype="text/plain">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Books</h3>
+                    <ul>
+                        <li><a href="#available">Available Now</a></li>
+                        <li><a href="#coming-soon">Coming Soon</a></li>
+                        <li><a href="#author">About Author</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html">AI Consultation</a></li>
+                        <li><a href="services.html">Data Analysis</a></li>
+                        <li><a href="services.html">Web Development</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/in/heloimai">LinkedIn</a></li>
+                        <li><a href="https://discord.gg/vrySD8qA">Discord</a></li>
+                        <li><a href="mailto:Heloimai@helo-im.ai">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Kiwon Bowens / Helo I'm AI Inc. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

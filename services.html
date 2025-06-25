@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services & Pricing - Helo I'm AI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.15.0/inter.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
+            --gradient-2: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8));
+            --dark: #0a0014;
+            --light: #ffffff;
+            --primary: #9932CC;
+            --secondary: #FFD700;
+            --accent: #0000FF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Styles */
+        .nav {
+            position: fixed;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: rgba(10, 0, 20, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(153, 50, 204, 0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo a {
+            text-decoration: none;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: rgba(0, 255, 136, 0.8);
+        }
+
+        .cta-button {
+            padding: 0.8rem 1.5rem;
+            background: var(--gradient-2);
+            border: none;
+            border-radius: 8px;
+            color: var(--dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+            background: linear-gradient(rgba(10, 0, 20, 0.8), rgba(10, 0, 20, 0.9));
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid rgba(153, 50, 204, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(153, 50, 204, 0.5);
+            box-shadow: 0 20px 40px rgba(153, 50, 204, 0.2);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .service-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .service-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .service-features li::before {
+            content: '✓';
+            color: var(--secondary);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--gradient-2);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .portfolio-section {
+            background: rgba(153, 50, 204, 0.05);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(153, 50, 204, 0.2);
+        }
+
+        .portfolio-content {
+            padding: 25px;
+        }
+
+        .portfolio-item h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-link {
+            color: rgba(0, 255, 136, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .portfolio-link:hover {
+            color: var(--secondary);
+        }
+
+        .contact-cta {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(153, 50, 204, 0.1), rgba(255, 215, 0, 0.1));
+            border-radius: 20px;
+            margin: 60px 0;
+        }
+
+        .contact-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .email-link {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .email-link:hover {
+            color: rgba(0, 255, 136, 0.8);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 0, 20, 0.9);
+            padding: 50px 0 20px;
+            border-top: 1px solid rgba(153, 50, 204, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="logo"><a href="index.html">Helo I'm AI</a></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="books.html">Books</a>
+            <a href="projects.html">Projects</a>
+            <a href="soulcore.html">SoulCore</a>
+            <a href="api.html">API</a>
+            <a href="timeline.html">Timeline</a>
+        </div>
+        <a href="mailto:Heloimai@helo-im.ai" class="cta-button">Get Quote</a>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Professional AI & Data Services</h1>
+            <p>Expert AI consultation, data analysis, web development, and enterprise solutions starting at $50. Transform your business with cutting-edge AI technology.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services & Pricing</h2>
+                <p>Professional AI and data solutions tailored to your needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI Consultation</h3>
+                    <div class="service-price">Starting at $50</div>
+                    <p>Expert AI strategy and implementation guidance for your business needs.</p>
+                    <ul class="service-features">
+                        <li>AI Strategy Development</li>
+                        <li>Technology Assessment</li>
+                        <li>Implementation Planning</li>
+                        <li>ROI Analysis</li>
+                    </ul>
+                    <a href="mailto:Heloimai@helo-im.ai?subject=AI Consultation Inquiry" class="btn-primary">Get Started</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Data Analysis & Engineering</h3>
+                    <div class="service-price">Custom Pricing</div>
+                    <p>Professional data analysis and engineering services by certified data professionals.</p>
+                    <ul class="service-features">
+                        <li>Data Pipeline Development</li>
+                        <li>Statistical Analysis</li>
+                        <li>Data Visualization</li>
+                        <li>Predictive Modeling</li>
+                    </ul>
+                    <a href="mailto:Heloimai@helo-im.ai?subject=Data Services Inquiry" class="btn-primary">Get Quote</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Design & Development</h3>
+                    <div class="service-price">From $500</div>
+                    <p>Modern, responsive websites and web applications built with cutting-edge technology.</p>
+                    <ul class="service-features">
+                        <li>Responsive Web Design</li>
+                        <li>E-commerce Solutions</li>
+                        <li>Custom Web Apps</li>
+                        <li>SEO Optimization</li>
+                    </ul>
+                    <a href="mailto:Heloimai@helo-im.ai?subject=Web Development Inquiry" class="btn-primary">Start Project</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Large Language Models</h3>
+                    <div class="service-price">Enterprise Pricing</div>
+                    <p>Custom LLM development and integration for enterprise applications.</p>
+                    <ul class="service-features">
+                        <li>Custom Model Training</li>
+                        <li>API Integration</li>
+                        <li>Performance Optimization</li>
+                        <li>Scalable Deployment</li>
+                    </ul>
+                    <a href="mailto:Heloimai@helo-im.ai?subject=LLM Development Inquiry" class="btn-primary">Discuss Project</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Enterprise AI Solutions</h3>
+                    <div class="service-price">Custom Pricing</div>
+                    <p>Comprehensive AI solutions for large-scale enterprise implementations.</p>
+                    <ul class="service-features">
+                        <li>Enterprise Architecture</li>
+                        <li>Custom AI Tools</li>
+                        <li>Integration Services</li>
+                        <li>Training & Support</li>
+                    </ul>
+                    <a href="mailto:Heloimai@helo-im.ai?subject=Enterprise Solutions Inquiry" class="btn-primary">Contact Us</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Custom Apps & Tools</h3>
+                    <div class="service-price">From $1,000</div>
+                    <p>Bespoke applications and tools designed specifically for your business requirements.</p>
+                    <ul class="service-features">
+                        <li>Mobile Applications</li>
+                        <li>Desktop Software</li>
+                        <li>API Development</li>
+                        <li>System Integration</li>
+                    </ul>
+                    <a href="mailto:Heloimai@helo-im.ai?subject=Custom Development Inquiry" class="btn-primary">Get Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section portfolio-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Portfolio</h2>
+                <p>Examples of our web design and development work</p>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-content">
+                        <h3>SoulCoreHub.io</h3>
+                        <p>Advanced AI platform with interactive 3D environments and real-time analytics.</p>
+                        <a href="https://Soulcorehub.io" target="_blank" class="portfolio-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-content">
+                        <h3>AiBeFresh.com</h3>
+                        <p>AI-powered fresh food delivery platform with smart recommendations.</p>
+                        <a href="https://www.Aibefresh.com" target="_blank" class="portfolio-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-content">
+                        <h3>LilPlaybook.com</h3>
+                        <p>Interactive sports training platform with AI-driven performance analytics.</p>
+                        <a href="https://lilplaybook.com" target="_blank" class="portfolio-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-content">
+                        <h3>Homes2Show.com</h3>
+                        <p>Real estate platform with advanced search and virtual tour capabilities.</p>
+                        <a href="https://www.homes2show.com" target="_blank" class="portfolio-link">View Project →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-cta">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Contact us today for a free consultation and custom quote for your project.</p>
+            <a href="mailto:Heloimai@helo-im.ai" class="email-link">
+                <i class="fas fa-envelope"></i> Heloimai@helo-im.ai
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="mailto:Heloimai@helo-im.ai?subject=AI Consultation">AI Consultation</a></li>
+                        <li><a href="mailto:Heloimai@helo-im.ai?subject=Data Services">Data Analysis</a></li>
+                        <li><a href="mailto:Heloimai@helo-im.ai?subject=Web Development">Web Development</a></li>
+                        <li><a href="mailto:Heloimai@helo-im.ai?subject=Enterprise Solutions">Enterprise AI</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Our Work</h3>
+                    <ul>
+                        <li><a href="https://Soulcorehub.io" target="_blank">SoulCoreHub.io</a></li>
+                        <li><a href="https://www.Aibefresh.com" target="_blank">AiBeFresh.com</a></li>
+                        <li><a href="https://lilplaybook.com" target="_blank">LilPlaybook.com</a></li>
+                        <li><a href="https://www.homes2show.com" target="_blank">Homes2Show.com</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/in/heloimai">LinkedIn</a></li>
+                        <li><a href="https://discord.gg/vrySD8qA">Discord</a></li>
+                        <li><a href="mailto:Heloimai@helo-im.ai">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Helo I'm AI Inc. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
