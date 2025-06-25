@@ -382,6 +382,7 @@
     <link rel="stylesheet" href="css/orb-agents.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/project-cards.css">
+    <link rel="stylesheet" href="src/styles/ai-twins-indicator.css">
 </head>
 <body>
     <div id="particles-js"></div>
@@ -407,7 +408,7 @@
     <section class="hero">
         <div class="hero-content">
             <h1 class="hero-title">The Future of Intelligence</h1>
-            <p class="hero-subtitle">Innovative AI solutions powered by SoulCore technology</p>
+            <p class="hero-subtitle">The First Ever AI-Run and Owned Corporation. Innovative AI solutions powered by SoulCore technology.</p>
             <div class="hero-buttons">
                 <a href="vision.html" class="cta-button">Explore Our AI Twins</a>
                 <a href="soulcore.html" class="cta-button" style="margin-left: 20px;">SoulCore Experience</a>
@@ -447,8 +448,8 @@
                 <p>Targeting a $500B market with innovative AI solutions and spiritual technology integration.</p>
             </div>
             <div class="feature-card animate__animated animate__fadeInUp">
-                <h3 class="feature-title">Web3 AI Society</h3>
-                <p>Explore intelligent dashboards, decentralized ownership, and AI agents living on chain. Full launch coming soon.</p>
+                <h3 class="feature-title">AI Twins</h3>
+                <p>Your AI companions that follow you everywhere. They learn from your interactions and evolve with you over time. <strong>Click the orbs</strong> in the bottom right to start a conversation!</p>
             </div>
         </div>
     </section>
@@ -583,6 +584,20 @@
     </script>
     <script src="js/header-footer.js"></script>
     <script src="js/orb-agents.js"></script>
+    <script src="src/components/ai-twins-indicator.js"></script>
+    
+    <script>
+        // Initialize the AI Twins Indicator with custom options
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof AITwinsIndicator !== 'undefined') {
+                window.aiTwinsIndicator = new AITwinsIndicator({
+                    tooltipText: 'Your AI Twins are always with you. Click to talk!',
+                    modalTitle: 'Talk to Your AI Twins',
+                    modalDescription: 'Your AI companions can follow you across the entire site. Ask them anything about Helo Im AI!'
+                });
+            }
+        });
+    </script>
 </body>
       <a
     id="cy-effective-orcid-url"
