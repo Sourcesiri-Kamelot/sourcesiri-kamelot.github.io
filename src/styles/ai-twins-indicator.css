@@ -1,0 +1,322 @@
+/* AI Twins Indicator Styles */
+.ai-twins-indicator {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ai-orb-container {
+    display: flex;
+    position: relative;
+}
+
+.ai-orb {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+.ai-orb:nth-child(1) {
+    background: linear-gradient(135deg, #9932CC, #FFD700);
+    z-index: 3;
+}
+
+.ai-orb:nth-child(2) {
+    background: linear-gradient(135deg, #00f0ff, #4f46e5);
+    margin-left: -15px;
+    z-index: 2;
+}
+
+.ai-orb:nth-child(3) {
+    background: linear-gradient(135deg, #FF1493, #FFD700);
+    margin-left: -15px;
+    z-index: 1;
+}
+
+.ai-orb-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    animation: pulse 2s infinite;
+    z-index: -1;
+}
+
+.ai-twins-tooltip {
+    background: rgba(10, 0, 20, 0.9);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-right: 15px;
+    font-size: 14px;
+    max-width: 200px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(153, 50, 204, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.ai-twins-indicator:hover .ai-twins-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.ai-twins-indicator:hover .ai-orb {
+    transform: translateY(-5px);
+}
+
+.ai-orb-active {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: rgba(0, 255, 136, 0.8);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+    animation: blink 1.5s infinite;
+}
+
+.ai-twins-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.ai-twins-modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.ai-twins-modal-content {
+    background: rgba(10, 0, 20, 0.9);
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    border: 1px solid rgba(153, 50, 204, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transform: scale(0.9);
+    transition: all 0.3s ease;
+}
+
+.ai-twins-modal.active .ai-twins-modal-content {
+    transform: scale(1);
+}
+
+.ai-twins-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ai-twins-modal-title {
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, #9932CC, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.ai-twins-modal-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ai-twins-modal-close:hover {
+    color: rgba(255, 255, 255, 0.9);
+    transform: rotate(90deg);
+}
+
+.ai-twins-modal-body {
+    margin-bottom: 20px;
+}
+
+.ai-twins-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.ai-twins-modal-button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.ai-twins-modal-button.primary {
+    background: linear-gradient(135deg, #9932CC, #FFD700);
+    color: white;
+}
+
+.ai-twins-modal-button.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ai-twins-modal-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ai-twins-chat-input {
+    display: flex;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.ai-twins-chat-input input {
+    flex: 1;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(153, 50, 204, 0.3);
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 14px;
+}
+
+.ai-twins-chat-input input:focus {
+    outline: none;
+    border-color: rgba(153, 50, 204, 0.6);
+}
+
+.ai-twins-chat-input button {
+    background: linear-gradient(135deg, #9932CC, #FFD700);
+    border: none;
+    border-radius: 8px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ai-twins-chat-input button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(153, 50, 204, 0.3);
+}
+
+.ai-twins-chat-messages {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding-right: 10px;
+}
+
+.ai-twins-chat-message {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.ai-twins-chat-message-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.ai-twins-chat-message-content {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 15px;
+    border-radius: 12px;
+    border-top-left-radius: 0;
+    max-width: 80%;
+}
+
+.ai-twins-chat-message.user {
+    flex-direction: row-reverse;
+}
+
+.ai-twins-chat-message.user .ai-twins-chat-message-avatar {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.ai-twins-chat-message.user .ai-twins-chat-message-content {
+    background: rgba(153, 50, 204, 0.2);
+    border-radius: 12px;
+    border-top-right-radius: 0;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .ai-twins-indicator {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .ai-orb {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .ai-twins-tooltip {
+        display: none;
+    }
+}

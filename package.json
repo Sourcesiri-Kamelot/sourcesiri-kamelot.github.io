@@ -1,0 +1,28 @@
+{
+  "name": "helo-im-ai",
+  "version": "1.0.0",
+  "description": "Helo Im AI - The Future of AI Evolution",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo \"Add your start script here\" && exit 0",
+    "build": "echo \"Add your build script here\" && exit 0",
+    "test": "echo \"Add your test script here\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siri-kamelot/sourcesiri-kamelot.github.io.git"
+  },
+  "keywords": [
+    "AI",
+    "artificial intelligence",
+    "evolution",
+    "Twin AI",
+    "AI Playground"
+  ],
+  "author": "Kiwon Bowens",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/siri-kamelot/sourcesiri-kamelot.github.io/issues"
+  },
+  "homepage": "https://www.helo-im.ai"
+}
