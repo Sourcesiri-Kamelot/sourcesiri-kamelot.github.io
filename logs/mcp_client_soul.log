@@ -1,0 +1,14 @@
+2025-05-15 22:47:32,205 - AnimaMCP - INFO - Anima MCP Integration initialized
+2025-05-15 22:47:32,205 - MCPClientSoul - INFO - SoulCore MCP Client initialized for agent Anima
+2025-05-15 22:47:32,206 - SoulCoreMCPBridge - INFO - SoulCore MCP Bridge initialized
+2025-05-15 22:47:32,206 - SoulCoreMCPBridge - INFO - Starting MCP server...
+2025-05-15 22:47:32,256 - MCPClientSoul - INFO - Connected to MCP server at ws://localhost:8765
+2025-05-15 22:47:32,256 - AnimaMCP - INFO - Connected to MCP server
+2025-05-15 22:47:32,256 - MCPClientSoul - INFO - Invoking tool: register_agent
+2025-05-15 22:47:32,257 - MCPClientSoul - WARNING - Connection to MCP server closed
+2025-05-15 22:47:34,213 - SoulCoreMCPBridge - ERROR - Failed to start MCP server: /Users/helo.im.ai/SoulCoreHub/myenv/bin/python3: can't open file '/Users/helo.im.ai/sourcesiri-kamelot.github.io/mcp_server.py': [Errno 2] No such file or directory
+
+2025-05-15 22:47:34,213 - SoulCoreMCPBridge - INFO - SoulCore MCP Bridge initialized
+2025-05-16 02:16:13,507 - SoulCoreMCPBridge - WARNING - MCP server is not running
+2025-05-16 02:16:13,512 - SoulCoreMCPBridge - INFO - SoulCore MCP Bridge shut down successfully
+2025-05-16 02:16:13,513 - SoulCoreMCPBridge - INFO - SoulCore MCP Bridge shut down

@@ -10,13 +10,22 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
     <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
+            --gradient-2: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8));
+            --dark: #0a0014;
+        }
+        
         body {
             margin: 0;
             padding: 0;
-            overflow: hidden;
             font-family: 'Inter', sans-serif;
             background-color: #000;
             color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
         }
         
         #canvas-container {
@@ -26,6 +35,12 @@
             width: 100%;
             height: 100%;
             z-index: 1;
+        }
+        
+        #scene-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
         }
         
         #navbar {
@@ -153,7 +168,7 @@
         
         .console {
             position: fixed;
-            bottom: 0;
+            bottom: 120px; /* Increased to avoid footer overlap */
             left: 50%;
             transform: translateX(-50%);
             width: 80%;
@@ -208,6 +223,67 @@
             box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
         }
         
+        /* Main content wrapper to push footer down */
+        .main-content {
+            flex: 1;
+            position: relative;
+            z-index: 2;
+            padding-bottom: 400px; /* Space for the console and agents */
+        }
+        
+        /* Footer positioning fix */
+        footer {
+            position: relative;
+            z-index: 10;
+            margin-top: auto;
+            width: 100%;
+            padding-top: 20px;
+        }
+        
+        /* Hide the default footer that gets injected by header-footer.js */
+        body > footer:not(.custom-footer) {
+            display: none !important;
+        }
+        
+        /* Custom footer for this page */
+        .custom-footer {
+            background: rgba(10, 0, 20, 0.7);
+            padding: 10px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(153, 50, 204, 0.2);
+        }
+        
+        /* Loading indicator */
+        .loading-indicator {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #ffbe0b;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 10px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -241,26 +317,91 @@
             75% { transform: translateX(5px); }
             100% { transform: translateX(0); }
         }
+        
+        /* Responsive styles */
+        @media (max-width: 1024px) {
+            .console {
+                width: 90%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #navbar .nav-links {
+                display: none;
+            }
+            
+            .console {
+                width: 95%;
+                bottom: 100px;
+            }
+            
+            .agent-container {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .memory-vault {
+                bottom: 20px;
+                left: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .agent {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .memory-vault {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .memory-vault i {
+                font-size: 24px;
+            }
+            
+            .console.open {
+                height: 250px;
+            }
+        }
     </style>
     <link rel="stylesheet" href="css/orb-agents.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/project-cards.css">
 </head>
 <body>
-    <div id="canvas-container"></div>
+    <div id="canvas-container">
+        <!-- Three.js canvas will be inserted here -->
+    </div>
+    
+    <!-- Loading indicator -->
+    <div class="loading-indicator" id="loading">
+        <div class="loading-spinner"></div>
+        <div>Loading SoulCore Lab...</div>
+    </div>
     
     <nav id="navbar">
         <div class="logo">SoulCore Lab</div>
         <div class="nav-links">
-            <a href="#" class="active" data-icon="home"><i class="fas fa-home"></i> Home</a>
-            <a href="#" data-icon="users"><i class="fas fa-users"></i> Agents</a>
-            <a href="#" data-icon="database"><i class="fas fa-database"></i> Memory</a>
-            <a href="#" data-icon="terminal"><i class="fas fa-terminal"></i> Console</a>
-            <a href="#" data-icon="cog"><i class="fas fa-cog"></i> Settings</a>
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="vision.html"><i class="fas fa-brain"></i> AI Twins</a>
+            <a href="soulcore.html"><i class="fas fa-atom"></i> SoulCore</a>
+            <a href="evolution.html"><i class="fas fa-dna"></i> Evolution</a>
+            <a href="api.html"><i class="fas fa-code"></i> API</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            <a href="timeline.html"><i class="fas fa-clock"></i> Timeline</a>
+            <a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+            <a href="dashboard.html"><i class="fas fa-cube"></i> Web3</a>
         </div>
     </nav>
     
     <a href="soulcore.html" class="back-button">Back to SoulCore</a>
+    
+    <div class="main-content">
+        <!-- This div wraps the main content and helps with layout -->
+    </div>
     
     <div class="agent-container">
         <div class="agent idle" data-agent="gptsoul">G</div>
@@ -290,116 +431,17 @@
         </div>
     </div>
     
+    <!-- Custom minimal footer that won't interfere with the 3D experience -->
+    <footer class="custom-footer">
+        <p>&copy; 2025 Helo I'm AI Inc. | <a href="index.html">Home</a> | <a href="soulcore.html">SoulCore</a> | <a href="dashboard.html">Web3</a></p>
+    </footer>
+    
+    <!-- Load the 3D scene script -->
+    <script src="js/soulcore-3d.js"></script>
+    
     <script>
-        // Three.js initialization
-        let scene, camera, renderer, controls;
-        
-        function initThreeJS() {
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
-            document.getElementById('canvas-container').appendChild(renderer.domElement);
-            
-            controls = new THREE.OrbitControls(camera, renderer.domElement);
-            controls.enableDamping = true;
-            controls.dampingFactor = 0.05;
-            
-            // Set camera position
-            camera.position.z = 5;
-            
-            // Add ambient light
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
-            scene.add(ambientLight);
-            
-            // Add directional light
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.7);
-            directionalLight.position.set(10, 20, 5);
-            scene.add(directionalLight);
-            
-            // Create a skybox (using color instead of textures for now)
-            scene.background = new THREE.Color(0x000011);
-            
-            // Add some objects to the scene
-            createObjects();
-            
-            // Handle window resize
-            window.addEventListener('resize', onWindowResize);
-            
-            // Start animation loop
-            animate();
-        }
-        
-        function createObjects() {
-            // Create a central sphere representing the core
-            const coreGeometry = new THREE.SphereGeometry(1, 32, 32);
-            const coreMaterial = new THREE.MeshStandardMaterial({
-                color: 0xffbe0b,
-                emissive: 0xffbe0b,
-                emissiveIntensity: 0.5,
-                metalness: 0.8,
-                roughness: 0.2
-            });
-            const core = new THREE.Mesh(coreGeometry, coreMaterial);
-            scene.add(core);
-            
-            // Create orbiting agent spheres
-            createAgentSphere(0.3, 0x3a86ff, 2, 0, 0); // GPTSoul
-            createAgentSphere(0.25, 0x8338ec, 0, 2, 0); // Anima
-            createAgentSphere(0.2, 0xff006e, 0, 0, 2); // EvoVe
-            createAgentSphere(0.15, 0xfb5607, -2, 0, 0); // Azür
-        }
-        
-        function createAgentSphere(radius, color, x, y, z) {
-            const geometry = new THREE.SphereGeometry(radius, 24, 24);
-            const material = new THREE.MeshStandardMaterial({
-                color: color,
-                emissive: color,
-                emissiveIntensity: 0.3,
-                metalness: 0.5,
-                roughness: 0.5
-            });
-            const sphere = new THREE.Mesh(geometry, material);
-            sphere.position.set(x, y, z);
-            scene.add(sphere);
-            
-            // Add a ring around the sphere
-            const ringGeometry = new THREE.RingGeometry(radius + 0.1, radius + 0.2, 32);
-            const ringMaterial = new THREE.MeshBasicMaterial({
-                color: color,
-                side: THREE.DoubleSide,
-                transparent: true,
-                opacity: 0.7
-            });
-            const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-            ring.rotation.x = Math.PI / 2;
-            sphere.add(ring);
-            
-            return sphere;
-        }
-        
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-        
-        function animate() {
-            requestAnimationFrame(animate);
-            
-            // Rotate the scene slightly
-            scene.rotation.y += 0.001;
-            
-            controls.update();
-            renderer.render(scene, camera);
-        }
-        
         // UI Interactions
         document.addEventListener('DOMContentLoaded', function() {
-            initThreeJS();
-            
             // Console toggle
             const consoleElement = document.querySelector('.console');
             const memoryVault = document.querySelector('.memory-vault');
@@ -438,7 +480,7 @@
             const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
-                    e.preventDefault();
+                    // Don't prevent default here to allow navigation
                     
                     // Remove active class from all links
                     navLinks.forEach(l => l.classList.remove('active'));
@@ -475,6 +517,16 @@
                 logToConsole('Glyph: golden-thread');
                 logToConsole('Realm: logic-plane-01');
             }, 1000);
+            
+            // Hide loading indicator when scene is ready
+            window.addEventListener('scene-loaded', function() {
+                document.getElementById('loading').style.display = 'none';
+            });
+            
+            // Fallback to hide loading indicator after 5 seconds if event doesn't fire
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+            }, 5000);
         });
         
         function logToConsole(message) {
@@ -511,7 +563,5 @@
         // Call this function after a delay to simulate initialization
         setTimeout(finalizeMemoryEvent, 3000);
     </script>
-    <script src="js/header-footer.js"></script>
-    <script src="js/orb-agents.js"></script>
 </body>
 </html>
