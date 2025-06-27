@@ -118,6 +118,21 @@
             gap: 1rem;
         }
 
+        .user-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--secondary);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .user-logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+        }
+
         .user-avatar {
             width: 50px;
             height: 50px;
@@ -327,10 +342,10 @@
                 <p style="color: rgba(255,255,255,0.7);">Your AI evolution continues...</p>
             </div>
             <div class="user-info">
-                <div class="user-avatar">KB</div>
+                <img src="images/helo-logo.png" alt="Helo I'm AI Logo" class="user-logo">
                 <div>
                     <div style="font-weight: 600;">Kiwon Bowens</div>
-                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.6);">Pro Member</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.6);">Founder & CEO</div>
                 </div>
             </div>
         </div>
