@@ -494,13 +494,17 @@
             }
         });
         
-        // Sidebar navigation
+        // Sidebar navigation - Allow normal navigation to other pages
         document.querySelectorAll('.sidebar-nav a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelectorAll('.sidebar-nav a').forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-            });
+            // Only prevent default for dashboard link (current page)
+            if (link.getAttribute('href') === 'dashboard.html') {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelectorAll('.sidebar-nav a').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            }
+            // All other links will navigate normally to their respective pages
         });
     </script>
 </body>
