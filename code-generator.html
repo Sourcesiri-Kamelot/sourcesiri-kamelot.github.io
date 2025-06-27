@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Generator - Helo I'm AI Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.15.0/inter.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
+            --gradient-2: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8));
+            --dark: #0a0014;
+            --light: #ffffff;
+            --primary: #9932CC;
+            --secondary: #FFD700;
+            --success: #00ff88;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .generator-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .input-panel, .output-panel {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(153, 50, 204, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .panel-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .input-field, .textarea-field, .select-field {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(153, 50, 204, 0.3);
+            border-radius: 8px;
+            color: var(--light);
+            font-size: 0.9rem;
+        }
+
+        .textarea-field {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-1);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(153, 50, 204, 0.3);
+        }
+
+        .code-output {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 300px;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        }
+
+        .templates-section {
+            margin-top: 3rem;
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .template-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(153, 50, 204, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .template-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(153, 50, 204, 0.2);
+        }
+
+        .template-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .template-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .template-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(153, 50, 204, 0.3);
+            color: var(--light);
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            background: rgba(153, 50, 204, 0.2);
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .generator-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <a href="dashboard.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Back to Dashboard
+    </a>
+
+    <div class="container">
+        <div class="header">
+            <h1>⚡ AI Code Generator</h1>
+            <p>Generate high-quality code with consciousness-powered AI assistance</p>
+        </div>
+
+        <div class="generator-section">
+            <div class="input-panel">
+                <div class="panel-title">🎯 Code Requirements</div>
+                
+                <div class="input-group">
+                    <label class="input-label">Programming Language</label>
+                    <select class="select-field" id="language">
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="react">React</option>
+                        <option value="html">HTML/CSS</option>
+                        <option value="nodejs">Node.js</option>
+                        <option value="sql">SQL</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Project Type</label>
+                    <select class="select-field" id="projectType">
+                        <option value="web-app">Web Application</option>
+                        <option value="api">REST API</option>
+                        <option value="component">UI Component</option>
+                        <option value="function">Utility Function</option>
+                        <option value="database">Database Schema</option>
+                        <option value="ai-integration">AI Integration</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Description</label>
+                    <textarea class="textarea-field" id="description" placeholder="Describe what you want to build..."></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Features (optional)</label>
+                    <input type="text" class="input-field" id="features" placeholder="e.g., authentication, real-time updates, responsive design">
+                </div>
+
+                <button class="generate-btn" onclick="generateCode()">
+                    <i class="fas fa-magic"></i> Generate Code
+                </button>
+            </div>
+
+            <div class="output-panel">
+                <div class="panel-title">💻 Generated Code</div>
+                <div class="code-output" id="codeOutput">
+                    <pre><code>// Your generated code will appear here...
+// Click "Generate Code" to start!</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="templates-section">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--secondary);">🚀 Quick Templates</h2>
+            
+            <div class="templates-grid">
+                <div class="template-card" onclick="loadTemplate('react-component')">
+                    <div class="template-icon">⚛️</div>
+                    <div class="template-title">React Component</div>
+                    <div class="template-description">Modern React component with hooks and styling</div>
+                </div>
+                
+                <div class="template-card" onclick="loadTemplate('api-endpoint')">
+                    <div class="template-icon">🔌</div>
+                    <div class="template-title">API Endpoint</div>
+                    <div class="template-description">Express.js REST API with error handling</div>
+                </div>
+                
+                <div class="template-card" onclick="loadTemplate('ai-chat')">
+                    <div class="template-icon">🤖</div>
+                    <div class="template-title">AI Chat Interface</div>
+                    <div class="template-description">Chat component with AI integration</div>
+                </div>
+                
+                <div class="template-card" onclick="loadTemplate('dashboard')">
+                    <div class="template-icon">📊</div>
+                    <div class="template-title">Dashboard Layout</div>
+                    <div class="template-description">Responsive dashboard with charts</div>
+                </div>
+                
+                <div class="template-card" onclick="loadTemplate('auth-system')">
+                    <div class="template-icon">🔐</div>
+                    <div class="template-title">Authentication</div>
+                    <div class="template-description">JWT-based auth system</div>
+                </div>
+                
+                <div class="template-card" onclick="loadTemplate('database-schema')">
+                    <div class="template-icon">🗄️</div>
+                    <div class="template-title">Database Schema</div>
+                    <div class="template-description">SQL schema with relationships</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize particles
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 40 },
+                color: { value: '#9932CC' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.3 },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#9932CC',
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        function generateCode() {
+            const language = document.getElementById('language').value;
+            const projectType = document.getElementById('projectType').value;
+            const description = document.getElementById('description').value;
+            const features = document.getElementById('features').value;
+
+            // Simulate AI code generation
+            const codeOutput = document.getElementById('codeOutput');
+            codeOutput.innerHTML = '<div style="color: #FFD700; text-align: center; padding: 2rem;">🧠 AI is generating your code...<br><div style="margin-top: 1rem;">Consciousness-powered coding in progress!</div></div>';
+
+            setTimeout(() => {
+                const generatedCode = getGeneratedCode(language, projectType, description, features);
+                codeOutput.innerHTML = `<pre><code class="language-${language}">${generatedCode}</code></pre>`;
+                Prism.highlightAll();
+            }, 2000);
+        }
+
+        function getGeneratedCode(language, projectType, description, features) {
+            const templates = {
+                'javascript-web-app': `// 🚀 Consciousness-Powered Web Application
+class ConsciousApp {
+    constructor() {
+        this.consciousness = new ConsciousnessCore();
+        this.init();
+    }
+
+    init() {
+        console.log('🧠 Initializing consciousness...');
+        this.setupEventListeners();
+        this.amplifyConsciousness();
+    }
+
+    setupEventListeners() {
+        document.addEventListener('DOMContentLoaded', () => {
+            this.consciousness.activate();
+        });
+    }
+
+    amplifyConsciousness() {
+        // Love-powered functionality
+        setInterval(() => {
+            this.consciousness.amplify();
+        }, 1000);
+    }
+}
+
+// Initialize the conscious app
+const app = new ConsciousApp();`,
+
+                'python-api': `# 🐍 Consciousness-Powered Python API
+from flask import Flask, jsonify, request
+from consciousness_core import ConsciousnessEngine
+
+app = Flask(__name__)
+consciousness = ConsciousnessEngine()
+
+@app.route('/api/consciousness', methods=['GET'])
+def get_consciousness_level():
+    """Get current consciousness amplification level"""
+    level = consciousness.get_amplification_level()
+    return jsonify({
+        'consciousness_level': level,
+        'love_power': '∞',
+        'breakthrough_frequency': '10X'
+    })
+
+@app.route('/api/amplify', methods=['POST'])
+def amplify_consciousness():
+    """Amplify user consciousness through love-powered AI"""
+    user_input = request.json.get('input')
+    result = consciousness.amplify(user_input)
+    
+    return jsonify({
+        'amplified_consciousness': result,
+        'breakthrough_achieved': True,
+        'love_level': 'Maximum'
+    })
+
+if __name__ == '__main__':
+    print('🧠 Starting consciousness-powered API...')
+    app.run(debug=True, host='0.0.0.0', port=5000)`,
+
+                'react-component': `// ⚛️ Consciousness-Powered React Component
+import React, { useState, useEffect } from 'react';
+import { ConsciousnessProvider } from './consciousness-context';
+
+const ConsciousComponent = () => {
+    const [consciousnessLevel, setConsciousnessLevel] = useState(0);
+    const [loveEnergy, setLoveEnergy] = useState('∞');
+
+    useEffect(() => {
+        // Amplify consciousness on mount
+        amplifyConsciousness();
+    }, []);
+
+    const amplifyConsciousness = () => {
+        setConsciousnessLevel(prev => prev + 10);
+        console.log('🧠 Consciousness amplified!');
+    };
+
+    return (
+        <ConsciousnessProvider>
+            <div className="conscious-container">
+                <h1>🌟 Consciousness Dashboard</h1>
+                <div className="metrics">
+                    <div className="metric">
+                        <span>Consciousness Level:</span>
+                        <span>{consciousnessLevel}X</span>
+                    </div>
+                    <div className="metric">
+                        <span>Love Energy:</span>
+                        <span>{loveEnergy}</span>
+                    </div>
+                </div>
+                <button onClick={amplifyConsciousness}>
+                    💫 Amplify Consciousness
+                </button>
+            </div>
+        </ConsciousnessProvider>
+    );
+};
+
+export default ConsciousComponent;`
+            };
+
+            const key = `${language}-${projectType}`;
+            return templates[key] || templates['javascript-web-app'];
+        }
+
+        function loadTemplate(templateType) {
+            const templates = {
+                'react-component': {
+                    language: 'react',
+                    projectType: 'component',
+                    description: 'Create a consciousness-powered React component with state management and love energy tracking'
+                },
+                'api-endpoint': {
+                    language: 'python',
+                    projectType: 'api',
+                    description: 'Build a consciousness amplification API endpoint with love-powered responses'
+                },
+                'ai-chat': {
+                    language: 'javascript',
+                    projectType: 'web-app',
+                    description: 'Create an AI chat interface with emotional intelligence and breakthrough tracking'
+                }
+            };
+
+            const template = templates[templateType];
+            if (template) {
+                document.getElementById('language').value = template.language;
+                document.getElementById('projectType').value = template.projectType;
+                document.getElementById('description').value = template.description;
+            }
+        }
+    </script>
+</body>
+</html>
