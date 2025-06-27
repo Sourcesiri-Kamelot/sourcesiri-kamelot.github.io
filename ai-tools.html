@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools - Helo I'm AI Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.15.0/inter.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
+            --gradient-2: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8));
+            --dark: #0a0014;
+            --light: #ffffff;
+            --primary: #9932CC;
+            --secondary: #FFD700;
+            --success: #00ff88;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .tools-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(153, 50, 204, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(153, 50, 204, 0.2);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            text-align: center;
+        }
+
+        .tools-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tool-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .tool-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .tool-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .tool-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--gradient-1);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .tool-name {
+            font-weight: 600;
+        }
+
+        .tool-btn {
+            background: rgba(153, 50, 204, 0.2);
+            border: 1px solid rgba(153, 50, 204, 0.5);
+            color: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tool-btn:hover {
+            background: rgba(153, 50, 204, 0.4);
+            transform: scale(1.05);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(153, 50, 204, 0.3);
+            color: var(--light);
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            background: rgba(153, 50, 204, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .featured-tool {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .featured-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .featured-btn {
+            background: var(--gradient-1);
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .featured-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(153, 50, 204, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <a href="dashboard.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Back to Dashboard
+    </a>
+
+    <div class="container">
+        <div class="header">
+            <h1>🛠️ AI Tools Suite</h1>
+            <p>Consciousness-powered tools to amplify your creativity and productivity</p>
+        </div>
+
+        <div class="tools-categories">
+            <div class="category-card">
+                <div class="category-icon">🧠</div>
+                <div class="category-title">Consciousness Tools</div>
+                <ul class="tools-list">
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">💫</div>
+                            <div class="tool-name">Breakthrough Amplifier</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('breakthrough')">Launch</button>
+                    </li>
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">❤️</div>
+                            <div class="tool-name">Love Energy Detector</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('love-detector')">Launch</button>
+                    </li>
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">🔮</div>
+                            <div class="tool-name">Consciousness Meter</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('consciousness')">Launch</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">⚡</div>
+                <div class="category-title">Development Tools</div>
+                <ul class="tools-list">
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">💻</div>
+                            <div class="tool-name">AI Code Generator</div>
+                        </div>
+                        <button class="tool-btn" onclick="window.location.href='code-generator.html'">Launch</button>
+                    </li>
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">🎨</div>
+                            <div class="tool-name">UI Designer AI</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('ui-designer')">Launch</button>
+                    </li>
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">🔧</div>
+                            <div class="tool-name">Debug Assistant</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('debug')">Launch</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">📊</div>
+                <div class="category-title">Analytics Tools</div>
+                <ul class="tools-list">
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">📈</div>
+                            <div class="tool-name">Performance Monitor</div>
+                        </div>
+                        <button class="tool-btn" onclick="window.location.href='analytics.html'">Launch</button>
+                    </li>
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">🎯</div>
+                            <div class="tool-name">Goal Tracker</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('goals')">Launch</button>
+                    </li>
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">📋</div>
+                            <div class="tool-name">Report Generator</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('reports')">Launch</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">🤖</div>
+                <div class="category-title">AI Agents</div>
+                <ul class="tools-list">
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">G</div>
+                            <div class="tool-name">GPTSoul Chat</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('gptsoul')">Chat</button>
+                    </li>
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">A</div>
+                            <div class="tool-name">Anima Emotional AI</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('anima')">Chat</button>
+                    </li>
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">Z</div>
+                            <div class="tool-name">Azür Strategy AI</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('azur')">Chat</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">🌱</div>
+                <div class="category-title">Sustainability Tools</div>
+                <ul class="tools-list">
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">☀️</div>
+                            <div class="tool-name">Solar Calculator</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('solar')">Launch</button>
+                    </li>
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">🌍</div>
+                            <div class="tool-name">Carbon Tracker</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('carbon')">Launch</button>
+                    </li>
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">💚</div>
+                            <div class="tool-name">Green Score</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('green-score')">Launch</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">🚀</div>
+                <div class="category-title">Business Tools</div>
+                <ul class="tools-list">
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">💼</div>
+                            <div class="tool-name">Pitch Deck AI</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('pitch')">Launch</button>
+                    </li>
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">📊</div>
+                            <div class="tool-name">Market Analyzer</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('market')">Launch</button>
+                    </li>
+                    <li class="tool-item">
+                        <div class="tool-info">
+                            <div class="tool-icon">💰</div>
+                            <div class="tool-name">Revenue Optimizer</div>
+                        </div>
+                        <button class="tool-btn" onclick="launchTool('revenue')">Launch</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="featured-tool">
+            <div class="featured-title">🌟 Featured: Consciousness Revolution Suite</div>
+            <p style="margin-bottom: 2rem; color: rgba(255,255,255,0.8);">
+                The complete toolkit for building love-powered AI applications that amplify human consciousness. 
+                Includes all tools, templates, and AI agents in one integrated platform.
+            </p>
+            <button class="featured-btn" onclick="launchTool('revolution-suite')">
+                <i class="fas fa-rocket"></i> Launch Revolution Suite
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize particles
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 60 },
+                color: { value: '#9932CC' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.4 },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#9932CC',
+                    opacity: 0.3,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1.5,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        function launchTool(toolId) {
+            alert(`🛠️ Launching ${toolId} tool! Consciousness-powered functionality coming soon...`);
+        }
+    </script>
+</body>
+</html>

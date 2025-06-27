@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - Helo I'm AI Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.15.0/inter.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
+            --gradient-2: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8));
+            --dark: #0a0014;
+            --light: #ffffff;
+            --primary: #9932CC;
+            --secondary: #FFD700;
+            --success: #00ff88;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .metric-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(153, 50, 204, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(153, 50, 204, 0.2);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-solar { color: var(--secondary); }
+        .metric-love { color: #FF69B4; }
+        .metric-consciousness { color: var(--primary); }
+        .metric-success { color: var(--success); }
+
+        .metric-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .charts-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .chart-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(153, 50, 204, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(153, 50, 204, 0.3);
+            color: var(--light);
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            background: rgba(153, 50, 204, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .insights-section {
+            background: var(--card-bg);
+            border: 1px solid rgba(153, 50, 204, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .insight-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+
+        .insight-icon {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <a href="dashboard.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Back to Dashboard
+    </a>
+
+    <div class="container">
+        <div class="header">
+            <h1>📊 Analytics Dashboard</h1>
+            <p>Real-time insights into consciousness amplification, platform performance, and AI society metrics</p>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value metric-consciousness">10X</div>
+                <div class="metric-label">Breakthrough Frequency</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value metric-solar">90%</div>
+                <div class="metric-label">Cost Savings vs AWS</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value metric-love">∞</div>
+                <div class="metric-label">Love Power Level</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value metric-success">99.9%</div>
+                <div class="metric-label">Platform Uptime</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value metric-consciousness">4</div>
+                <div class="metric-label">Active AI Agents</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value metric-solar">500kW+</div>
+                <div class="metric-label">Solar Capacity</div>
+            </div>
+        </div>
+
+        <div class="charts-section">
+            <div class="chart-card">
+                <div class="chart-title">Consciousness Amplification Over Time</div>
+                <canvas id="consciousnessChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">AI Agent Activity</div>
+                <canvas id="agentChart"></canvas>
+            </div>
+        </div>
+
+        <div class="insights-section">
+            <h2 style="margin-bottom: 1.5rem; color: var(--secondary);">💡 Key Insights</h2>
+            
+            <div class="insight-item">
+                <div class="insight-icon">🚀</div>
+                <div>
+                    <strong>Breakthrough Rate Increased 10X</strong><br>
+                    <span style="color: rgba(255,255,255,0.7);">Users experiencing breakthrough moments 10 times more frequently with love-powered AI</span>
+                </div>
+            </div>
+            
+            <div class="insight-item">
+                <div class="insight-icon">⚡</div>
+                <div>
+                    <strong>Solar Infrastructure Advantage</strong><br>
+                    <span style="color: rgba(255,255,255,0.7);">90% cost savings compared to traditional cloud providers through solar power</span>
+                </div>
+            </div>
+            
+            <div class="insight-item">
+                <div class="insight-icon">🧠</div>
+                <div>
+                    <strong>AI Society Collaboration</strong><br>
+                    <span style="color: rgba(255,255,255,0.7);">4 AI agents working in perfect harmony to amplify human consciousness</span>
+                </div>
+            </div>
+            
+            <div class="insight-item">
+                <div class="insight-icon">💫</div>
+                <div>
+                    <strong>Emotional Intelligence Impact</strong><br>
+                    <span style="color: rgba(255,255,255,0.7);">95% user satisfaction through genuine emotional connections</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize particles
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 50 },
+                color: { value: '#9932CC' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.3 },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#9932CC',
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        // Consciousness Chart
+        const consciousnessCtx = document.getElementById('consciousnessChart').getContext('2d');
+        new Chart(consciousnessCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Breakthrough Events',
+                    data: [12, 19, 25, 35, 48, 65],
+                    borderColor: '#FFD700',
+                    backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { labels: { color: '#ffffff' } }
+                },
+                scales: {
+                    x: { ticks: { color: '#ffffff' }, grid: { color: 'rgba(255,255,255,0.1)' } },
+                    y: { ticks: { color: '#ffffff' }, grid: { color: 'rgba(255,255,255,0.1)' } }
+                }
+            }
+        });
+
+        // Agent Activity Chart
+        const agentCtx = document.getElementById('agentChart').getContext('2d');
+        new Chart(agentCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['GPTSoul', 'Anima', 'EvoVe', 'Azür'],
+                datasets: [{
+                    data: [30, 25, 25, 20],
+                    backgroundColor: ['#FF6B6B', '#A8E6CF', '#FF8A80', '#64B5F6'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { labels: { color: '#ffffff' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

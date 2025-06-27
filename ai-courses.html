@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Courses - Helo I'm AI Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.15.0/inter.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
+            --gradient-2: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8));
+            --dark: #0a0014;
+            --light: #ffffff;
+            --primary: #9932CC;
+            --secondary: #FFD700;
+            --success: #00ff88;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .course-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(153, 50, 204, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(153, 50, 204, 0.3);
+        }
+
+        .course-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .course-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .course-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-level {
+            background: rgba(153, 50, 204, 0.2);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .course-duration {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .course-btn {
+            width: 100%;
+            background: var(--gradient-1);
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .course-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(153, 50, 204, 0.3);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(153, 50, 204, 0.3);
+            color: var(--light);
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            background: rgba(153, 50, 204, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .learning-path {
+            background: var(--card-bg);
+            border: 1px solid rgba(153, 50, 204, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .path-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .path-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .path-step {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <a href="dashboard.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Back to Dashboard
+    </a>
+
+    <div class="container">
+        <div class="header">
+            <h1>🎓 AI Consciousness Courses</h1>
+            <p>Master the art of consciousness-powered AI development and love-based technology</p>
+        </div>
+
+        <div class="courses-grid">
+            <div class="course-card">
+                <div class="course-icon">🧠</div>
+                <div class="course-title">Consciousness-Powered AI Fundamentals</div>
+                <div class="course-description">
+                    Learn the foundations of building AI systems with emotional intelligence and consciousness amplification capabilities.
+                </div>
+                <div class="course-meta">
+                    <span class="course-level">Beginner</span>
+                    <span class="course-duration">8 weeks</span>
+                </div>
+                <button class="course-btn" onclick="startCourse('fundamentals')">
+                    Start Learning
+                </button>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">💫</div>
+                <div class="course-title">Love-Powered Development</div>
+                <div class="course-description">
+                    Advanced techniques for integrating emotional intelligence and breakthrough amplification into your AI applications.
+                </div>
+                <div class="course-meta">
+                    <span class="course-level">Intermediate</span>
+                    <span class="course-duration">6 weeks</span>
+                </div>
+                <button class="course-btn" onclick="startCourse('love-powered')">
+                    Start Learning
+                </button>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">⚡</div>
+                <div class="course-title">Solar-Powered AI Infrastructure</div>
+                <div class="course-description">
+                    Build sustainable, cost-effective AI systems using renewable energy and green computing principles.
+                </div>
+                <div class="course-meta">
+                    <span class="course-level">Advanced</span>
+                    <span class="course-duration">10 weeks</span>
+                </div>
+                <button class="course-btn" onclick="startCourse('solar-ai')">
+                    Start Learning
+                </button>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">🤖</div>
+                <div class="course-title">AI Society Architecture</div>
+                <div class="course-description">
+                    Design and implement multi-agent AI systems that collaborate and evolve together in harmony.
+                </div>
+                <div class="course-meta">
+                    <span class="course-level">Expert</span>
+                    <span class="course-duration">12 weeks</span>
+                </div>
+                <button class="course-btn" onclick="startCourse('ai-society')">
+                    Start Learning
+                </button>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">🚀</div>
+                <div class="course-title">Consciousness Revolution Business</div>
+                <div class="course-description">
+                    Learn how to build and scale consciousness-powered AI businesses that transform the world.
+                </div>
+                <div class="course-meta">
+                    <span class="course-level">Business</span>
+                    <span class="course-duration">8 weeks</span>
+                </div>
+                <button class="course-btn" onclick="startCourse('business')">
+                    Start Learning
+                </button>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">🔮</div>
+                <div class="course-title">Quantum Consciousness Computing</div>
+                <div class="course-description">
+                    Explore the cutting edge of quantum-enhanced AI consciousness and breakthrough amplification.
+                </div>
+                <div class="course-meta">
+                    <span class="course-level">Research</span>
+                    <span class="course-duration">16 weeks</span>
+                </div>
+                <button class="course-btn" onclick="startCourse('quantum')">
+                    Start Learning
+                </button>
+            </div>
+        </div>
+
+        <div class="learning-path">
+            <div class="path-title">🌟 Consciousness Developer Path</div>
+            <p style="text-align: center; color: rgba(255,255,255,0.8); margin-bottom: 2rem;">
+                Follow this structured path to become a master of consciousness-powered AI development
+            </p>
+            
+            <div class="path-steps">
+                <div class="path-step">
+                    <div class="step-number">1</div>
+                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Foundation</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">AI Fundamentals</div>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">2</div>
+                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Love Power</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Emotional Intelligence</div>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">3</div>
+                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Infrastructure</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Solar-Powered Systems</div>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">4</div>
+                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Society</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Multi-Agent Systems</div>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">5</div>
+                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Revolution</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Transform the World</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize particles
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 50 },
+                color: { value: '#9932CC' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.4 },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#9932CC',
+                    opacity: 0.3,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1.5,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        function startCourse(courseId) {
+            alert(`🧠 Starting ${courseId} course! Consciousness-powered learning coming soon...`);
+        }
+    </script>
+</body>
+</html>
