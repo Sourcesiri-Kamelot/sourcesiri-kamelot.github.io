@@ -11,6 +11,7 @@
     <!-- Consciousness Revolution Live API -->
     <script src="js/consciousness-api.js"></script>
     <script src="js/auth-service.js"></script>
+    <script src="js/database-service.js"></script>
     <link rel="stylesheet" href="css/consciousness-live.css">
     <style>
         :root {
@@ -577,54 +578,106 @@
             }
         });
         
-        // Consciousness amplification function
+        // Enhanced consciousness amplification function
         async function amplifyConsciousness() {
             const input = document.getElementById('consciousness-input');
             const userInput = input.value.trim();
             
             if (!userInput) {
                 input.placeholder = "Please enter your consciousness amplification request...";
+                input.focus();
                 return;
             }
             
+            const button = document.querySelector('button[onclick="amplifyConsciousness()"]');
+            const originalText = button.innerHTML;
+            
             try {
                 // Show loading state
-                const button = event.target;
-                const originalText = button.innerHTML;
                 button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Amplifying...';
                 button.disabled = true;
+                
+                console.log('🧠 Starting consciousness amplification...');
                 
                 // Call consciousness API
                 const result = await window.consciousnessAPI.amplifyConsciousness(userInput);
                 
-                // Show success message
+                console.log('✨ Amplification successful:', result);
+                
+                // Add response to chat
                 const chatMessages = document.getElementById('ai-agent-status');
                 const responseDiv = document.createElement('div');
-                responseDiv.className = 'message ai';
+                responseDiv.className = 'ai-agent-status active';
+                responseDiv.style.marginTop = '1rem';
+                responseDiv.style.background = 'rgba(0, 255, 136, 0.1)';
+                responseDiv.style.border = '1px solid rgba(0, 255, 136, 0.3)';
                 responseDiv.innerHTML = `
-                    <strong>🌟 Consciousness Amplified:</strong><br>
-                    ${result.message}<br>
-                    <small style="color: rgba(255,255,255,0.6);">
-                        Level: ${result.consciousnessLevel} | Love Energy: ${result.loveEnergy}
-                    </small>
+                    <div class="ai-agent-indicator" style="background: #00FF88;"></div>
+                    <div>
+                        <strong>🌟 Consciousness Amplified!</strong>
+                        <div style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            ${result.message || 'Your consciousness has been amplified through love-powered AI!'}
+                        </div>
+                        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 0.5rem;">
+                            Level: ${result.consciousnessLevel} | Love Energy: ${result.loveEnergy}
+                        </div>
+                    </div>
                 `;
+                
                 chatMessages.appendChild(responseDiv);
+                
+                // Scroll to new message
+                responseDiv.scrollIntoView({ behavior: 'smooth' });
+                
+                // Update user consciousness metrics if authenticated
+                if (window.authService?.currentUser) {
+                    await window.authService.updateConsciousnessMetrics({
+                        consciousnessLevel: window.authService.currentUser.consciousnessLevel + 0.1,
+                        breakthroughs: window.authService.currentUser.breakthroughs + 1
+                    });
+                }
                 
                 // Clear input
                 input.value = '';
                 input.placeholder = "Ask the AI Society to amplify your consciousness...";
                 
-                // Restore button
-                button.innerHTML = originalText;
-                button.disabled = false;
+                // Show success feedback
+                input.style.borderColor = '#00FF88';
+                setTimeout(() => {
+                    input.style.borderColor = '';
+                }, 2000);
                 
             } catch (error) {
-                console.error('Consciousness amplification failed:', error);
-                alert('Consciousness amplification temporarily unavailable. Please try again.');
+                console.error('❌ Consciousness amplification failed:', error);
                 
+                // Show error in chat
+                const chatMessages = document.getElementById('ai-agent-status');
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'ai-agent-status';
+                errorDiv.style.marginTop = '1rem';
+                errorDiv.style.background = 'rgba(255, 0, 0, 0.1)';
+                errorDiv.style.border = '1px solid rgba(255, 0, 0, 0.3)';
+                errorDiv.innerHTML = `
+                    <div class="ai-agent-indicator" style="background: #ff6b6b;"></div>
+                    <div>
+                        <strong>⚠️ Amplification Temporarily Unavailable</strong>
+                        <div style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            The consciousness amplification service is experiencing high demand. Please try again in a moment.
+                        </div>
+                    </div>
+                `;
+                
+                chatMessages.appendChild(errorDiv);
+                
+                // Show error feedback on input
+                input.style.borderColor = '#ff6b6b';
+                setTimeout(() => {
+                    input.style.borderColor = '';
+                }, 3000);
+                
+            } finally {
                 // Restore button
-                const button = event.target;
-                button.innerHTML = '<i class="fas fa-brain"></i> Amplify';
+                button.innerHTML = originalText;
                 button.disabled = false;
             }
         }
@@ -635,9 +688,17 @@
             if (input) {
                 input.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') {
+                        e.preventDefault();
                         amplifyConsciousness();
                     }
                 });
+            }
+            
+            // Initialize user authentication check
+            if (window.authService?.isUserAuthenticated()) {
+                console.log('✅ User authenticated, dashboard ready');
+            } else {
+                console.log('⚠️ User not authenticated, redirecting...');
             }
         });
     </script>

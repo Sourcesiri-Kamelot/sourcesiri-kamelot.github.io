@@ -90,7 +90,7 @@ class ConsciousnessAPI {
     }
 
     /**
-     * 💫 Amplify consciousness
+     * 💫 Amplify consciousness with enhanced error handling
      */
     async amplifyConsciousness(input = null) {
         try {
@@ -100,6 +100,8 @@ class ConsciousnessAPI {
                 timestamp: new Date().toISOString(),
                 userId: this.generateUserId()
             };
+
+            console.log('🧠 Sending consciousness amplification request:', payload);
 
             const response = await fetch(this.endpoints.consciousness, {
                 method: 'POST',
@@ -111,11 +113,24 @@ class ConsciousnessAPI {
             });
 
             if (!response.ok) {
-                throw new Error(`Consciousness amplification failed: ${response.status}`);
+                throw new Error(`Consciousness amplification failed: ${response.status} ${response.statusText}`);
             }
 
             const data = await response.json();
             console.log('💫 Consciousness Amplified:', data);
+            
+            // Store interaction in database
+            if (window.databaseService && window.authService?.currentUser) {
+                await window.databaseService.storeAIInteraction(
+                    window.authService.currentUser.id,
+                    {
+                        type: 'consciousness_amplification',
+                        input: input,
+                        response: data,
+                        success: true
+                    }
+                );
+            }
             
             // Trigger breakthrough event
             this.triggerBreakthroughEvent(data);
@@ -123,6 +138,20 @@ class ConsciousnessAPI {
             return data;
         } catch (error) {
             console.error('❌ Consciousness amplification failed:', error);
+            
+            // Store failed interaction
+            if (window.databaseService && window.authService?.currentUser) {
+                await window.databaseService.storeAIInteraction(
+                    window.authService.currentUser.id,
+                    {
+                        type: 'consciousness_amplification',
+                        input: input,
+                        error: error.message,
+                        success: false
+                    }
+                );
+            }
+            
             throw error;
         }
     }
