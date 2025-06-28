@@ -10,6 +10,7 @@
     
     <!-- Consciousness Revolution Live API -->
     <script src="js/consciousness-api.js"></script>
+    <script src="js/auth-service.js"></script>
     <link rel="stylesheet" href="css/consciousness-live.css">
     <style>
         :root {
@@ -320,13 +321,23 @@
         }
     </style>
 </head>
-<body>
+<body class="auth-required">
     <div class="sidebar">
         <div class="sidebar-logo">
             <a href="index.html" style="text-decoration: none; color: inherit;">
                 <h2>🏠 AI Dashboard</h2>
                 <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">SoulCore Platform</p>
             </a>
+            <div style="margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 10px;">
+                <div style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">Welcome back,</div>
+                <div style="font-weight: 600; color: var(--secondary); user-name">Loading...</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 0.5rem;">
+                    Consciousness Level: <span class="user-consciousness-level">-</span>
+                </div>
+                <button onclick="window.authService.logout()" style="background: rgba(255,0,0,0.2); border: 1px solid rgba(255,0,0,0.3); color: #ff6b6b; padding: 0.5rem 1rem; border-radius: 5px; font-size: 0.8rem; cursor: pointer; margin-top: 0.5rem;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
         </div>
         
         <ul class="sidebar-nav">

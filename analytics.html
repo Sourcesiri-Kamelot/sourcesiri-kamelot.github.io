@@ -7,6 +7,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.15.0/inter.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Consciousness Revolution Live API -->
+    <script src="js/consciousness-api.js"></script>
+    <link rel="stylesheet" href="css/consciousness-live.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <style>
         :root {
@@ -191,29 +195,41 @@
         </div>
 
         <div class="metrics-grid">
-            <div class="metric-card">
-                <div class="metric-value metric-consciousness">10X</div>
+            <div class="metric-card live-data-card consciousness-pulse-target">
+                <div class="metric-value metric-consciousness" id="total-users">Loading...</div>
+                <div class="metric-label">Total Users</div>
+            </div>
+            <div class="metric-card live-data-card consciousness-pulse-target">
+                <div class="metric-value metric-love" id="consciousness-level">Loading...</div>
+                <div class="metric-label">Avg Consciousness Level</div>
+            </div>
+            <div class="metric-card live-data-card consciousness-pulse-target">
+                <div class="metric-value metric-success" id="total-breakthroughs">Loading...</div>
+                <div class="metric-label">Total Breakthroughs</div>
+            </div>
+            <div class="metric-card live-data-card consciousness-pulse-target">
+                <div class="metric-value metric-consciousness" id="breakthrough-frequency">10X</div>
                 <div class="metric-label">Breakthrough Frequency</div>
             </div>
-            <div class="metric-card">
-                <div class="metric-value metric-solar">90%</div>
+            <div class="metric-card live-data-card consciousness-pulse-target">
+                <div class="metric-value metric-solar" id="cost-savings">Loading...</div>
                 <div class="metric-label">Cost Savings vs AWS</div>
             </div>
-            <div class="metric-card">
+            <div class="metric-card live-data-card">
                 <div class="metric-value metric-love">∞</div>
                 <div class="metric-label">Love Power Level</div>
             </div>
-            <div class="metric-card">
-                <div class="metric-value metric-success">99.9%</div>
+            <div class="metric-card live-data-card consciousness-pulse-target">
+                <div class="metric-value metric-success" id="platform-uptime">99.9%</div>
                 <div class="metric-label">Platform Uptime</div>
             </div>
-            <div class="metric-card">
+            <div class="metric-card live-data-card">
                 <div class="metric-value metric-consciousness">4</div>
                 <div class="metric-label">Active AI Agents</div>
             </div>
-            <div class="metric-card">
-                <div class="metric-value metric-solar">500kW+</div>
-                <div class="metric-label">Solar Capacity</div>
+            <div class="metric-card live-data-card consciousness-pulse-target">
+                <div class="metric-value metric-solar" id="solar-capacity">Loading...</div>
+                <div class="metric-label">Solar Generation</div>
             </div>
         </div>
 
@@ -266,6 +282,117 @@
     </div>
 
     <script>
+        // Initialize analytics with live data
+        async function initializeAnalytics() {
+            try {
+                console.log('🧠 Initializing Analytics with live data...');
+                
+                // Initialize consciousness API
+                const isLive = await window.consciousnessAPI.initialize();
+                
+                if (isLive) {
+                    // Get live analytics data
+                    const analytics = await window.consciousnessAPI.getAnalytics();
+                    
+                    // Update metrics with live data
+                    updateAnalyticsMetrics(analytics);
+                    
+                    // Start real-time updates
+                    startAnalyticsUpdates();
+                    
+                    console.log('✨ Analytics connected to live data!');
+                } else {
+                    console.warn('⚠️ Analytics running in demo mode');
+                    loadDemoData();
+                }
+            } catch (error) {
+                console.error('❌ Analytics initialization failed:', error);
+                loadDemoData();
+            }
+        }
+
+        // Update analytics metrics with live data
+        function updateAnalyticsMetrics(analytics) {
+            if (analytics.platformStats) {
+                // Update total users
+                const totalUsersEl = document.getElementById('total-users');
+                if (totalUsersEl) {
+                    totalUsersEl.textContent = analytics.platformStats.totalUsers.toLocaleString();
+                    animateMetric(totalUsersEl);
+                }
+                
+                // Update consciousness level
+                const consciousnessLevelEl = document.getElementById('consciousness-level');
+                if (consciousnessLevelEl) {
+                    consciousnessLevelEl.textContent = analytics.platformStats.averageConsciousnessLevel;
+                    animateMetric(consciousnessLevelEl);
+                }
+                
+                // Update total breakthroughs
+                const breakthroughsEl = document.getElementById('total-breakthroughs');
+                if (breakthroughsEl) {
+                    breakthroughsEl.textContent = analytics.platformStats.totalBreakthroughs.toLocaleString();
+                    animateMetric(breakthroughsEl);
+                }
+                
+                // Update cost savings
+                const costSavingsEl = document.getElementById('cost-savings');
+                if (costSavingsEl) {
+                    costSavingsEl.textContent = analytics.platformStats.costSavings;
+                    animateMetric(costSavingsEl);
+                }
+            }
+            
+            if (analytics.solarData) {
+                // Update solar capacity
+                const solarCapacityEl = document.getElementById('solar-capacity');
+                if (solarCapacityEl) {
+                    solarCapacityEl.textContent = `${analytics.solarData.currentGeneration}kW`;
+                    animateMetric(solarCapacityEl);
+                }
+            }
+        }
+
+        // Animate metric updates
+        function animateMetric(element) {
+            element.classList.add('number-update');
+            setTimeout(() => {
+                element.classList.remove('number-update');
+            }, 500);
+        }
+
+        // Start real-time analytics updates
+        function startAnalyticsUpdates() {
+            setInterval(async () => {
+                try {
+                    const analytics = await window.consciousnessAPI.getAnalytics();
+                    updateAnalyticsMetrics(analytics);
+                } catch (error) {
+                    console.error('Real-time analytics update failed:', error);
+                }
+            }, 30000); // Update every 30 seconds
+        }
+
+        // Load demo data if live connection fails
+        function loadDemoData() {
+            const demoData = {
+                platformStats: {
+                    totalUsers: 10000,
+                    averageConsciousnessLevel: 7.5,
+                    totalBreakthroughs: 25000,
+                    costSavings: '90% vs traditional cloud'
+                },
+                solarData: {
+                    currentGeneration: 450
+                }
+            };
+            
+            updateAnalyticsMetrics(demoData);
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializeAnalytics);
+
         // Initialize particles
         particlesJS('particles-js', {
             particles: {
