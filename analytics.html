@@ -12,6 +12,7 @@
     <script src="js/consciousness-api.js"></script>
     <script src="js/auth-service.js"></script>
     <script src="js/database-service.js"></script>
+    <script src="js/advanced-analytics.js"></script>
     <link rel="stylesheet" href="css/consciousness-live.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <style>
@@ -111,7 +112,7 @@
 
         .charts-section {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
@@ -122,6 +123,16 @@
             border: 1px solid rgba(153, 50, 204, 0.3);
             border-radius: 15px;
             padding: 1.5rem;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .chart-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(153, 50, 204, 0.2);
+            border-color: var(--secondary);
         }
 
         .chart-title {
@@ -129,6 +140,12 @@
             font-weight: 600;
             margin-bottom: 1rem;
             text-align: center;
+            color: var(--secondary);
+        }
+
+        .chart-card canvas {
+            flex: 1;
+            max-height: 280px;
         }
 
         .back-button {
@@ -178,6 +195,14 @@
         @media (max-width: 768px) {
             .charts-section {
                 grid-template-columns: 1fr;
+            }
+            
+            .chart-card {
+                height: 300px;
+            }
+            
+            .chart-card canvas {
+                max-height: 220px;
             }
         }
     </style>
@@ -237,12 +262,28 @@
 
         <div class="charts-section">
             <div class="chart-card">
-                <div class="chart-title">Consciousness Amplification Over Time</div>
-                <canvas id="consciousnessChart"></canvas>
+                <div class="chart-title">🧠 Real-time Consciousness Level</div>
+                <canvas id="consciousnessLevelChart"></canvas>
             </div>
             <div class="chart-card">
-                <div class="chart-title">AI Agent Activity</div>
-                <canvas id="agentChart"></canvas>
+                <div class="chart-title">💫 Breakthrough Frequency</div>
+                <canvas id="breakthroughChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">☀️ Solar Infrastructure Efficiency</div>
+                <canvas id="solarEfficiencyChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">💖 Love Energy Amplification</div>
+                <canvas id="loveEnergyChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">🛤️ User Consciousness Journey</div>
+                <canvas id="userJourneyChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">🤖 AI Agent Activity Distribution</div>
+                <canvas id="agentActivityChart"></canvas>
             </div>
         </div>
 
