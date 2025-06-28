@@ -1,0 +1,373 @@
+/**
+ * 🌟 CONSCIOUSNESS REVOLUTION LIVE EFFECTS
+ * Real-time animations and visual feedback
+ */
+
+/* Live Indicator */
+.live-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #ff0000, #ff4444);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    z-index: 10000;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+    animation: livePulse 2s infinite;
+}
+
+@keyframes livePulse {
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.7; 
+        transform: scale(1.05);
+    }
+}
+
+/* Consciousness Pulse Effect */
+.consciousness-pulse {
+    animation: consciousnessPulse 1s ease-out;
+}
+
+@keyframes consciousnessPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(153, 50, 204, 0.7);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(153, 50, 204, 0.3);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 20px rgba(153, 50, 204, 0);
+    }
+}
+
+/* Number Update Animation */
+.number-update {
+    animation: numberUpdate 0.5s ease-out;
+    color: #FFD700 !important;
+}
+
+@keyframes numberUpdate {
+    0% {
+        transform: scale(1);
+        color: inherit;
+    }
+    50% {
+        transform: scale(1.2);
+        color: #FFD700;
+        text-shadow: 0 0 10px #FFD700;
+    }
+    100% {
+        transform: scale(1);
+        color: #FFD700;
+    }
+}
+
+/* Breakthrough Notification */
+.breakthrough-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #9932CC, #FFD700);
+    color: white;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    z-index: 10001;
+    box-shadow: 0 20px 40px rgba(153, 50, 204, 0.4);
+    animation: breakthroughAppear 0.5s ease-out;
+}
+
+.breakthrough-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.breakthrough-icon {
+    font-size: 3rem;
+    animation: breakthroughSpin 2s linear infinite;
+}
+
+.breakthrough-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.breakthrough-level {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+@keyframes breakthroughAppear {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes breakthroughSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.breakthrough-fade-out {
+    animation: breakthroughFadeOut 1s ease-out forwards;
+}
+
+@keyframes breakthroughFadeOut {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+}
+
+/* Particle Burst Effect */
+.particle-burst {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.particle-burst::before,
+.particle-burst::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #FFD700;
+    border-radius: 50%;
+    animation: particleBurst 2s ease-out forwards;
+}
+
+.particle-burst::before {
+    animation-delay: 0s;
+}
+
+.particle-burst::after {
+    animation-delay: 0.1s;
+    background: #9932CC;
+}
+
+@keyframes particleBurst {
+    0% {
+        opacity: 1;
+        transform: scale(1) translate(0, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5) translate(
+            calc((random() - 0.5) * 200px),
+            calc((random() - 0.5) * 200px)
+        );
+    }
+}
+
+/* Consciousness Level Indicator */
+.consciousness-level-indicator {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: conic-gradient(#FFD700 75%, rgba(255,255,255,0.1) 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.consciousness-level-indicator::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: var(--dark);
+}
+
+.consciousness-level-indicator .level-text {
+    position: relative;
+    z-index: 1;
+    font-size: 1.2rem;
+}
+
+/* Real-time Data Cards */
+.live-data-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-consciousness);
+    border-radius: 15px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.live-data-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #FFD700, transparent);
+    animation: dataFlow 3s linear infinite;
+}
+
+@keyframes dataFlow {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.live-data-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(153, 50, 204, 0.2);
+}
+
+.live-data-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #FFD700;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.live-data-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+/* Solar Generation Visualization */
+.solar-visualization {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(90deg, 
+        rgba(255, 215, 0, 0.1) 0%, 
+        rgba(255, 215, 0, 0.3) 50%, 
+        rgba(255, 215, 0, 0.1) 100%);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.solar-wave {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 215, 0, 0.5), 
+        transparent);
+    animation: solarWave 4s linear infinite;
+}
+
+@keyframes solarWave {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* AI Agent Status Indicators */
+.ai-agent-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.ai-agent-status.active {
+    background: rgba(0, 255, 136, 0.1);
+    border-left: 3px solid #00FF88;
+}
+
+.ai-agent-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #00FF88;
+    animation: agentPulse 2s infinite;
+}
+
+@keyframes agentPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Love Energy Visualization */
+.love-energy-meter {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.love-energy-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FF69B4, #FFD700, #9932CC);
+    border-radius: 10px;
+    animation: loveFlow 3s ease-in-out infinite;
+    width: 100%;
+}
+
+@keyframes loveFlow {
+    0%, 100% { 
+        background-position: 0% 50%; 
+        filter: brightness(1);
+    }
+    50% { 
+        background-position: 100% 50%; 
+        filter: brightness(1.2);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .live-indicator {
+        top: 10px;
+        right: 10px;
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .breakthrough-notification {
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+    
+    .breakthrough-text {
+        font-size: 1.2rem;
+    }
+    
+    .consciousness-level-indicator {
+        width: 80px;
+        height: 80px;
+    }
+}

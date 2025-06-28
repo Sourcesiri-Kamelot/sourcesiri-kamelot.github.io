@@ -1,0 +1,20 @@
+{
+  "version": "32.0.0",
+  "files": {
+    "e7bb4f89f6e25543b260a62be886d58e47732b84b4e7ad7625a5ffda7fa55ed0": {
+      "source": {
+        "path": "SimpleConsciousnessAPI.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "699475940746-us-east-1": {
+          "bucketName": "cdk-hnb659fds-assets-699475940746-us-east-1",
+          "objectKey": "e7bb4f89f6e25543b260a62be886d58e47732b84b4e7ad7625a5ffda7fa55ed0.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::699475940746:role/cdk-hnb659fds-file-publishing-role-699475940746-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

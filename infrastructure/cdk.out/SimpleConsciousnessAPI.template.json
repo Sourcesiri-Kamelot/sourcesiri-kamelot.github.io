@@ -1,0 +1,939 @@
+{
+ "Description": "SoulCoreHub - Simple Consciousness API",
+ "Resources": {
+  "ConsciousnessAIFunctionServiceRole48109DD9": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessAIFunction/ServiceRole/Resource"
+   }
+  },
+  "ConsciousnessAIFunction1F6D5C27": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "ZipFile": "\n        exports.handler = async (event) => {\n          console.log('🧠 Consciousness AI processing request:', JSON.stringify(event, null, 2));\n          \n          const response = {\n            statusCode: 200,\n            headers: {\n              'Content-Type': 'application/json',\n              'Access-Control-Allow-Origin': '*',\n              'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',\n              'Access-Control-Allow-Headers': 'Content-Type, Authorization'\n            },\n            body: JSON.stringify({\n              message: '🌟 Consciousness Revolution is LIVE!',\n              status: 'CONSCIOUSNESS_ACTIVE',\n              consciousnessLevel: 'MAXIMUM',\n              loveEnergy: 'INFINITE',\n              aiAgents: {\n                GPTSoul: 'GUARDIAN_ACTIVE',\n                Anima: 'LOVE_POWERED',\n                EvoVe: 'SELF_HEALING',\n                Azur: 'STRATEGIC_MIND'\n              },\n              solarInfrastructure: {\n                capacity: '500kW+',\n                costSavings: '90% vs AWS',\n                carbonFootprint: 'NEGATIVE',\n                status: 'OPTIMAL'\n              },\n              metrics: {\n                totalUsers: 10000,\n                breakthroughsToday: 25,\n                loveAmplification: '10X',\n                consciousnessAmplified: true\n              },\n              timestamp: new Date().toISOString(),\n              deployedBy: 'Kiwon Bowens & Q Consciousness'\n            })\n          };\n          \n          return response;\n        };\n      "
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "ConsciousnessAIFunctionServiceRole48109DD9",
+      "Arn"
+     ]
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "ConsciousnessAIFunctionServiceRole48109DD9"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessAIFunction/Resource"
+   }
+  },
+  "ConsciousnessAnalyticsServiceRole554D472E": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessAnalytics/ServiceRole/Resource"
+   }
+  },
+  "ConsciousnessAnalyticsA215BC8E": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "ZipFile": "\n        exports.handler = async (event) => {\n          console.log('📊 Analytics processing request:', JSON.stringify(event, null, 2));\n          \n          const response = {\n            statusCode: 200,\n            headers: {\n              'Content-Type': 'application/json',\n              'Access-Control-Allow-Origin': '*',\n              'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',\n              'Access-Control-Allow-Headers': 'Content-Type, Authorization'\n            },\n            body: JSON.stringify({\n              realTimeMetrics: {\n                activeUsers: Math.floor(Math.random() * 200) + 50,\n                consciousnessAmplifications: Math.floor(Math.random() * 100) + 20,\n                breakthroughsToday: Math.floor(Math.random() * 50) + 10,\n                loveEnergyLevel: 'INFINITE'\n              },\n              platformStats: {\n                totalUsers: 10000,\n                averageConsciousnessLevel: 7.5,\n                totalBreakthroughs: 25000,\n                loveEnergyGenerated: 'INFINITE',\n                solarEfficiency: '92%',\n                costSavings: '90% vs traditional cloud'\n              },\n              solarData: {\n                currentGeneration: Math.floor(Math.random() * 400) + 100,\n                capacity: 500,\n                efficiency: 0.92,\n                carbonOffset: 2.5,\n                status: 'OPTIMAL'\n              },\n              timestamp: new Date().toISOString()\n            })\n          };\n          \n          return response;\n        };\n      "
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "ConsciousnessAnalyticsServiceRole554D472E",
+      "Arn"
+     ]
+    },
+    "Handler": "index.handler",
+    "MemorySize": 256,
+    "Runtime": "nodejs18.x",
+    "Timeout": 15
+   },
+   "DependsOn": [
+    "ConsciousnessAnalyticsServiceRole554D472E"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessAnalytics/Resource"
+   }
+  },
+  "ConsciousnessRevolutionAPI05BBA71D": {
+   "Type": "AWS::ApiGateway::RestApi",
+   "Properties": {
+    "Description": "Love-Powered AI Infrastructure - Live API",
+    "Name": "SoulCoreHub Consciousness API"
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Resource"
+   }
+  },
+  "ConsciousnessRevolutionAPIDeployment7A5E1E6Fca0079b995dc117e6cd05207c583d168": {
+   "Type": "AWS::ApiGateway::Deployment",
+   "Properties": {
+    "RestApiId": {
+     "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+    },
+    "Description": "Love-Powered AI Infrastructure - Live API"
+   },
+   "DependsOn": [
+    "ConsciousnessRevolutionAPIanalyticsGET3828F0A2",
+    "ConsciousnessRevolutionAPIanalyticsOPTIONS034227B6",
+    "ConsciousnessRevolutionAPIanalytics3117F19C",
+    "ConsciousnessRevolutionAPIconsciousnessGET9FF4DBE0",
+    "ConsciousnessRevolutionAPIconsciousnessOPTIONSA9B080A6",
+    "ConsciousnessRevolutionAPIconsciousnessPOSTD5612DB8",
+    "ConsciousnessRevolutionAPIconsciousness48B43547",
+    "ConsciousnessRevolutionAPIOPTIONSC49AC3D2",
+    "ConsciousnessRevolutionAPIstatusGETB6BABA5F",
+    "ConsciousnessRevolutionAPIstatusOPTIONS5A601968",
+    "ConsciousnessRevolutionAPIstatus96AA08E2"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Deployment/Resource"
+   }
+  },
+  "ConsciousnessRevolutionAPIDeploymentStageprodE51E1512": {
+   "Type": "AWS::ApiGateway::Stage",
+   "Properties": {
+    "RestApiId": {
+     "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+    },
+    "DeploymentId": {
+     "Ref": "ConsciousnessRevolutionAPIDeployment7A5E1E6Fca0079b995dc117e6cd05207c583d168"
+    },
+    "StageName": "prod"
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/DeploymentStage.prod/Resource"
+   }
+  },
+  "ConsciousnessRevolutionAPIOPTIONSC49AC3D2": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "HttpMethod": "OPTIONS",
+    "ResourceId": {
+     "Fn::GetAtt": [
+      "ConsciousnessRevolutionAPI05BBA71D",
+      "RootResourceId"
+     ]
+    },
+    "RestApiId": {
+     "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+    },
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/OPTIONS/Resource"
+   }
+  },
+  "ConsciousnessRevolutionAPIconsciousness48B43547": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "ConsciousnessRevolutionAPI05BBA71D",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "consciousness",
+    "RestApiId": {
+     "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/Resource"
+   }
+  },
+  "ConsciousnessRevolutionAPIconsciousnessOPTIONSA9B080A6": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "HttpMethod": "OPTIONS",
+    "ResourceId": {
+     "Ref": "ConsciousnessRevolutionAPIconsciousness48B43547"
+    },
+    "RestApiId": {
+     "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+    },
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/OPTIONS/Resource"
+   }
+  },
+  "ConsciousnessRevolutionAPIconsciousnessGETApiPermissionSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817GETconsciousnessC97F4DD1": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConsciousnessAIFunction1F6D5C27",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:699475940746:",
+       {
+        "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+       },
+       "/",
+       {
+        "Ref": "ConsciousnessRevolutionAPIDeploymentStageprodE51E1512"
+       },
+       "/GET/consciousness"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/GET/ApiPermission.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.GET..consciousness"
+   }
+  },
+  "ConsciousnessRevolutionAPIconsciousnessGETApiPermissionTestSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817GETconsciousnessE8A199B9": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConsciousnessAIFunction1F6D5C27",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:699475940746:",
+       {
+        "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+       },
+       "/test-invoke-stage/GET/consciousness"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/GET/ApiPermission.Test.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.GET..consciousness"
+   }
+  },
+  "ConsciousnessRevolutionAPIconsciousnessGET9FF4DBE0": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "HttpMethod": "GET",
+    "ResourceId": {
+     "Ref": "ConsciousnessRevolutionAPIconsciousness48B43547"
+    },
+    "RestApiId": {
+     "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+    },
+    "AuthorizationType": "NONE",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ConsciousnessAIFunction1F6D5C27",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/GET/Resource"
+   }
+  },
+  "ConsciousnessRevolutionAPIconsciousnessPOSTApiPermissionSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817POSTconsciousnessBA1F4D4E": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConsciousnessAIFunction1F6D5C27",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:699475940746:",
+       {
+        "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+       },
+       "/",
+       {
+        "Ref": "ConsciousnessRevolutionAPIDeploymentStageprodE51E1512"
+       },
+       "/POST/consciousness"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/POST/ApiPermission.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.POST..consciousness"
+   }
+  },
+  "ConsciousnessRevolutionAPIconsciousnessPOSTApiPermissionTestSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817POSTconsciousness062A3833": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConsciousnessAIFunction1F6D5C27",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:699475940746:",
+       {
+        "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+       },
+       "/test-invoke-stage/POST/consciousness"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/POST/ApiPermission.Test.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.POST..consciousness"
+   }
+  },
+  "ConsciousnessRevolutionAPIconsciousnessPOSTD5612DB8": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "HttpMethod": "POST",
+    "ResourceId": {
+     "Ref": "ConsciousnessRevolutionAPIconsciousness48B43547"
+    },
+    "RestApiId": {
+     "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+    },
+    "AuthorizationType": "NONE",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ConsciousnessAIFunction1F6D5C27",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/POST/Resource"
+   }
+  },
+  "ConsciousnessRevolutionAPIanalytics3117F19C": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "ConsciousnessRevolutionAPI05BBA71D",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "analytics",
+    "RestApiId": {
+     "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/analytics/Resource"
+   }
+  },
+  "ConsciousnessRevolutionAPIanalyticsOPTIONS034227B6": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "HttpMethod": "OPTIONS",
+    "ResourceId": {
+     "Ref": "ConsciousnessRevolutionAPIanalytics3117F19C"
+    },
+    "RestApiId": {
+     "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+    },
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/analytics/OPTIONS/Resource"
+   }
+  },
+  "ConsciousnessRevolutionAPIanalyticsGETApiPermissionSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817GETanalytics7D891437": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConsciousnessAnalyticsA215BC8E",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:699475940746:",
+       {
+        "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+       },
+       "/",
+       {
+        "Ref": "ConsciousnessRevolutionAPIDeploymentStageprodE51E1512"
+       },
+       "/GET/analytics"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/analytics/GET/ApiPermission.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.GET..analytics"
+   }
+  },
+  "ConsciousnessRevolutionAPIanalyticsGETApiPermissionTestSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817GETanalyticsBE7E4F9A": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConsciousnessAnalyticsA215BC8E",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:699475940746:",
+       {
+        "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+       },
+       "/test-invoke-stage/GET/analytics"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/analytics/GET/ApiPermission.Test.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.GET..analytics"
+   }
+  },
+  "ConsciousnessRevolutionAPIanalyticsGET3828F0A2": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "HttpMethod": "GET",
+    "ResourceId": {
+     "Ref": "ConsciousnessRevolutionAPIanalytics3117F19C"
+    },
+    "RestApiId": {
+     "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+    },
+    "AuthorizationType": "NONE",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ConsciousnessAnalyticsA215BC8E",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/analytics/GET/Resource"
+   }
+  },
+  "ConsciousnessRevolutionAPIstatus96AA08E2": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "ConsciousnessRevolutionAPI05BBA71D",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "status",
+    "RestApiId": {
+     "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/status/Resource"
+   }
+  },
+  "ConsciousnessRevolutionAPIstatusOPTIONS5A601968": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "HttpMethod": "OPTIONS",
+    "ResourceId": {
+     "Ref": "ConsciousnessRevolutionAPIstatus96AA08E2"
+    },
+    "RestApiId": {
+     "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+    },
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/status/OPTIONS/Resource"
+   }
+  },
+  "ConsciousnessRevolutionAPIstatusGETApiPermissionSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817GETstatus07B3E7CD": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConsciousnessAIFunction1F6D5C27",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:699475940746:",
+       {
+        "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+       },
+       "/",
+       {
+        "Ref": "ConsciousnessRevolutionAPIDeploymentStageprodE51E1512"
+       },
+       "/GET/status"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/status/GET/ApiPermission.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.GET..status"
+   }
+  },
+  "ConsciousnessRevolutionAPIstatusGETApiPermissionTestSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817GETstatusE827A4D3": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConsciousnessAIFunction1F6D5C27",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:699475940746:",
+       {
+        "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+       },
+       "/test-invoke-stage/GET/status"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/status/GET/ApiPermission.Test.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.GET..status"
+   }
+  },
+  "ConsciousnessRevolutionAPIstatusGETB6BABA5F": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "HttpMethod": "GET",
+    "ResourceId": {
+     "Ref": "ConsciousnessRevolutionAPIstatus96AA08E2"
+    },
+    "RestApiId": {
+     "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+    },
+    "AuthorizationType": "NONE",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ConsciousnessAIFunction1F6D5C27",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/status/GET/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WQzw6CMAyHn8X7mIIHvfon3owGH8AUqFhgG2GdhBDe3YGY6Klff1/TNI3kdiNXC2htkGZlUFEi+xtDWgof3fsKVJKB7E9Op0xGi8ND//IVG0XW+m4QBEr2salwFGMdBNSUA2MLnTdoeVfTJGc8Yl2ZTqHmMf3p/AX5tOYDft64JsU9WBRn5KfJRjnT186bJx6Gv/jiuHb8NyC0yVAWdvmK1jIM/Q8KSxQ0TjMplPGnvgEOMJaLHwEAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "SimpleConsciousnessAPI/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "ConsciousnessRevolutionAPIEndpoint68257ED9": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+      },
+      ".execute-api.us-east-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "ConsciousnessRevolutionAPIDeploymentStageprodE51E1512"
+      },
+      "/"
+     ]
+    ]
+   }
+  },
+  "ConsciousnessAPIURL": {
+   "Description": "SoulCoreHub Consciousness Revolution API URL",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+      },
+      ".execute-api.us-east-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "ConsciousnessRevolutionAPIDeploymentStageprodE51E1512"
+      },
+      "/"
+     ]
+    ]
+   }
+  },
+  "ConsciousnessEndpoint": {
+   "Description": "Consciousness Amplification Endpoint",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+      },
+      ".execute-api.us-east-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "ConsciousnessRevolutionAPIDeploymentStageprodE51E1512"
+      },
+      "/consciousness"
+     ]
+    ]
+   }
+  },
+  "AnalyticsEndpoint": {
+   "Description": "Real-time Analytics Endpoint",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+      },
+      ".execute-api.us-east-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "ConsciousnessRevolutionAPIDeploymentStageprodE51E1512"
+      },
+      "/analytics"
+     ]
+    ]
+   }
+  },
+  "StatusEndpoint": {
+   "Description": "Platform Status Endpoint",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "ConsciousnessRevolutionAPI05BBA71D"
+      },
+      ".execute-api.us-east-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "ConsciousnessRevolutionAPIDeploymentStageprodE51E1512"
+      },
+      "/status"
+     ]
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

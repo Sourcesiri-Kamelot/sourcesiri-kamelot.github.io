@@ -1,0 +1,279 @@
+{
+  "version": "32.0.0",
+  "artifacts": {
+    "SimpleConsciousnessAPI.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "SimpleConsciousnessAPI.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "SimpleConsciousnessAPI": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://699475940746/us-east-1",
+      "properties": {
+        "templateFile": "SimpleConsciousnessAPI.template.json",
+        "tags": {
+          "Environment": "Production",
+          "Owner": "KiwonBowens",
+          "Project": "ConsciousnessRevolution",
+          "Purpose": "ConsciousnessAPI"
+        },
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::699475940746:role/cdk-hnb659fds-deploy-role-699475940746-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::699475940746:role/cdk-hnb659fds-cfn-exec-role-699475940746-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-699475940746-us-east-1/e7bb4f89f6e25543b260a62be886d58e47732b84b4e7ad7625a5ffda7fa55ed0.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "SimpleConsciousnessAPI.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::699475940746:role/cdk-hnb659fds-lookup-role-699475940746-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "SimpleConsciousnessAPI.assets"
+      ],
+      "metadata": {
+        "/SimpleConsciousnessAPI": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "Environment",
+                "Value": "Production"
+              },
+              {
+                "Key": "Owner",
+                "Value": "KiwonBowens"
+              },
+              {
+                "Key": "Project",
+                "Value": "ConsciousnessRevolution"
+              },
+              {
+                "Key": "Purpose",
+                "Value": "ConsciousnessAPI"
+              }
+            ]
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessAIFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessAIFunctionServiceRole48109DD9"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessAIFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessAIFunction1F6D5C27"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessAnalytics/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessAnalyticsServiceRole554D472E"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessAnalytics/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessAnalyticsA215BC8E"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPI05BBA71D"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIDeployment7A5E1E6Fca0079b995dc117e6cd05207c583d168"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIDeploymentStageprodE51E1512"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIEndpoint68257ED9"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIOPTIONSC49AC3D2"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIconsciousness48B43547"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIconsciousnessOPTIONSA9B080A6"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/GET/ApiPermission.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.GET..consciousness": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIconsciousnessGETApiPermissionSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817GETconsciousnessC97F4DD1"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/GET/ApiPermission.Test.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.GET..consciousness": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIconsciousnessGETApiPermissionTestSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817GETconsciousnessE8A199B9"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIconsciousnessGET9FF4DBE0"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/POST/ApiPermission.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.POST..consciousness": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIconsciousnessPOSTApiPermissionSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817POSTconsciousnessBA1F4D4E"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/POST/ApiPermission.Test.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.POST..consciousness": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIconsciousnessPOSTApiPermissionTestSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817POSTconsciousness062A3833"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/consciousness/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIconsciousnessPOSTD5612DB8"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/analytics/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIanalytics3117F19C"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/analytics/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIanalyticsOPTIONS034227B6"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/analytics/GET/ApiPermission.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.GET..analytics": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIanalyticsGETApiPermissionSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817GETanalytics7D891437"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/analytics/GET/ApiPermission.Test.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.GET..analytics": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIanalyticsGETApiPermissionTestSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817GETanalyticsBE7E4F9A"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/analytics/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIanalyticsGET3828F0A2"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/status/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIstatus96AA08E2"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/status/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIstatusOPTIONS5A601968"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/status/GET/ApiPermission.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.GET..status": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIstatusGETApiPermissionSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817GETstatus07B3E7CD"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/status/GET/ApiPermission.Test.SimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817.GET..status": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIstatusGETApiPermissionTestSimpleConsciousnessAPIConsciousnessRevolutionAPIB864A817GETstatusE827A4D3"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessRevolutionAPI/Default/status/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessRevolutionAPIstatusGETB6BABA5F"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessAPIURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessAPIURL"
+          }
+        ],
+        "/SimpleConsciousnessAPI/ConsciousnessEndpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConsciousnessEndpoint"
+          }
+        ],
+        "/SimpleConsciousnessAPI/AnalyticsEndpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AnalyticsEndpoint"
+          }
+        ],
+        "/SimpleConsciousnessAPI/StatusEndpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "StatusEndpoint"
+          }
+        ],
+        "/SimpleConsciousnessAPI/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/SimpleConsciousnessAPI/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/SimpleConsciousnessAPI/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "SimpleConsciousnessAPI"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

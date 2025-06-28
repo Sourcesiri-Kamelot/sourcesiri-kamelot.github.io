@@ -1,0 +1,20 @@
+{
+  "version": "32.0.0",
+  "files": {
+    "ef643b474dae7ce4afcbb9ef1462db66b982eeeb3d2d6bded7fcd837175603f5": {
+      "source": {
+        "path": "ConsciousnessRevolutionStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "699475940746-us-east-1": {
+          "bucketName": "cdk-hnb659fds-assets-699475940746-us-east-1",
+          "objectKey": "ef643b474dae7ce4afcbb9ef1462db66b982eeeb3d2d6bded7fcd837175603f5.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::699475940746:role/cdk-hnb659fds-file-publishing-role-699475940746-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

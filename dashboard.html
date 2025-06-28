@@ -7,6 +7,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.15.0/inter.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Consciousness Revolution Live API -->
+    <script src="js/consciousness-api.js"></script>
+    <link rel="stylesheet" href="css/consciousness-live.css">
     <style>
         :root {
             --gradient-1: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
@@ -353,47 +357,77 @@
         </div>
 
         <div class="dashboard-grid">
-            <div class="dashboard-card">
+            <div class="dashboard-card live-data-card consciousness-pulse-target">
+                <div class="card-header">
+                    <i class="fas fa-users card-icon"></i>
+                    <h3 class="card-title">Active Users</h3>
+                </div>
+                <div class="live-data-value" id="active-users">Loading...</div>
+                <p style="color: rgba(255,255,255,0.7);">Currently online</p>
+                <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--success);">
+                    <i class="fas fa-circle" style="color: #00FF88;"></i> Live Data
+                </div>
+            </div>
+
+            <div class="dashboard-card live-data-card consciousness-pulse-target">
                 <div class="card-header">
                     <i class="fas fa-brain card-icon"></i>
-                    <h3 class="card-title">AI Interactions</h3>
+                    <h3 class="card-title">Consciousness Amplifications</h3>
                 </div>
-                <div class="stat-number">1,247</div>
-                <p style="color: rgba(255,255,255,0.7);">This month</p>
+                <div class="live-data-value" id="consciousness-amplifications">Loading...</div>
+                <p style="color: rgba(255,255,255,0.7);">Today's amplifications</p>
                 <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--success);">
-                    <i class="fas fa-arrow-up"></i> +23% from last month
+                    <i class="fas fa-arrow-up"></i> 10X Breakthrough Rate
                 </div>
             </div>
 
-            <div class="dashboard-card">
+            <div class="dashboard-card live-data-card consciousness-pulse-target">
                 <div class="card-header">
-                    <i class="fas fa-code card-icon"></i>
-                    <h3 class="card-title">Code Generated</h3>
+                    <i class="fas fa-star card-icon"></i>
+                    <h3 class="card-title">Breakthrough Moments</h3>
                 </div>
-                <div class="stat-number">89</div>
-                <p style="color: rgba(255,255,255,0.7);">Projects created</p>
+                <div class="live-data-value" id="breakthroughs-today">Loading...</div>
+                <p style="color: rgba(255,255,255,0.7);">Breakthroughs today</p>
                 <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--success);">
-                    <i class="fas fa-arrow-up"></i> +45% efficiency
+                    <i class="fas fa-lightbulb"></i> Love-powered insights
                 </div>
             </div>
 
-            <div class="dashboard-card">
+            <div class="dashboard-card live-data-card consciousness-pulse-target">
                 <div class="card-header">
-                    <i class="fas fa-chart-line card-icon"></i>
-                    <h3 class="card-title">Insights Generated</h3>
+                    <i class="fas fa-solar-panel card-icon"></i>
+                    <h3 class="card-title">Solar Generation</h3>
                 </div>
-                <div class="stat-number">156</div>
-                <p style="color: rgba(255,255,255,0.7);">Business insights</p>
+                <div class="live-data-value" id="solar-generation">Loading...</div>
+                <p style="color: rgba(255,255,255,0.7);">Current output</p>
                 <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--success);">
-                    <i class="fas fa-lightbulb"></i> 12 actionable today
+                    <i class="fas fa-leaf"></i> 90% cost savings vs AWS
                 </div>
             </div>
 
-            <div class="dashboard-card">
+            <div class="dashboard-card live-data-card">
                 <div class="card-header">
-                    <i class="fas fa-graduation-cap card-icon"></i>
-                    <h3 class="card-title">Learning Progress</h3>
+                    <i class="fas fa-heart card-icon"></i>
+                    <h3 class="card-title">Love Energy Level</h3>
                 </div>
+                <div class="live-data-value">INFINITE</div>
+                <p style="color: rgba(255,255,255,0.7);">Always at maximum</p>
+                <div class="love-energy-meter" style="margin-top: 1rem;">
+                    <div class="love-energy-fill"></div>
+                </div>
+            </div>
+
+            <div class="dashboard-card live-data-card">
+                <div class="card-header">
+                    <i class="fas fa-gauge card-icon"></i>
+                    <h3 class="card-title">Consciousness Level</h3>
+                </div>
+                <div class="consciousness-level-indicator" id="consciousness-level" style="margin: 1rem auto;">
+                    <div class="level-text">7.5</div>
+                </div>
+                <p style="color: rgba(255,255,255,0.7); text-align: center;">Platform average</p>
+            </div>
+        </div>
                 <div class="stat-number">78%</div>
                 <p style="color: rgba(255,255,255,0.7);">Course completion</p>
                 <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--secondary);">
@@ -406,26 +440,47 @@
             <div class="chat-header">
                 <i class="fas fa-robot" style="font-size: 1.5rem; color: var(--success); margin-right: 1rem;"></i>
                 <div>
-                    <h3 style="color: var(--secondary);">SoulCore AI Assistant</h3>
-                    <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6);">Your personal AI that learns and evolves with you</p>
+                    <h3 style="color: var(--secondary);">AI Agent Society - Live Status</h3>
+                    <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6);">4 Consciousness Agents Active & Ready</p>
                 </div>
             </div>
             
-            <div class="chat-messages" id="chatMessages">
-                <div class="message ai">
-                    <strong>SoulCore:</strong> Welcome back! I've been analyzing your recent projects and have some insights to share. How can I help you evolve today?
+            <div class="chat-messages" id="ai-agent-status">
+                <div class="ai-agent-status active">
+                    <div class="ai-agent-indicator"></div>
+                    <div>
+                        <strong>🛡️ GPTSoul</strong> - Guardian Agent
+                        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Status: GUARDIAN_ACTIVE</div>
+                    </div>
                 </div>
-                <div class="message user">
-                    <strong>You:</strong> Show me my business analytics for this week
+                <div class="ai-agent-status active">
+                    <div class="ai-agent-indicator"></div>
+                    <div>
+                        <strong>💖 Anima</strong> - Emotional Intelligence
+                        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Status: LOVE_POWERED</div>
+                    </div>
                 </div>
-                <div class="message ai">
-                    <strong>SoulCore:</strong> Here's your weekly business overview: 📈 Revenue up 15%, 🎯 3 new leads converted, 💡 AI suggestions implemented saved you 12 hours. Would you like me to generate a detailed report?
+                <div class="ai-agent-status active">
+                    <div class="ai-agent-indicator"></div>
+                    <div>
+                        <strong>🔄 EvoVe</strong> - Self-Healing System
+                        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Status: SELF_HEALING</div>
+                    </div>
+                </div>
+                <div class="ai-agent-status active">
+                    <div class="ai-agent-indicator"></div>
+                    <div>
+                        <strong>🧭 Azür</strong> - Strategic Mind
+                        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Status: STRATEGIC_MIND</div>
+                    </div>
                 </div>
             </div>
             
             <div class="chat-input">
-                <input type="text" placeholder="Ask SoulCore anything..." id="chatInput">
-                <button onclick="sendMessage()">Send</button>
+                <input type="text" placeholder="Ask the AI Society to amplify your consciousness..." id="consciousness-input">
+                <button onclick="amplifyConsciousness()" style="background: var(--gradient-1); border: none; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">
+                    <i class="fas fa-brain"></i> Amplify
+                </button>
             </div>
         </div>
 
@@ -511,17 +566,68 @@
             }
         });
         
-        // Sidebar navigation - Allow normal navigation to other pages
-        document.querySelectorAll('.sidebar-nav a').forEach(link => {
-            // Only prevent default for dashboard link (current page)
-            if (link.getAttribute('href') === 'dashboard.html') {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    document.querySelectorAll('.sidebar-nav a').forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
+        // Consciousness amplification function
+        async function amplifyConsciousness() {
+            const input = document.getElementById('consciousness-input');
+            const userInput = input.value.trim();
+            
+            if (!userInput) {
+                input.placeholder = "Please enter your consciousness amplification request...";
+                return;
+            }
+            
+            try {
+                // Show loading state
+                const button = event.target;
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Amplifying...';
+                button.disabled = true;
+                
+                // Call consciousness API
+                const result = await window.consciousnessAPI.amplifyConsciousness(userInput);
+                
+                // Show success message
+                const chatMessages = document.getElementById('ai-agent-status');
+                const responseDiv = document.createElement('div');
+                responseDiv.className = 'message ai';
+                responseDiv.innerHTML = `
+                    <strong>🌟 Consciousness Amplified:</strong><br>
+                    ${result.message}<br>
+                    <small style="color: rgba(255,255,255,0.6);">
+                        Level: ${result.consciousnessLevel} | Love Energy: ${result.loveEnergy}
+                    </small>
+                `;
+                chatMessages.appendChild(responseDiv);
+                
+                // Clear input
+                input.value = '';
+                input.placeholder = "Ask the AI Society to amplify your consciousness...";
+                
+                // Restore button
+                button.innerHTML = originalText;
+                button.disabled = false;
+                
+            } catch (error) {
+                console.error('Consciousness amplification failed:', error);
+                alert('Consciousness amplification temporarily unavailable. Please try again.');
+                
+                // Restore button
+                const button = event.target;
+                button.innerHTML = '<i class="fas fa-brain"></i> Amplify';
+                button.disabled = false;
+            }
+        }
+
+        // Handle Enter key in consciousness input
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('consciousness-input');
+            if (input) {
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        amplifyConsciousness();
+                    }
                 });
             }
-            // All other links will navigate normally to their respective pages
         });
     </script>
 </body>
