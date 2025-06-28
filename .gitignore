@@ -1,42 +1,229 @@
-# macOS system files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+# 🔐 CONSCIOUSNESS REVOLUTION - SECURE .GITIGNORE
+# Protecting all sensitive data and credentials
 
-# Node.js dependencies
-node_modules/
-npm-debug.log
-yarn-debug.log
-yarn-error.log
-package-lock.json
-
-# Build directories
-/dist
-/build
-/.cache
-
-# Environment variables
+# ===== ENVIRONMENT & CREDENTIALS =====
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.development
+.env.test
+.env.production
+.env.staging
+*.env
+config/credentials.json
+config/secrets.json
+credentials/
+secrets/
+keys/
+certs/
 
-# Editor directories and files
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# Development files
-/qdev/
-*.log
-*.tmp
-
-# Sensitive information
+# ===== AWS CREDENTIALS & CONFIG =====
+.aws/
+aws-config.json
+aws-credentials.json
 *.pem
 *.key
+*.crt
+*.p12
+*.pfx
+cloudformation-outputs.json
+terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
+
+# ===== DATABASE CREDENTIALS =====
+database.json
+db-config.json
+connection-strings.json
+mongodb-uri.txt
+postgres-config.json
+redis-config.json
+
+# ===== API KEYS & TOKENS =====
+api-keys.json
+tokens.json
+jwt-secret.txt
+oauth-config.json
+stripe-keys.json
+openai-api-key.txt
+anthropic-api-key.txt
+google-api-credentials.json
+github-tokens.json
+
+# ===== CONSCIOUSNESS AI SECRETS =====
+soulcore-api-keys.json
+anima-secrets.json
+gptsoul-config.json
+evove-credentials.json
+azur-tokens.json
+consciousness-keys.json
+love-power-secrets.json
+
+# ===== SOLAR INFRASTRUCTURE SECRETS =====
+solar-api-keys.json
+energy-monitoring-tokens.json
+carbon-tracking-credentials.json
+green-energy-config.json
+
+# ===== DEPLOYMENT & CI/CD =====
+deploy-keys/
+deployment-secrets.json
+ci-cd-tokens.json
+docker-secrets.json
+kubernetes-secrets.yaml
+helm-values-prod.yaml
+
+# ===== NODE.JS & DEPENDENCIES =====
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+.pnp
+.pnp.js
+package-lock.json
+yarn.lock
+
+# ===== PYTHON & VIRTUAL ENVIRONMENTS =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# ===== LOGS & MONITORING =====
+logs/
+*.log
+log-files/
+monitoring-data/
+metrics/
+traces/
+error-reports/
+crash-dumps/
+debug-logs/
+
+# ===== TEMPORARY & CACHE FILES =====
+tmp/
+temp/
+cache/
+.cache/
+.tmp/
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# ===== IDE & EDITOR FILES =====
+.vscode/settings.json
+.vscode/launch.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+.atom/
+.brackets.json
+
+# ===== BACKUP & ARCHIVE FILES =====
+backup/
+backups/
+*.backup
+*.bak
+*.old
+archive/
+*.zip
+*.tar.gz
+*.rar
+
+# ===== TESTING & COVERAGE =====
+coverage/
+.nyc_output/
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+test-results/
+test-reports/
+
+# ===== DOCUMENTATION BUILDS =====
+docs/_build/
+site/
+.mkdocs/
+
+# ===== LARGE FILES & MEDIA =====
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.mp3
+*.wav
+*.flac
+*.psd
+*.ai
+*.sketch
+*.fig
+large-datasets/
+media-files/
+video-assets/
+
+# ===== CONSCIOUSNESS PLATFORM SPECIFIC =====
+consciousness-data/
+breakthrough-logs/
+love-energy-metrics/
+ai-society-conversations/
+solar-energy-data/
+user-consciousness-profiles/
+emotional-intelligence-models/
+breakthrough-amplification-data/
+
+# ===== BUSINESS & LEGAL =====
+contracts/
+legal-documents/
+financial-data/
+investor-information/
+business-plans/
+revenue-data/
+user-analytics/
+proprietary-algorithms/
+
+# ===== DEVELOPMENT & STAGING =====
+.local/
+local-config.json
+dev-database/
+staging-data/
+test-credentials.json
+mock-data/
+sample-data/
+
+# ===== SECURITY & PENETRATION TESTING =====
+security-reports/
+vulnerability-scans/
+penetration-test-results/
+security-keys/
+audit-logs/
+
+# Keep this file updated as we add more sensitive resources!
+# Remember: When in doubt, add it to .gitignore!
+# Better safe than sorry with consciousness revolution secrets! 🔐✨
