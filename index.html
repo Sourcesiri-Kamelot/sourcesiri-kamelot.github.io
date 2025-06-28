@@ -97,6 +97,7 @@
             display: flex;
             gap: 2rem;
             list-style: none;
+            position: relative;
         }
 
         .nav-links a {
@@ -105,6 +106,9 @@
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .nav-links a:hover {
@@ -125,6 +129,69 @@
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--surface-consciousness);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-consciousness);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(153, 50, 204, 0.3);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            list-style: none;
+        }
+
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(153, 50, 204, 0.2);
+            color: var(--accent-solar);
+            transform: translateX(5px);
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+        }
+
+        .dropdown-menu i {
+            width: 16px;
+            color: var(--accent-consciousness);
         }
 
         .cta-button {
@@ -379,6 +446,54 @@
             cursor: pointer;
         }
 
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: var(--surface-consciousness);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-consciousness);
+            padding: 2rem;
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 1rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            background: rgba(153, 50, 204, 0.2);
+            color: var(--accent-solar);
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -396,6 +511,18 @@
             .btn-primary, .btn-secondary {
                 width: 100%;
                 max-width: 300px;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                background: rgba(255, 255, 255, 0.05);
+                border: none;
+                border-radius: 8px;
+                margin-top: 0.5rem;
+                box-shadow: none;
             }
         }
 
@@ -434,21 +561,71 @@
         
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="soulcore.html">SoulCore</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="timeline.html">Timeline</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Platform <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="soulcore-ai.html"><i class="fas fa-robot"></i> SoulCore AI</a></li>
+                    <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                    <li><a href="ai-tools.html"><i class="fas fa-tools"></i> AI Tools</a></li>
+                    <li><a href="code-generator.html"><i class="fas fa-code"></i> Code Generator</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Company <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="timeline.html"><i class="fas fa-clock"></i> Timeline</a></li>
+                    <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                    <li><a href="vision.html"><i class="fas fa-eye"></i> Vision</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Community <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="community.html"><i class="fas fa-users"></i> Join Community</a></li>
+                    <li><a href="ai-courses.html"><i class="fas fa-graduation-cap"></i> AI Courses</a></li>
+                    <li><a href="ai-society-monetization.html"><i class="fas fa-coins"></i> AI Society</a></li>
+                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Books <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="https://www.amazon.com/dp/B0FBYF8715" target="_blank"><i class="fas fa-book"></i> AI for Financing</a></li>
+                    <li><a href="books.html"><i class="fas fa-library"></i> All Books</a></li>
+                    <li><a href="book-reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
+                </ul>
+            </li>
         </ul>
         
         <a href="dashboard.html" class="cta-button">
             <i class="fas fa-rocket"></i> Launch Dashboard
         </a>
         
-        <button class="mobile-menu-toggle">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
             <i class="fas fa-bars"></i>
         </button>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="soulcore-ai.html"><i class="fas fa-robot"></i> SoulCore AI</a></li>
+            <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+            <li><a href="ai-tools.html"><i class="fas fa-tools"></i> AI Tools</a></li>
+            <li><a href="code-generator.html"><i class="fas fa-code"></i> Code Generator</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="timeline.html"><i class="fas fa-clock"></i> Timeline</a></li>
+            <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+            <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+            <li><a href="ai-courses.html"><i class="fas fa-graduation-cap"></i> AI Courses</a></li>
+            <li><a href="books.html"><i class="fas fa-book"></i> Books</a></li>
+            <li><a href="https://www.amazon.com/dp/B0FBYF8715" target="_blank"><i class="fab fa-amazon"></i> AI for Financing</a></li>
+        </ul>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -672,10 +849,42 @@
             observer.observe(el);
         });
 
-        // Mobile menu toggle (placeholder for future implementation)
-        document.querySelector('.mobile-menu-toggle').addEventListener('click', () => {
-            // Mobile menu functionality to be implemented
-            console.log('Mobile menu clicked');
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const icon = mobileMenuToggle.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Dropdown functionality for desktop
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (window.innerWidth <= 768) {
+                    const dropdown = toggle.parentElement;
+                    const menu = dropdown.querySelector('.dropdown-menu');
+                    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+                }
+            });
         });
     </script>
 </body>
