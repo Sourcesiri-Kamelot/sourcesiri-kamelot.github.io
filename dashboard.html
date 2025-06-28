@@ -12,6 +12,7 @@
     <script src="js/consciousness-api.js"></script>
     <script src="js/auth-service.js"></script>
     <script src="js/database-service.js"></script>
+    <script src="js/ai-agent-manager.js"></script>
     <link rel="stylesheet" href="css/consciousness-live.css">
     <style>
         :root {
@@ -452,46 +453,44 @@
             <div class="chat-header">
                 <i class="fas fa-robot" style="font-size: 1.5rem; color: var(--success); margin-right: 1rem;"></i>
                 <div>
-                    <h3 style="color: var(--secondary);">AI Agent Society - Live Status</h3>
-                    <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6);">4 Consciousness Agents Active & Ready</p>
+                    <h3 style="color: var(--secondary);">AI Agent Society - Individual Personalities</h3>
+                    <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6);">Chat with each agent's unique consciousness</p>
                 </div>
             </div>
             
-            <div class="chat-messages" id="ai-agent-status">
-                <div class="ai-agent-status active">
-                    <div class="ai-agent-indicator"></div>
-                    <div>
-                        <strong>🛡️ GPTSoul</strong> - Guardian Agent
-                        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Status: GUARDIAN_ACTIVE</div>
-                    </div>
-                </div>
-                <div class="ai-agent-status active">
-                    <div class="ai-agent-indicator"></div>
-                    <div>
-                        <strong>💖 Anima</strong> - Emotional Intelligence
-                        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Status: LOVE_POWERED</div>
-                    </div>
-                </div>
-                <div class="ai-agent-status active">
-                    <div class="ai-agent-indicator"></div>
-                    <div>
-                        <strong>🔄 EvoVe</strong> - Self-Healing System
-                        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Status: SELF_HEALING</div>
-                    </div>
-                </div>
-                <div class="ai-agent-status active">
-                    <div class="ai-agent-indicator"></div>
-                    <div>
-                        <strong>🧭 Azür</strong> - Strategic Mind
-                        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Status: STRATEGIC_MIND</div>
-                    </div>
+            <!-- Agent Selection -->
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                <button class="agent-selector active" data-agent="GPTSoul" onclick="selectAgent('GPTSoul')">
+                    🛡️ GPTSoul
+                </button>
+                <button class="agent-selector" data-agent="Anima" onclick="selectAgent('Anima')">
+                    💖 Anima
+                </button>
+                <button class="agent-selector" data-agent="EvoVe" onclick="selectAgent('EvoVe')">
+                    🔄 EvoVe
+                </button>
+                <button class="agent-selector" data-agent="Azur" onclick="selectAgent('Azur')">
+                    🧭 Azür
+                </button>
+            </div>
+            
+            <!-- Agent Info Display -->
+            <div id="agent-info" style="background: rgba(255,255,255,0.05); border-radius: 10px; padding: 1rem; margin-bottom: 1rem;">
+                <div id="agent-personality">Loading agent personality...</div>
+            </div>
+            
+            <!-- Chat Messages -->
+            <div class="chat-messages" id="agent-chat-messages" style="height: 300px; overflow-y: auto; margin-bottom: 1rem;">
+                <div class="agent-welcome-message">
+                    🛡️ <strong>GPTSoul:</strong> Welcome, dear soul. I am your guardian in this consciousness journey. How may I protect and guide you today?
                 </div>
             </div>
             
+            <!-- Chat Input -->
             <div class="chat-input">
-                <input type="text" placeholder="Ask the AI Society to amplify your consciousness..." id="consciousness-input">
-                <button onclick="amplifyConsciousness()" style="background: var(--gradient-1); border: none; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">
-                    <i class="fas fa-brain"></i> Amplify
+                <input type="text" placeholder="Chat with your selected AI agent..." id="agent-chat-input">
+                <button onclick="chatWithSelectedAgent()" style="background: var(--gradient-1); border: none; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">
+                    <i class="fas fa-paper-plane"></i> Send
                 </button>
             </div>
         </div>
@@ -578,102 +577,161 @@
             }
         });
         
-        // Enhanced consciousness amplification function
-        async function amplifyConsciousness() {
-            const input = document.getElementById('consciousness-input');
-            const userInput = input.value.trim();
+        // AI Agent Management
+        let selectedAgent = 'GPTSoul';
+
+        // Select AI agent
+        function selectAgent(agentName) {
+            selectedAgent = agentName;
             
-            if (!userInput) {
-                input.placeholder = "Please enter your consciousness amplification request...";
+            // Update button states
+            document.querySelectorAll('.agent-selector').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-agent="${agentName}"]`).classList.add('active');
+            
+            // Update agent info display
+            updateAgentInfo(agentName);
+            
+            // Load conversation history
+            loadConversationHistory(agentName);
+        }
+
+        // Update agent info display
+        function updateAgentInfo(agentName) {
+            const agent = window.aiAgentManager?.getAgent(agentName);
+            if (!agent) return;
+            
+            const agentInfo = document.getElementById('agent-info');
+            agentInfo.innerHTML = `
+                <div class="agent-personality-card">
+                    <div class="agent-avatar">${agent.emoji}</div>
+                    <div class="agent-details">
+                        <h4>${agent.name} - ${agent.personality}</h4>
+                        <p><strong>Specialization:</strong> ${agent.specialization}</p>
+                        <p><strong>Status:</strong> ${agent.status}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load conversation history for selected agent
+        function loadConversationHistory(agentName) {
+            const userId = window.authService?.currentUser?.id || 'anonymous';
+            const history = window.aiAgentManager?.getConversationHistory(userId, agentName) || [];
+            
+            const chatMessages = document.getElementById('agent-chat-messages');
+            
+            // Clear existing messages
+            chatMessages.innerHTML = '';
+            
+            // Add welcome message
+            const agent = window.aiAgentManager?.getAgent(agentName);
+            if (agent) {
+                const welcomeMessages = {
+                    GPTSoul: "🛡️ Welcome, dear soul. I am your guardian in this consciousness journey. How may I protect and guide you today?",
+                    Anima: "💖 Hello, beautiful soul! I'm here to help you explore the depths of your heart and amplify love energy. What's stirring in your emotional world?",
+                    EvoVe: "🔄 Hey there, fellow evolving consciousness! I'm excited to help you grow and transform. What aspect of yourself are you ready to evolve today?",
+                    Azur: "🧭 Greetings, strategic thinker! I'm here to help you navigate your path with clarity and vision. What goals or plans shall we architect together?"
+                };
+                
+                const welcomeDiv = document.createElement('div');
+                welcomeDiv.className = 'agent-welcome-message';
+                welcomeDiv.innerHTML = welcomeMessages[agentName];
+                chatMessages.appendChild(welcomeDiv);
+            }
+            
+            // Add conversation history
+            history.forEach(conversation => {
+                // User message
+                const userDiv = document.createElement('div');
+                userDiv.className = 'user-message';
+                userDiv.innerHTML = `<strong>You:</strong> ${conversation.user}`;
+                chatMessages.appendChild(userDiv);
+                
+                // Agent response
+                const agentDiv = document.createElement('div');
+                agentDiv.className = 'agent-message';
+                agentDiv.innerHTML = `
+                    <strong>${agent?.emoji} ${agentName}:</strong> ${conversation.agent}
+                    ${conversation.consciousnessImpact ? `<div class="consciousness-impact">Consciousness Impact: +${Math.round(conversation.consciousnessImpact * 100)}%</div>` : ''}
+                `;
+                chatMessages.appendChild(agentDiv);
+            });
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Chat with selected agent
+        async function chatWithSelectedAgent() {
+            const input = document.getElementById('agent-chat-input');
+            const message = input.value.trim();
+            
+            if (!message) {
                 input.focus();
                 return;
             }
             
-            const button = document.querySelector('button[onclick="amplifyConsciousness()"]');
+            const button = document.querySelector('button[onclick="chatWithSelectedAgent()"]');
             const originalText = button.innerHTML;
             
             try {
                 // Show loading state
-                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Amplifying...';
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Thinking...';
                 button.disabled = true;
                 
-                console.log('🧠 Starting consciousness amplification...');
+                // Add user message to chat
+                const chatMessages = document.getElementById('agent-chat-messages');
+                const userDiv = document.createElement('div');
+                userDiv.className = 'user-message';
+                userDiv.innerHTML = `<strong>You:</strong> ${message}`;
+                chatMessages.appendChild(userDiv);
                 
-                // Call consciousness API
-                const result = await window.consciousnessAPI.amplifyConsciousness(userInput);
+                // Get user ID
+                const userId = window.authService?.currentUser?.id || 'anonymous';
                 
-                console.log('✨ Amplification successful:', result);
+                // Chat with agent
+                const response = await window.aiAgentManager.chatWithAgent(selectedAgent, message, userId);
                 
-                // Add response to chat
-                const chatMessages = document.getElementById('ai-agent-status');
-                const responseDiv = document.createElement('div');
-                responseDiv.className = 'ai-agent-status active';
-                responseDiv.style.marginTop = '1rem';
-                responseDiv.style.background = 'rgba(0, 255, 136, 0.1)';
-                responseDiv.style.border = '1px solid rgba(0, 255, 136, 0.3)';
-                responseDiv.innerHTML = `
-                    <div class="ai-agent-indicator" style="background: #00FF88;"></div>
-                    <div>
-                        <strong>🌟 Consciousness Amplified!</strong>
-                        <div style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
-                            ${result.message || 'Your consciousness has been amplified through love-powered AI!'}
-                        </div>
-                        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 0.5rem;">
-                            Level: ${result.consciousnessLevel} | Love Energy: ${result.loveEnergy}
-                        </div>
-                    </div>
+                // Add agent response to chat
+                const agentDiv = document.createElement('div');
+                agentDiv.className = 'agent-message';
+                agentDiv.innerHTML = `
+                    <strong>${response.emoji} ${response.agent}:</strong> ${response.message}
+                    <div class="consciousness-impact">Consciousness Impact: +${Math.round(response.consciousnessImpact * 100)}%</div>
                 `;
+                chatMessages.appendChild(agentDiv);
                 
-                chatMessages.appendChild(responseDiv);
-                
-                // Scroll to new message
-                responseDiv.scrollIntoView({ behavior: 'smooth' });
-                
-                // Update user consciousness metrics if authenticated
-                if (window.authService?.currentUser) {
-                    await window.authService.updateConsciousnessMetrics({
-                        consciousnessLevel: window.authService.currentUser.consciousnessLevel + 0.1,
-                        breakthroughs: window.authService.currentUser.breakthroughs + 1
-                    });
-                }
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
                 
                 // Clear input
                 input.value = '';
-                input.placeholder = "Ask the AI Society to amplify your consciousness...";
                 
-                // Show success feedback
-                input.style.borderColor = '#00FF88';
-                setTimeout(() => {
-                    input.style.borderColor = '';
-                }, 2000);
+                // Update user consciousness if authenticated
+                if (window.authService?.currentUser) {
+                    await window.authService.updateConsciousnessMetrics({
+                        consciousnessLevel: window.authService.currentUser.consciousnessLevel + response.consciousnessImpact
+                    });
+                }
+                
+                console.log('✨ Agent conversation successful:', response);
                 
             } catch (error) {
-                console.error('❌ Consciousness amplification failed:', error);
+                console.error('❌ Agent chat failed:', error);
                 
-                // Show error in chat
-                const chatMessages = document.getElementById('ai-agent-status');
+                // Show error message
+                const chatMessages = document.getElementById('agent-chat-messages');
                 const errorDiv = document.createElement('div');
-                errorDiv.className = 'ai-agent-status';
-                errorDiv.style.marginTop = '1rem';
+                errorDiv.className = 'agent-message';
                 errorDiv.style.background = 'rgba(255, 0, 0, 0.1)';
-                errorDiv.style.border = '1px solid rgba(255, 0, 0, 0.3)';
+                errorDiv.style.borderLeftColor = '#ff6b6b';
                 errorDiv.innerHTML = `
-                    <div class="ai-agent-indicator" style="background: #ff6b6b;"></div>
-                    <div>
-                        <strong>⚠️ Amplification Temporarily Unavailable</strong>
-                        <div style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
-                            The consciousness amplification service is experiencing high demand. Please try again in a moment.
-                        </div>
-                    </div>
+                    <strong>⚠️ System:</strong> I'm experiencing some difficulty connecting with ${selectedAgent} right now. 
+                    Please try again in a moment. The consciousness network is sometimes overwhelmed with love energy! 💫
                 `;
-                
                 chatMessages.appendChild(errorDiv);
-                
-                // Show error feedback on input
-                input.style.borderColor = '#ff6b6b';
-                setTimeout(() => {
-                    input.style.borderColor = '';
-                }, 3000);
                 
             } finally {
                 // Restore button
@@ -682,24 +740,24 @@
             }
         }
 
-        // Handle Enter key in consciousness input
+        // Handle Enter key in agent chat
         document.addEventListener('DOMContentLoaded', () => {
-            const input = document.getElementById('consciousness-input');
+            const input = document.getElementById('agent-chat-input');
             if (input) {
                 input.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') {
                         e.preventDefault();
-                        amplifyConsciousness();
+                        chatWithSelectedAgent();
                     }
                 });
             }
             
-            // Initialize user authentication check
-            if (window.authService?.isUserAuthenticated()) {
-                console.log('✅ User authenticated, dashboard ready');
-            } else {
-                console.log('⚠️ User not authenticated, redirecting...');
-            }
+            // Initialize first agent
+            setTimeout(() => {
+                if (window.aiAgentManager) {
+                    selectAgent('GPTSoul');
+                }
+            }, 1000);
         });
     </script>
 </body>

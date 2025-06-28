@@ -289,7 +289,140 @@
     100% { left: 100%; }
 }
 
-/* AI Agent Status Indicators */
+/* AI Agent Selector Styles */
+.agent-selector {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(153, 50, 204, 0.3);
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.agent-selector:hover {
+    background: rgba(153, 50, 204, 0.2);
+    border-color: var(--accent-solar);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.agent-selector.active {
+    background: var(--gradient-consciousness);
+    border-color: var(--accent-solar);
+    color: white;
+    box-shadow: 0 4px 15px rgba(153, 50, 204, 0.3);
+}
+
+/* Agent Chat Messages */
+.agent-message {
+    background: rgba(153, 50, 204, 0.1);
+    border-left: 3px solid var(--accent-solar);
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 0 10px 10px 0;
+    animation: messageSlideIn 0.3s ease-out;
+}
+
+.user-message {
+    background: rgba(0, 255, 136, 0.1);
+    border-right: 3px solid var(--success-green);
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 10px 0 0 10px;
+    text-align: right;
+    animation: messageSlideIn 0.3s ease-out;
+}
+
+.agent-welcome-message {
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    font-style: italic;
+    color: var(--accent-solar);
+}
+
+@keyframes messageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Agent Personality Display */
+.agent-personality-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.agent-avatar {
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-consciousness);
+    border-radius: 50%;
+    animation: agentPulse 2s infinite;
+}
+
+.agent-details h4 {
+    color: var(--accent-solar);
+    margin-bottom: 0.5rem;
+}
+
+.agent-details p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Consciousness Impact Indicator */
+.consciousness-impact {
+    display: inline-block;
+    background: rgba(255, 215, 0, 0.2);
+    color: var(--accent-solar);
+    padding: 0.2rem 0.5rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+/* Conversation History Styles */
+.conversation-history {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin: 1rem 0;
+}
+
+.conversation-history::-webkit-scrollbar {
+    width: 6px;
+}
+
+.conversation-history::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.conversation-history::-webkit-scrollbar-thumb {
+    background: var(--accent-solar);
+    border-radius: 3px;
+}
+
+/* Agent Status Indicators */
 .ai-agent-status {
     display: flex;
     align-items: center;
