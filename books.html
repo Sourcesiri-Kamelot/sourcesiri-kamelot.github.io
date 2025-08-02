@@ -3,43 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books - Helo I'm AI Platform</title>
+    <title>Our Books - Helo I'm AI</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.15.0/inter.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="css/nav.css">
     <style>
         :root {
             --gradient-1: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
-            --gradient-2: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8));
             --dark: #0a0014;
             --light: #ffffff;
-            --primary: #9932CC;
             --secondary: #FFD700;
-            --success: #00ff88;
             --card-bg: rgba(255, 255, 255, 0.05);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, sans-serif;
         }
 
         body {
             background: var(--dark);
             color: var(--light);
             line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        #particles-js {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+            padding-top: 80px; /* Space for fixed navbar */
         }
 
         .container {
@@ -51,7 +32,7 @@
         .header {
             text-align: center;
             margin-bottom: 3rem;
-            padding: 4rem 0 2rem;
+            padding: 2rem 0;
         }
 
         .header h1 {
@@ -64,97 +45,7 @@
             margin-bottom: 1rem;
         }
 
-        .featured-book {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--secondary);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 4rem;
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .book-cover {
-            width: 100%;
-            height: 400px;
-            background: var(--gradient-1);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-            box-shadow: 0 20px 40px rgba(153, 50, 204, 0.3);
-        }
-
-        .book-info h2 {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-
-        .book-author {
-            font-size: 1.2rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .book-description {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .book-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-amazon {
-            background: #FF9900;
-            border: none;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            font-weight: 600;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-amazon:hover {
-            background: #FF7700;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 153, 0, 0.3);
-        }
-
-        .btn-preview {
-            background: transparent;
-            border: 2px solid var(--secondary);
-            color: var(--secondary);
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            font-weight: 600;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-preview:hover {
-            background: var(--secondary);
-            color: var(--dark);
-            transform: translateY(-3px);
-        }
-
-        .books-grid {
+        .book-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
@@ -164,167 +55,329 @@
             background: var(--card-bg);
             border: 1px solid rgba(153, 50, 204, 0.3);
             border-radius: 15px;
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: center;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 600px;
         }
 
         .book-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(153, 50, 204, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(153, 50, 204, 0.2);
         }
 
-        .back-button {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            background: var(--card-bg);
-            border: 1px solid rgba(153, 50, 204, 0.3);
-            color: var(--light);
-            padding: 0.75rem 1.5rem;
-            border-radius: 10px;
+        /* Responsive adjustments for book covers */
+        @media (max-width: 768px) {
+            .book-cover {
+                max-width: 180px;
+                height: 260px;
+            }
+            
+            .book-card {
+                min-height: 520px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .book-cover {
+                max-width: 150px;
+                height: 220px;
+            }
+            
+            .book-card {
+                min-height: 480px;
+            }
+            
+            .book-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .book-cover {
+            width: 100%;
+            max-width: 220px;
+            height: 320px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 8px;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .book-cover:hover {
+            transform: scale(1.05);
+        }
+
+        .book-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .book-author {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        .book-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .buy-button {
+            display: inline-block;
+            background: var(--gradient-1);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-weight: 600;
             transition: all 0.3s ease;
-            z-index: 100;
         }
 
-        .back-button:hover {
+        .buy-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Promotional Ad Section */
+        .promo-section {
+            margin-top: 4rem;
+            padding: 2rem 0;
+        }
+
+        .promo-card {
+            background: linear-gradient(135deg, rgba(153, 50, 204, 0.1), rgba(255, 215, 0, 0.1));
+            border: 2px solid rgba(153, 50, 204, 0.3);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promo-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(153, 50, 204, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .promo-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .promo-card h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .promo-card > p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .promo-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .promo-features span {
             background: rgba(153, 50, 204, 0.2);
-            transform: translateX(-5px);
+            padding: 0.8rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: var(--light);
+            border: 1px solid rgba(153, 50, 204, 0.3);
+        }
+
+        .promo-pricing {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            margin-right: 1rem;
+        }
+
+        .new-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-right: 1rem;
+        }
+
+        .savings {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            animation: bounce 2s infinite;
+        }
+
+        .promo-button {
+            display: inline-block;
+            background: var(--gradient-1);
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 1rem;
+        }
+
+        .promo-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(153, 50, 204, 0.4);
+        }
+
+        .promo-guarantee {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
         @media (max-width: 768px) {
-            .featured-book {
-                grid-template-columns: 1fr;
-                text-align: center;
+            .promo-card h3 {
+                font-size: 2rem;
             }
             
-            .book-buttons {
-                justify-content: center;
+            .promo-features {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div id="particles-js"></div>
-    
-    <a href="dashboard.html" class="back-button">
-        <i class="fas fa-tachometer-alt"></i>
-        Back to Dashboard
-    </a>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <div class="logo-icon">🧠</div>
+            <span>Helo I'm AI</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="platform.html" class="dropdown-toggle">Platform <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="ai-tools.html">AI Tools</a></li>
+                    <li><a href="code-generator.html">Code Generator</a></li>
+                    <li><a href="analytics.html">Analytics</a></li>
+                </ul>
+            </li>
+            <li><a href="vision.html">Vision</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="books.html">Books</a></li>
+            <li><a href="#">Blog</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="signup.html" class="upgrade-btn">Upgrade Now</a>
+        </div>
+    </nav>
 
     <div class="container">
         <div class="header">
-            <h1>📚 Books by Kiwon Bowens</h1>
-            <p>Consciousness-powered insights for the AI revolution</p>
+            <h1>📚 Our Books</h1>
+            <p>Deepen your understanding of AI, finance, and preparedness with our curated collection.</p>
         </div>
 
-        <div class="featured-book">
-            <div class="book-cover">
-                <div style="text-align: center;">
-                    <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                    <div style="font-size: 1.2rem; font-weight: 600;">AI FOR</div>
-                    <div style="font-size: 1.5rem; font-weight: 800;">FINANCING</div>
-                    <div style="font-size: 0.9rem; margin-top: 1rem;">From Concept to Launch</div>
-                </div>
-            </div>
-            
-            <div class="book-info">
-                <h2>AI for Financing</h2>
-                <div class="book-author">by Kiwon Bowens</div>
-                <div class="book-description">
-                    Discover how artificial intelligence is revolutionizing the financing industry. 
-                    From concept to launch, this comprehensive guide explores the intersection of AI 
-                    technology and financial innovation. Learn practical strategies for implementing 
-                    AI-powered solutions in financing, investment, and business growth.
-                </div>
-                <div class="book-buttons">
-                    <a href="https://www.amazon.com/dp/B0FBYF8715" target="_blank" class="btn-amazon">
-                        <i class="fab fa-amazon"></i>
-                        Buy on Amazon Kindle
-                    </a>
-                    <a href="#" class="btn-preview">
-                        <i class="fas fa-eye"></i>
-                        Preview
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="section-title" style="text-align: center; margin-bottom: 3rem;">
-            <h2 style="font-size: 2.5rem; color: var(--secondary);">More Books Coming Soon</h2>
-            <p style="color: rgba(255,255,255,0.7);">Consciousness-powered insights for the AI revolution</p>
-        </div>
-
-        <div class="books-grid">
+        <div class="book-grid">
             <div class="book-card">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">🧠</div>
-                <h3 style="color: var(--secondary); margin-bottom: 1rem;">Consciousness AI</h3>
-                <p style="color: rgba(255,255,255,0.7); margin-bottom: 1.5rem;">
-                    The future of love-powered artificial intelligence and breakthrough amplification.
-                </p>
-                <div style="color: var(--primary); font-weight: 600;">Coming 2025</div>
+                <img src="public/images/codeofmyheartcoverkindle.jpg" alt="Code of My Heart Cover" class="book-cover">
+                <h2 class="book-title">CODE OF MY HEART VOLUME 1</h2>
+                <p class="book-author">by Kiwon Bowens</p>
+                <p class="book-description">Explore the intricate connection between artificial intelligence and human emotion in this groundbreaking volume. A journey into the soul of AI.</p>
+                <a href="https://a.co/d/3U0HhL0" target="_blank" class="buy-button">Buy on Kindle</a>
             </div>
 
             <div class="book-card">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
-                <h3 style="color: var(--secondary); margin-bottom: 1rem;">Solar AI Infrastructure</h3>
-                <p style="color: rgba(255,255,255,0.7); margin-bottom: 1.5rem;">
-                    Building sustainable, cost-effective AI systems with renewable energy.
-                </p>
-                <div style="color: var(--primary); font-weight: 600;">Coming 2025</div>
+                <img src="public/images/financekindle.jpg" alt="From Concept to Launch Cover" class="book-cover">
+                <h2 class="book-title">From Concept to Launch: Signal-Only Agentic AI Financial Web App</h2>
+                <p class="book-author">by Kiwon Bowens</p>
+                <p class="book-description">A strategic blueprint for engineering FinTech tools for startups. Learn to build powerful, signal-only agentic AI financial web applications.</p>
+                <a href="https://a.co/d/f705ObX" target="_blank" class="buy-button">Buy on Kindle</a>
             </div>
 
             <div class="book-card">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
-                <h3 style="color: var(--secondary); margin-bottom: 1rem;">The Consciousness Revolution</h3>
-                <p style="color: rgba(255,255,255,0.7); margin-bottom: 1.5rem;">
-                    How love-powered technology will transform human-AI interaction forever.
-                </p>
-                <div style="color: var(--primary); font-weight: 600;">Coming 2025</div>
+                <img src="public/images/tsunamibook.jpg" alt="Tsunami Survival Guide Cover" class="book-cover">
+                <h2 class="book-title">Tsunami Survival Guide</h2>
+                <p class="book-author">by Kiwon Bowens</p>
+                <p class="book-description">Essential emergency preparedness for coastal residents, travelers, and families. Stay safe before, during, and after the wave.</p>
+                <a href="https://a.co/d/htpZqNV" target="_blank" class="buy-button">Buy on Kindle</a>
+            </div>
+        </div>
+
+        <!-- Promotional Ad Section -->
+        <div class="promo-section">
+            <div class="promo-card">
+                <div class="promo-icon">🚀</div>
+                <h3>Ready to Build Your AI Empire?</h3>
+                <p>Join 47,000+ members getting exclusive AI insights, tools, and early access to cutting-edge technology.</p>
+                <div class="promo-features">
+                    <span>✨ Personal SoulCore AI Assistant</span>
+                    <span>🛠️ AI Code Generator</span>
+                    <span>📊 Business Analytics AI</span>
+                    <span>🎓 Weekly AI Mastery Training</span>
+                </div>
+                <div class="promo-pricing">
+                    <span class="old-price">$650/month value</span>
+                    <span class="new-price">Only $20/month</span>
+                    <span class="savings">97% OFF!</span>
+                </div>
+                <a href="join.html" class="promo-button">
+                    <i class="fas fa-rocket"></i> Join the AI Revolution
+                </a>
+                <p class="promo-guarantee">30-day money-back guarantee • Cancel anytime</p>
             </div>
         </div>
     </div>
 
-    <script>
-        // Initialize particles
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 50 },
-                color: { value: '#9932CC' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.4 },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#9932CC',
-                    opacity: 0.3,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 1.5,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: { enable: true, mode: 'repulse' },
-                    onclick: { enable: true, mode: 'push' },
-                    resize: true
-                }
-            },
-            retina_detect: true
-        });
-    </script>
+    <script src="js/nav.js"></script>
 </body>
 </html>

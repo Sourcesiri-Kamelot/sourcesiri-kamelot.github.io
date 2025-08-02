@@ -434,29 +434,36 @@
     <link rel="stylesheet" href="css/orb-agents.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/project-cards.css">
+    <link rel="stylesheet" href="css/nav.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <a href="index.html" class="logo">
-                    <i class="fas fa-brain"></i>
-                    Sourcesiri Kamelot
-                </a>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="vision.html">AI Twins</a></li>
-                        <li><a href="soulcore.html">SoulCore</a></li>
-                        <li><a href="api.html">API</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="timeline.html">Timeline</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                    </ul>
-                </nav>
-            </div>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <div class="logo-icon">🧠</div>
+            <span>Helo I'm AI</span>
         </div>
-    </header>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="platform.html" class="dropdown-toggle">Platform <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="ai-tools.html">AI Tools</a></li>
+                    <li><a href="code-generator.html">Code Generator</a></li>
+                    <li><a href="analytics.html">Analytics</a></li>
+                </ul>
+            </li>
+            <li><a href="vision.html">Vision</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="books.html">Books</a></li>
+            <li><a href="#">Blog</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="signup.html" class="upgrade-btn">Upgrade Now</a>
+        </div>
+    </nav>
 
     <section class="hero">
         <div class="container">
@@ -746,5 +753,6 @@
     </script>
     <script src="js/header-footer.js"></script>
     <script src="js/orb-agents.js"></script>
+    <script src="js/nav.js"></script>
 </body>
 </html>

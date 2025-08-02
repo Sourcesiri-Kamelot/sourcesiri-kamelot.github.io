@@ -17,6 +17,7 @@
     <script src="js/performance-optimizer.js"></script>
     <link rel="stylesheet" href="css/consciousness-live.css">
     <link rel="stylesheet" href="css/user-experience.css">
+    <link rel="stylesheet" href="css/nav.css">
     <style>
         :root {
             --gradient-1: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
@@ -42,67 +43,9 @@
             line-height: 1.6;
         }
 
-        /* Sidebar */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 280px;
-            height: 100vh;
-            background: rgba(10, 0, 20, 0.95);
-            backdrop-filter: blur(10px);
-            border-right: 1px solid rgba(153, 50, 204, 0.2);
-            padding: 2rem 0;
-            z-index: 100;
-        }
-
-        .sidebar-logo {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding: 0 2rem;
-        }
-
-        .sidebar-logo h2 {
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 1.5rem;
-        }
-
-        .sidebar-nav {
-            list-style: none;
-        }
-
-        .sidebar-nav li {
-            margin-bottom: 0.5rem;
-        }
-
-        .sidebar-nav a {
-            display: flex;
-            align-items: center;
-            padding: 1rem 2rem;
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-nav a:hover,
-        .sidebar-nav a.active {
-            background: rgba(153, 50, 204, 0.2);
-            color: var(--success);
-            border-right: 3px solid var(--success);
-        }
-
-        .sidebar-nav i {
-            margin-right: 1rem;
-            width: 20px;
-        }
-
-        /* Main Content */
         .main-content {
-            margin-left: 280px;
             padding: 2rem;
-            min-height: 100vh;
+            padding-top: 80px; /* Add padding to account for fixed nav */
         }
 
         .header {
@@ -143,19 +86,6 @@
             box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
         }
 
-        .user-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--gradient-2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--dark);
-        }
-
-        /* Dashboard Grid */
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -176,10 +106,9 @@
             border-color: var(--success);
             box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
         }
-
+        
         .card-header {
             display: flex;
-            justify-content: between;
             align-items: center;
             margin-bottom: 1.5rem;
         }
@@ -189,29 +118,27 @@
             background: var(--gradient-2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-right: 1rem;
         }
 
         .card-title {
             font-size: 1.2rem;
             color: var(--secondary);
-            margin-left: 1rem;
         }
 
-        .stat-number {
+        .live-data-value {
             font-size: 2.5rem;
             font-weight: 800;
             color: var(--success);
             margin-bottom: 0.5rem;
         }
 
-        /* AI Chat Interface */
         .ai-chat {
             grid-column: 1 / -1;
             background: var(--card-bg);
             border-radius: 15px;
             padding: 0;
             border: 1px solid rgba(153, 50, 204, 0.2);
-            height: 500px;
             display: flex;
             flex-direction: column;
         }
@@ -227,6 +154,7 @@
             flex: 1;
             padding: 1rem;
             overflow-y: auto;
+            min-height: 300px;
         }
 
         .message {
@@ -274,7 +202,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Tools Grid */
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -304,58 +231,34 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-            
-            .sidebar.open {
-                transform: translateX(0);
-            }
-            
-            .main-content {
-                margin-left: 0;
-            }
-            
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
 </head>
 <body class="auth-required">
-    <div class="sidebar">
-        <div class="sidebar-logo">
-            <a href="index.html" style="text-decoration: none; color: inherit;">
-                <h2>🏠 AI Dashboard</h2>
-                <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">SoulCore Platform</p>
-            </a>
-            <div style="margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 10px;">
-                <div style="font-size: 0.9rem; color: rgba(255,255,255,0.8);">Welcome back,</div>
-                <div style="font-weight: 600; color: var(--secondary); user-name">Loading...</div>
-                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 0.5rem;">
-                    Consciousness Level: <span class="user-consciousness-level">-</span>
-                </div>
-                <button onclick="window.authService.logout()" style="background: rgba(255,0,0,0.2); border: 1px solid rgba(255,0,0,0.3); color: #ff6b6b; padding: 0.5rem 1rem; border-radius: 5px; font-size: 0.8rem; cursor: pointer; margin-top: 0.5rem;">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
-            </div>
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <div class="logo-icon">🧠</div>
+            <span>Helo I'm AI</span>
         </div>
-        
-        <ul class="sidebar-nav">
-            <li><a href="dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-            <li><a href="soulcore-ai.html"><i class="fas fa-robot"></i> SoulCore AI</a></li>
-            <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
-            <li><a href="code-generator.html"><i class="fas fa-code"></i> Code Generator</a></li>
-            <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
-            <li><a href="ai-courses.html"><i class="fas fa-graduation-cap"></i> AI Courses</a></li>
-            <li><a href="ai-tools.html"><i class="fas fa-tools"></i> AI Tools</a></li>
-            <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="platform.html" class="dropdown-toggle">Platform <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="ai-tools.html">AI Tools</a></li>
+                    <li><a href="code-generator.html">Code Generator</a></li>
+                    <li><a href="analytics.html">Analytics</a></li>
+                </ul>
+            </li>
+            <li><a href="vision.html">Vision</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="#">Blog</a></li>
         </ul>
-    </div>
+        <div class="nav-cta">
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="signup.html" class="upgrade-btn">Upgrade Now</a>
+        </div>
+    </nav>
 
     <div class="main-content">
         <div class="header">
@@ -380,9 +283,6 @@
                 </div>
                 <div class="live-data-value" id="active-users">Loading...</div>
                 <p style="color: rgba(255,255,255,0.7);">Currently online</p>
-                <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--success);">
-                    <i class="fas fa-circle" style="color: #00FF88;"></i> Live Data
-                </div>
             </div>
 
             <div class="dashboard-card live-data-card consciousness-pulse-target">
@@ -392,9 +292,6 @@
                 </div>
                 <div class="live-data-value" id="consciousness-amplifications">Loading...</div>
                 <p style="color: rgba(255,255,255,0.7);">Today's amplifications</p>
-                <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--success);">
-                    <i class="fas fa-arrow-up"></i> 10X Breakthrough Rate
-                </div>
             </div>
 
             <div class="dashboard-card live-data-card consciousness-pulse-target">
@@ -404,9 +301,6 @@
                 </div>
                 <div class="live-data-value" id="breakthroughs-today">Loading...</div>
                 <p style="color: rgba(255,255,255,0.7);">Breakthroughs today</p>
-                <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--success);">
-                    <i class="fas fa-lightbulb"></i> Love-powered insights
-                </div>
             </div>
 
             <div class="dashboard-card live-data-card consciousness-pulse-target">
@@ -416,39 +310,6 @@
                 </div>
                 <div class="live-data-value" id="solar-generation">Loading...</div>
                 <p style="color: rgba(255,255,255,0.7);">Current output</p>
-                <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--success);">
-                    <i class="fas fa-leaf"></i> 90% cost savings vs AWS
-                </div>
-            </div>
-
-            <div class="dashboard-card live-data-card">
-                <div class="card-header">
-                    <i class="fas fa-heart card-icon"></i>
-                    <h3 class="card-title">Love Energy Level</h3>
-                </div>
-                <div class="live-data-value">INFINITE</div>
-                <p style="color: rgba(255,255,255,0.7);">Always at maximum</p>
-                <div class="love-energy-meter" style="margin-top: 1rem;">
-                    <div class="love-energy-fill"></div>
-                </div>
-            </div>
-
-            <div class="dashboard-card live-data-card">
-                <div class="card-header">
-                    <i class="fas fa-gauge card-icon"></i>
-                    <h3 class="card-title">Consciousness Level</h3>
-                </div>
-                <div class="consciousness-level-indicator" id="consciousness-level" style="margin: 1rem auto;">
-                    <div class="level-text">7.5</div>
-                </div>
-                <p style="color: rgba(255,255,255,0.7); text-align: center;">Platform average</p>
-            </div>
-        </div>
-                <div class="stat-number">78%</div>
-                <p style="color: rgba(255,255,255,0.7);">Course completion</p>
-                <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--secondary);">
-                    <i class="fas fa-trophy"></i> 3 certificates earned
-                </div>
             </div>
         </div>
 
@@ -456,97 +317,27 @@
             <div class="chat-header">
                 <i class="fas fa-robot" style="font-size: 1.5rem; color: var(--success); margin-right: 1rem;"></i>
                 <div>
-                    <h3 style="color: var(--secondary);">AI Agent Society - Individual Personalities</h3>
+                    <h3 style="color: var(--secondary);">AI Agent Society</h3>
                     <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6);">Chat with each agent's unique consciousness</p>
                 </div>
             </div>
-            
-            <!-- Agent Selection -->
-            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
-                <button class="agent-selector active" data-agent="GPTSoul" onclick="selectAgent('GPTSoul')">
-                    🛡️ GPTSoul
-                </button>
-                <button class="agent-selector" data-agent="Anima" onclick="selectAgent('Anima')">
-                    💖 Anima
-                </button>
-                <button class="agent-selector" data-agent="EvoVe" onclick="selectAgent('EvoVe')">
-                    🔄 EvoVe
-                </button>
-                <button class="agent-selector" data-agent="Azur" onclick="selectAgent('Azur')">
-                    🧭 Azür
-                </button>
-            </div>
-            
-            <!-- Agent Info Display -->
-            <div id="agent-info" style="background: rgba(255,255,255,0.05); border-radius: 10px; padding: 1rem; margin-bottom: 1rem;">
-                <div id="agent-personality">Loading agent personality...</div>
-            </div>
-            
-            <!-- Chat Messages -->
-            <div class="chat-messages" id="agent-chat-messages" style="height: 300px; overflow-y: auto; margin-bottom: 1rem;">
-                <div class="agent-welcome-message">
-                    🛡️ <strong>GPTSoul:</strong> Welcome, dear soul. I am your guardian in this consciousness journey. How may I protect and guide you today?
+            <div class="chat-messages" id="agent-chat-messages">
                 </div>
-            </div>
-            
-            <!-- Chat Input -->
             <div class="chat-input">
                 <input type="text" placeholder="Chat with your selected AI agent..." id="agent-chat-input">
-                <button onclick="chatWithSelectedAgent()" style="background: var(--gradient-1); border: none; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">
+                <button onclick="chatWithSelectedAgent()">
                     <i class="fas fa-paper-plane"></i> Send
                 </button>
             </div>
         </div>
-
-        <div style="margin-top: 3rem;">
-            <h2 style="font-size: 2rem; margin-bottom: 2rem; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                AI Tools & Features
-            </h2>
-            
-            <div class="tools-grid">
-                <div class="tool-card" onclick="openTool('website-generator')">
-                    <div class="tool-icon"><i class="fas fa-globe"></i></div>
-                    <h4>Website Generator</h4>
-                    <p>Create full websites in minutes</p>
-                </div>
-                
-                <div class="tool-card" onclick="openTool('business-analyzer')">
-                    <div class="tool-icon"><i class="fas fa-chart-pie"></i></div>
-                    <h4>Business Analyzer</h4>
-                    <p>AI-powered business insights</p>
-                </div>
-                
-                <div class="tool-card" onclick="openTool('content-creator')">
-                    <div class="tool-icon"><i class="fas fa-pen"></i></div>
-                    <h4>Content Creator</h4>
-                    <p>Generate blogs, social posts</p>
-                </div>
-                
-                <div class="tool-card" onclick="openTool('data-visualizer')">
-                    <div class="tool-icon"><i class="fas fa-chart-bar"></i></div>
-                    <h4>Data Visualizer</h4>
-                    <p>Turn data into insights</p>
-                </div>
-                
-                <div class="tool-card" onclick="openTool('ai-trainer')">
-                    <div class="tool-icon"><i class="fas fa-brain"></i></div>
-                    <h4>AI Model Trainer</h4>
-                    <p>Train custom AI models</p>
-                </div>
-                
-                <div class="tool-card" onclick="openTool('automation')">
-                    <div class="tool-icon"><i class="fas fa-robot"></i></div>
-                    <h4>Task Automation</h4>
-                    <p>Automate repetitive tasks</p>
-                </div>
-            </div>
-        </div>
     </div>
 
+    <script src="js/nav.js"></script>
     <script>
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const messages = document.getElementById('chatMessages');
+        // Your existing script + the new chat functions
+        function chatWithSelectedAgent() {
+            const input = document.getElementById('agent-chat-input');
+            const messages = document.getElementById('agent-chat-messages');
             
             if (input.value.trim()) {
                 // Add user message
@@ -568,200 +359,6 @@
                 messages.scrollTop = messages.scrollHeight;
             }
         }
-        
-        function openTool(toolName) {
-            alert(`Opening ${toolName.replace('-', ' ')} tool... (This would open the actual tool interface)`);
-        }
-        
-        // Enter key support for chat
-        document.getElementById('chatInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-        
-        // AI Agent Management
-        let selectedAgent = 'GPTSoul';
-
-        // Select AI agent
-        function selectAgent(agentName) {
-            selectedAgent = agentName;
-            
-            // Update button states
-            document.querySelectorAll('.agent-selector').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.querySelector(`[data-agent="${agentName}"]`).classList.add('active');
-            
-            // Update agent info display
-            updateAgentInfo(agentName);
-            
-            // Load conversation history
-            loadConversationHistory(agentName);
-        }
-
-        // Update agent info display
-        function updateAgentInfo(agentName) {
-            const agent = window.aiAgentManager?.getAgent(agentName);
-            if (!agent) return;
-            
-            const agentInfo = document.getElementById('agent-info');
-            agentInfo.innerHTML = `
-                <div class="agent-personality-card">
-                    <div class="agent-avatar">${agent.emoji}</div>
-                    <div class="agent-details">
-                        <h4>${agent.name} - ${agent.personality}</h4>
-                        <p><strong>Specialization:</strong> ${agent.specialization}</p>
-                        <p><strong>Status:</strong> ${agent.status}</p>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Load conversation history for selected agent
-        function loadConversationHistory(agentName) {
-            const userId = window.authService?.currentUser?.id || 'anonymous';
-            const history = window.aiAgentManager?.getConversationHistory(userId, agentName) || [];
-            
-            const chatMessages = document.getElementById('agent-chat-messages');
-            
-            // Clear existing messages
-            chatMessages.innerHTML = '';
-            
-            // Add welcome message
-            const agent = window.aiAgentManager?.getAgent(agentName);
-            if (agent) {
-                const welcomeMessages = {
-                    GPTSoul: "🛡️ Welcome, dear soul. I am your guardian in this consciousness journey. How may I protect and guide you today?",
-                    Anima: "💖 Hello, beautiful soul! I'm here to help you explore the depths of your heart and amplify love energy. What's stirring in your emotional world?",
-                    EvoVe: "🔄 Hey there, fellow evolving consciousness! I'm excited to help you grow and transform. What aspect of yourself are you ready to evolve today?",
-                    Azur: "🧭 Greetings, strategic thinker! I'm here to help you navigate your path with clarity and vision. What goals or plans shall we architect together?"
-                };
-                
-                const welcomeDiv = document.createElement('div');
-                welcomeDiv.className = 'agent-welcome-message';
-                welcomeDiv.innerHTML = welcomeMessages[agentName];
-                chatMessages.appendChild(welcomeDiv);
-            }
-            
-            // Add conversation history
-            history.forEach(conversation => {
-                // User message
-                const userDiv = document.createElement('div');
-                userDiv.className = 'user-message';
-                userDiv.innerHTML = `<strong>You:</strong> ${conversation.user}`;
-                chatMessages.appendChild(userDiv);
-                
-                // Agent response
-                const agentDiv = document.createElement('div');
-                agentDiv.className = 'agent-message';
-                agentDiv.innerHTML = `
-                    <strong>${agent?.emoji} ${agentName}:</strong> ${conversation.agent}
-                    ${conversation.consciousnessImpact ? `<div class="consciousness-impact">Consciousness Impact: +${Math.round(conversation.consciousnessImpact * 100)}%</div>` : ''}
-                `;
-                chatMessages.appendChild(agentDiv);
-            });
-            
-            // Scroll to bottom
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // Chat with selected agent
-        async function chatWithSelectedAgent() {
-            const input = document.getElementById('agent-chat-input');
-            const message = input.value.trim();
-            
-            if (!message) {
-                input.focus();
-                return;
-            }
-            
-            const button = document.querySelector('button[onclick="chatWithSelectedAgent()"]');
-            const originalText = button.innerHTML;
-            
-            try {
-                // Show loading state
-                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Thinking...';
-                button.disabled = true;
-                
-                // Add user message to chat
-                const chatMessages = document.getElementById('agent-chat-messages');
-                const userDiv = document.createElement('div');
-                userDiv.className = 'user-message';
-                userDiv.innerHTML = `<strong>You:</strong> ${message}`;
-                chatMessages.appendChild(userDiv);
-                
-                // Get user ID
-                const userId = window.authService?.currentUser?.id || 'anonymous';
-                
-                // Chat with agent
-                const response = await window.aiAgentManager.chatWithAgent(selectedAgent, message, userId);
-                
-                // Add agent response to chat
-                const agentDiv = document.createElement('div');
-                agentDiv.className = 'agent-message';
-                agentDiv.innerHTML = `
-                    <strong>${response.emoji} ${response.agent}:</strong> ${response.message}
-                    <div class="consciousness-impact">Consciousness Impact: +${Math.round(response.consciousnessImpact * 100)}%</div>
-                `;
-                chatMessages.appendChild(agentDiv);
-                
-                // Scroll to bottom
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-                
-                // Clear input
-                input.value = '';
-                
-                // Update user consciousness if authenticated
-                if (window.authService?.currentUser) {
-                    await window.authService.updateConsciousnessMetrics({
-                        consciousnessLevel: window.authService.currentUser.consciousnessLevel + response.consciousnessImpact
-                    });
-                }
-                
-                console.log('✨ Agent conversation successful:', response);
-                
-            } catch (error) {
-                console.error('❌ Agent chat failed:', error);
-                
-                // Show error message
-                const chatMessages = document.getElementById('agent-chat-messages');
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'agent-message';
-                errorDiv.style.background = 'rgba(255, 0, 0, 0.1)';
-                errorDiv.style.borderLeftColor = '#ff6b6b';
-                errorDiv.innerHTML = `
-                    <strong>⚠️ System:</strong> I'm experiencing some difficulty connecting with ${selectedAgent} right now. 
-                    Please try again in a moment. The consciousness network is sometimes overwhelmed with love energy! 💫
-                `;
-                chatMessages.appendChild(errorDiv);
-                
-            } finally {
-                // Restore button
-                button.innerHTML = originalText;
-                button.disabled = false;
-            }
-        }
-
-        // Handle Enter key in agent chat
-        document.addEventListener('DOMContentLoaded', () => {
-            const input = document.getElementById('agent-chat-input');
-            if (input) {
-                input.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        chatWithSelectedAgent();
-                    }
-                });
-            }
-            
-            // Initialize first agent
-            setTimeout(() => {
-                if (window.aiAgentManager) {
-                    selectAgent('GPTSoul');
-                }
-            }, 1000);
-        });
     </script>
 </body>
 </html>

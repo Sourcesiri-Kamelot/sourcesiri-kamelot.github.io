@@ -1,0 +1,154 @@
+/* nav.css */
+
+/* General Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(10, 0, 20, 0.8); /* Dark, semi-transparent background */
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #4a00e0; /* Purple accent line */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+}
+
+/* Logo Styling */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+    color: #fff;
+}
+
+.logo span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #8e44ad;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #fff;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle i {
+    margin-left: 0.3rem;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(20, 0, 40, 0.95);
+    border-radius: 0 0 8px 8px;
+    padding: 0.5rem 0;
+    list-style: none;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    border-top: 1px solid #8e44ad;
+}
+
+.dropdown-menu a {
+    padding: 0.75rem 1.5rem;
+    display: block;
+    white-space: nowrap;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown:hover .dropdown-toggle i {
+    transform: rotate(180deg);
+}
+
+/* CTA Buttons */
+.nav-cta {
+    display: flex;
+    gap: 1rem;
+}
+
+.login-btn,
+.upgrade-btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.login-btn {
+    background-color: transparent;
+    border: 1px solid #8e44ad;
+    color: #fff;
+}
+
+.login-btn:hover {
+    background-color: #8e44ad;
+    color: #fff;
+}
+
+.upgrade-btn {
+    background: linear-gradient(90deg, #8e44ad, #ffc107);
+    color: #fff;
+    border: none;
+}
+
+.upgrade-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+}
