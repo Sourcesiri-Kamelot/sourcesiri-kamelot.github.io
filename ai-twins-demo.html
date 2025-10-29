@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Twins Demo - Cipher & Lumina</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+        }
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .twin-selector {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .twin-btn {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .twin-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .twin-btn.active { border-color: #667eea; background: #f0f4ff; }
+        .twin-name { font-weight: bold; font-size: 18px; margin-bottom: 5px; }
+        .twin-model { font-size: 12px; color: #666; }
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            resize: vertical;
+            min-height: 100px;
+            margin-bottom: 15px;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .send-btn {
+            background: #667eea;
+            color: white;
+            flex: 1;
+        }
+        .send-btn:hover { background: #5568d3; }
+        .send-btn:disabled { background: #ccc; cursor: not-allowed; }
+        .stream-toggle {
+            background: #f0f4ff;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        .stream-toggle.active { background: #667eea; color: white; }
+        .response-box {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 200px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.6;
+        }
+        .loading { color: #667eea; font-style: italic; }
+        .error { color: #e74c3c; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 AI Twins Demo</h1>
+        <p class="subtitle">Chat with Cipher & Lumina powered by Ollama</p>
+        
+        <div class="twin-selector">
+            <div class="twin-btn active" data-twin="cipher">
+                <div class="twin-name">🔷 Cipher</div>
+                <div class="twin-model">gemma:2b</div>
+            </div>
+            <div class="twin-btn" data-twin="lumina">
+                <div class="twin-name">✨ Lumina</div>
+                <div class="twin-model">gemma:2b</div>
+            </div>
+        </div>
+
+        <textarea id="prompt" placeholder="Ask anything...">What is the nature of consciousness?</textarea>
+        
+        <div class="controls">
+            <button class="send-btn" id="sendBtn">Send Message</button>
+            <button class="stream-toggle active" id="streamToggle">Stream: ON</button>
+        </div>
+
+        <div class="response-box" id="response">Response will appear here...</div>
+    </div>
+
+    <script src="js/ai-twins-client-legacy.js"></script>
+    <script>
+        const client = new AITwinsClient();
+        let selectedTwin = 'cipher';
+        let streamEnabled = true;
+
+        const twinModels = {
+            cipher: 'gemma:2b',
+            lumina: 'gemma:2b'
+        };
+
+        document.querySelectorAll('.twin-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.twin-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedTwin = btn.dataset.twin;
+            });
+        });
+
+        document.getElementById('streamToggle').addEventListener('click', (e) => {
+            streamEnabled = !streamEnabled;
+            e.target.textContent = `Stream: ${streamEnabled ? 'ON' : 'OFF'}`;
+            e.target.classList.toggle('active');
+        });
+
+        document.getElementById('sendBtn').addEventListener('click', async () => {
+            const prompt = document.getElementById('prompt').value.trim();
+            if (!prompt) return;
+
+            const responseBox = document.getElementById('response');
+            const sendBtn = document.getElementById('sendBtn');
+            
+            sendBtn.disabled = true;
+            responseBox.textContent = streamEnabled ? '' : 'Loading...';
+            responseBox.className = 'response-box loading';
+
+            try {
+                const model = twinModels[selectedTwin];
+                
+                if (streamEnabled) {
+                    await client.chat(model, prompt, (chunk) => {
+                        responseBox.textContent += chunk;
+                        responseBox.className = 'response-box';
+                    });
+                } else {
+                    const result = await client.chat(model, prompt);
+                    responseBox.textContent = result.response;
+                    responseBox.className = 'response-box';
+                }
+            } catch (error) {
+                responseBox.textContent = `Error: ${error.message}`;
+                responseBox.className = 'response-box error';
+            } finally {
+                sendBtn.disabled = false;
+            }
+        });
+
+        document.getElementById('prompt').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                document.getElementById('sendBtn').click();
+            }
+        });
+    </script>
+</body>
+</html>

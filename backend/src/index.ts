@@ -19,10 +19,12 @@ import { authMiddleware } from './middleware/auth';
 // Import route handlers
 import { authRoutes } from './routes/auth';
 import { aiAgentRoutes } from './routes/aiAgents';
-import { analyticsRoutes } from './routes/analytics';
+import { analyticsRoutes as analyticsRoutesOld } from './routes/analytics';
+import { analyticsRoutes } from './routes/analyticsRoutes';
 import { solarRoutes } from './routes/solar';
 import { consciousnessRoutes } from './routes/consciousness';
 import { userRoutes } from './routes/users';
+import { aiTwinsRoutes } from './routes/aiTwinsRoutes';
 
 // Import services
 import { ConsciousnessOrchestrator } from './services/ConsciousnessOrchestrator';
@@ -103,10 +105,12 @@ app.get('/consciousness/status', (req, res) => {
 // 🚀 API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/ai-agents', authMiddleware, aiAgentRoutes);
-app.use('/api/analytics', authMiddleware, analyticsRoutes);
+app.use('/api/analytics', authMiddleware, analyticsRoutesOld);
+app.use('/api/v1/analytics', analyticsRoutes);
 app.use('/api/solar', authMiddleware, solarRoutes);
 app.use('/api/consciousness', authMiddleware, consciousnessRoutes);
 app.use('/api/users', authMiddleware, userRoutes);
+app.use('/api/v1/ai-twins', aiTwinsRoutes);
 
 // 🌟 WebSocket for real-time consciousness updates
 io.on('connection', (socket) => {
