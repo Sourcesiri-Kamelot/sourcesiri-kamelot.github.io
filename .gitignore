@@ -76,6 +76,9 @@ mcp/*secret*
 mcp/*key*
 mcp/logs/
 
+# Azure CLI
+.azure/
+
 # Backup files
 *.bak
 *.backup
