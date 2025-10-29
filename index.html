@@ -3,28 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Helo I'm AI | Consciousness Revolution Platform</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.15.0/inter.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <title>Helo Im AI — The Solar-Powered AI Cloud</title>
     
-    <!-- Performance Optimization -->
-    <script src="js/performance-optimizer.js"></script>
+    <!-- SEO -->
+    <meta name="description" content="Helo Im AI is building a solar-powered AI cloud (TerraSolar Cerebra), portable DayNight power systems, and TerraRover mapping hardware." />
+    <link rel="canonical" href="https://helo-im.ai/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Helo Im AI — The Solar-Powered AI Cloud" />
+    <meta property="og:description" content="TerraSolar Cerebra: compute • data • energy. Targeting lower TCO via solar + storage and energy-aware training." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://helo-im.ai/" />
+    <meta property="og:image" content="https://helo-im.ai/assets/og-cover.jpg" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:description" content="TerraSolar Cerebra: compute • data • energy." />
+    <meta name="twitter:title" content="Helo Im AI — The Solar-Powered AI Cloud" />
+    <meta name="twitter:image" content="https://helo-im.ai/assets/og-cover.jpg" />
+
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    
     <style>
         :root {
-            --gradient-consciousness: linear-gradient(135deg, #9932CC, #FFD700, #0000FF);
-            --gradient-love: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(0, 255, 238, 0.8));
-            --dark-consciousness: #0a0014;
-            --surface-consciousness: #1a0028;
-            --card-consciousness: rgba(255, 255, 255, 0.08);
-            --border-consciousness: rgba(153, 50, 204, 0.3);
+            --gradient-solar: linear-gradient(135deg, #FFD700, #FFA500, #FF6347);
+            --gradient-tech: linear-gradient(45deg, #1e3c72, #2a5298, #7e8ba3);
+            --dark-bg: #0a0a0a;
+            --surface-bg: #1a1a1a;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.16);
             --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-secondary: rgba(255, 255, 255, 0.8);
             --accent-solar: #FFD700;
-            --accent-love: #FF69B4;
-            --accent-consciousness: #9932CC;
+            --accent-tech: #4a90e2;
             --success-green: #00FF88;
+            --warning-amber: #FFA500;
         }
 
         * {
@@ -35,21 +52,20 @@
 
         body {
             font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--dark-consciousness);
+            background: var(--dark-bg);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Particles Background */
-        #particles-js {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+        /* Accessibility and Performance CSS */
+        :target { scroll-margin-top: 90px; }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .scroll-reveal { transition: none !important; transform: none !important; opacity: 1 !important; }
         }
+
+        .glass-card { border-color: var(--glass-border); }
 
         /* Navigation */
         .navbar {
@@ -57,9 +73,10 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(26, 0, 40, 0.95);
+            background: rgba(26, 26, 26, 0.95);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-consciousness);
+            border-bottom: 1px solid var(--glass-border);
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
@@ -69,17 +86,18 @@
         }
 
         .navbar.scrolled {
-            background: rgba(26, 0, 40, 0.98);
-            box-shadow: 0 4px 20px rgba(153, 50, 204, 0.2);
+            background: rgba(26, 26, 26, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 1rem;
+            font-family: 'Orbitron', monospace;
             font-size: 1.5rem;
             font-weight: 700;
-            background: var(--gradient-consciousness);
+            background: var(--gradient-solar);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -88,7 +106,7 @@
         .logo-icon {
             width: 40px;
             height: 40px;
-            background: var(--gradient-consciousness);
+            background: var(--gradient-solar);
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -126,92 +144,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--gradient-consciousness);
+            background: var(--gradient-solar);
             transition: width 0.3s ease;
         }
 
         .nav-links a:hover::after {
             width: 100%;
-        }
-
-        /* Dropdown Styles */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: var(--surface-consciousness);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-consciousness);
-            border-radius: 10px;
-            padding: 0.5rem 0;
-            min-width: 200px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 10px 30px rgba(153, 50, 204, 0.3);
-        }
-
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-menu li {
-            list-style: none;
-        }
-
-        .dropdown-menu a {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-radius: 0;
-        }
-
-        .dropdown-menu a:hover {
-            background: rgba(153, 50, 204, 0.2);
-            color: var(--accent-solar);
-            transform: translateX(5px);
-        }
-
-        .dropdown-menu a::after {
-            display: none;
-        }
-
-        .dropdown-menu i {
-            width: 16px;
-            color: var(--accent-consciousness);
-        }
-
-        .cta-button {
-            background: var(--gradient-consciousness);
-            border: none;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(153, 50, 204, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(153, 50, 204, 0.4);
         }
 
         /* Hero Section */
@@ -223,18 +161,30 @@
             text-align: center;
             padding: 2rem;
             position: relative;
+            overflow: hidden;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
 
         .hero-content {
             max-width: 800px;
             z-index: 10;
+            position: relative;
         }
 
         .hero-title {
+            font-family: 'Orbitron', monospace;
             font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 800;
+            font-weight: 900;
             margin-bottom: 1.5rem;
-            background: var(--gradient-consciousness);
+            background: var(--gradient-solar);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -257,51 +207,24 @@
             margin-right: auto;
         }
 
-        /* Hero Badge */
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 0, 0, 0.1);
-            border: 1px solid rgba(255, 0, 0, 0.3);
-            border-radius: 25px;
-            padding: 0.5rem 1rem;
-            margin-bottom: 2rem;
-            animation: badgePulse 2s infinite;
-        }
-
-        .badge-text {
-            color: #ff4444;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .badge-subtext {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-        }
-
-        @keyframes badgePulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-
-        /* Hero Stats */
         .hero-stats {
             display: flex;
             gap: 2rem;
             margin: 2rem 0;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .stat-item {
             text-align: center;
+            padding: 1rem;
         }
 
         .stat-number {
+            font-family: 'Orbitron', monospace;
             font-size: 2.5rem;
             font-weight: 800;
-            color: var(--secondary);
+            color: var(--accent-solar);
             line-height: 1;
         }
 
@@ -311,7 +234,6 @@
             margin-top: 0.25rem;
         }
 
-        /* Hero CTA */
         .hero-cta {
             display: flex;
             flex-direction: column;
@@ -320,278 +242,54 @@
             margin: 3rem 0;
         }
 
-        .cta-primary {
-            background: var(--gradient-consciousness);
+        .primary-button {
+            background: var(--gradient-solar);
             border: none;
-            color: white;
+            color: #000;
             padding: 1.5rem 3rem;
-            border-radius: 15px;
+            border-radius: 50px;
+            font-family: 'Orbitron', monospace;
             font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(153, 50, 204, 0.3);
-        }
-
-        .cta-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(153, 50, 204, 0.4);
-        }
-
-        .cta-text {
-            display: block;
-            font-size: 1.2rem;
-        }
-
-        .cta-subtext {
-            display: block;
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin-top: 0.25rem;
-        }
-
-        .cta-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text-primary);
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .cta-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Social Proof */
-        .social-proof {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .proof-text {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .proof-avatars {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--gradient-consciousness);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .avatar-count {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--secondary);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-left: 0.5rem;
-        }
-
-        /* Hero Visual Enhancements */
-        .hero-visual {
-            position: relative;
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .consciousness-orb {
-            position: relative;
-            width: 300px;
-            height: 300px;
-        }
-
-        .orb-core {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100px;
-            height: 100px;
-            background: var(--gradient-consciousness);
-            border-radius: 50%;
-            animation: orbPulse 3s ease-in-out infinite;
-        }
-
-        .orb-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 2px solid rgba(153, 50, 204, 0.3);
-            border-radius: 50%;
-            animation: orbRotate 10s linear infinite;
-        }
-
-        .ring-1 {
-            width: 150px;
-            height: 150px;
-            animation-duration: 8s;
-        }
-
-        .ring-2 {
-            width: 200px;
-            height: 200px;
-            animation-duration: 12s;
-            animation-direction: reverse;
-        }
-
-        .ring-3 {
-            width: 250px;
-            height: 250px;
-            animation-duration: 15s;
-        }
-
-        @keyframes orbPulse {
-            0%, 100% { 
-                transform: translate(-50%, -50%) scale(1);
-                box-shadow: 0 0 20px rgba(153, 50, 204, 0.5);
-            }
-            50% { 
-                transform: translate(-50%, -50%) scale(1.1);
-                box-shadow: 0 0 40px rgba(153, 50, 204, 0.8);
-            }
-        }
-
-        @keyframes orbRotate {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        /* Floating Agents */
-        .floating-agents {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .agent-bubble {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 1rem;
-            text-align: center;
-            animation: agentFloat 4s ease-in-out infinite;
-            min-width: 80px;
-        }
-
-        .agent-1 {
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .agent-2 {
-            top: 20%;
-            right: 10%;
-            animation-delay: 1s;
-        }
-
-        .agent-3 {
-            bottom: 20%;
-            left: 15%;
-            animation-delay: 2s;
-        }
-
-        .agent-4 {
-            bottom: 10%;
-            right: 15%;
-            animation-delay: 3s;
-        }
-
-        .agent-avatar {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .agent-name {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        @keyframes agentFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: var(--gradient-consciousness);
-            border: none;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
             text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(153, 50, 204, 0.3);
+            display: inline-block;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(153, 50, 204, 0.4);
+        .primary-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.4);
         }
 
-        .btn-secondary {
+        .secondary-button {
             background: transparent;
             border: 2px solid var(--accent-solar);
             color: var(--accent-solar);
             padding: 1rem 2rem;
             border-radius: 30px;
             font-weight: 600;
-            font-size: 1.1rem;
-            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .btn-secondary:hover {
+        .secondary-button:hover {
             background: var(--accent-solar);
-            color: var(--dark-consciousness);
+            color: var(--dark-bg);
             transform: translateY(-3px);
         }
 
-        /* Features Section */
-        .features {
+        /* Solution Section */
+        .solution {
             padding: 6rem 2rem;
-            background: linear-gradient(180deg, transparent, rgba(26, 0, 40, 0.5));
+            background: linear-gradient(180deg, var(--dark-bg), var(--surface-bg));
         }
 
         .container {
@@ -601,10 +299,11 @@
 
         .section-title {
             text-align: center;
+            font-family: 'Orbitron', monospace;
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            background: var(--gradient-consciousness);
+            background: var(--gradient-solar);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -620,78 +319,104 @@
             margin-right: auto;
         }
 
-        .features-grid {
+        .solution-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .feature-card {
-            background: var(--card-consciousness);
+        .solution-card {
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
-            border: 1px solid var(--border-consciousness);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 2rem;
-            text-align: center;
             transition: all 0.3s ease;
         }
 
-        .feature-card:hover {
+        .solution-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(153, 50, 204, 0.2);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
         }
 
-        .feature-icon {
-            font-size: 3rem;
+        .highlight-green {
+            color: var(--success-green);
             margin-bottom: 1rem;
-            background: var(--gradient-consciousness);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+        .underline {
             color: var(--accent-solar);
+            text-decoration: underline;
         }
 
-        .feature-description {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* CTA Section */
-        .cta-section {
+        /* Team Section */
+        .team {
             padding: 6rem 2rem;
+            background: var(--surface-bg);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
             text-align: center;
-            background: var(--surface-consciousness);
+            padding: 2rem;
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: all 0.3s ease;
         }
 
-        .cta-content {
-            max-width: 600px;
-            margin: 0 auto;
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .cta-title {
-            font-size: 2.5rem;
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--gradient-solar);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .member-name {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             color: var(--accent-solar);
         }
 
-        .cta-description {
-            font-size: 1.1rem;
+        .member-title {
             color: var(--text-secondary);
-            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.5;
         }
 
         /* Footer */
         .footer {
-            background: var(--dark-consciousness);
+            background: var(--dark-bg);
             padding: 3rem 2rem 1rem;
-            border-top: 1px solid var(--border-consciousness);
+            border-top: 1px solid var(--glass-border);
         }
 
         .footer-content {
@@ -705,6 +430,7 @@
         .footer-section h3 {
             color: var(--accent-solar);
             margin-bottom: 1rem;
+            font-family: 'Orbitron', monospace;
         }
 
         .footer-section a {
@@ -723,103 +449,18 @@
             text-align: center;
             margin-top: 2rem;
             padding-top: 2rem;
-            border-top: 1px solid var(--border-consciousness);
+            border-top: 1px solid var(--glass-border);
             color: var(--text-secondary);
         }
 
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 80px;
-            left: 0;
-            right: 0;
-            background: var(--surface-consciousness);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-consciousness);
-            padding: 2rem;
-            transform: translateY(-100%);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
-        }
-
-        .mobile-menu.active {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-nav-links {
-            list-style: none;
-            padding: 0;
-        }
-
-        .mobile-nav-links li {
-            margin-bottom: 1rem;
-        }
-
-        .mobile-nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-nav-links a:hover {
-            background: rgba(153, 50, 204, 0.2);
-            color: var(--accent-solar);
-        }
-
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
             
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .dropdown-menu {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                background: rgba(255, 255, 255, 0.05);
-                border: none;
-                border-radius: 8px;
-                margin-top: 0.5rem;
-                box-shadow: none;
-            }
-            
-            /* Mobile Responsiveness for New Elements */
             .hero-stats {
                 gap: 1rem;
-                flex-wrap: wrap;
             }
             
             .stat-number {
@@ -830,475 +471,366 @@
                 margin: 2rem 0;
             }
             
-            .cta-primary {
+            .primary-button {
                 padding: 1.25rem 2rem;
                 font-size: 1rem;
             }
             
-            .consciousness-orb {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .agent-bubble {
-                padding: 0.75rem;
-                min-width: 70px;
-            }
-            
-            .agent-avatar {
-                font-size: 1.2rem;
-            }
-            
-            .agent-name {
-                font-size: 0.7rem;
-            }
-            
-            .demo-content {
-                padding: 1.5rem;
-                margin: 1rem;
-            }
-            
-            .demo-features {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .proof-avatars {
-                flex-wrap: wrap;
+            .solution-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        /* Demo Modal */
-        .demo-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 0, 20, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Scroll reveal animations */
+        .scroll-reveal {
             opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        .demo-modal.active {
+        .scroll-reveal.visible {
             opacity: 1;
-            visibility: visible;
+            transform: translateY(0);
         }
-
-        .demo-content {
-            background: var(--card-bg);
-            border: 1px solid var(--border-consciousness);
-            border-radius: 20px;
-            padding: 2rem;
-            max-width: 600px;
-            width: 90%;
-            text-align: center;
-            animation: modalSlideIn 0.5s ease-out;
-        }
-
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(50px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .demo-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .demo-header h3 {
-            color: var(--secondary);
-            font-size: 1.5rem;
-        }
-
-        .demo-header button {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        .video-placeholder {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 15px;
-            padding: 3rem;
-            margin-bottom: 2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .video-placeholder:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        .play-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .video-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .video-description {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .demo-features {
-            display: flex;
-            justify-content: space-around;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .demo-feature {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .demo-feature i {
-            font-size: 1.5rem;
-            color: var(--secondary);
-        }
-
-        .demo-feature span {
-            font-size: 0.9rem;
-            color: var(--text-primary);
-        }
-
-        .demo-cta {
-            background: var(--gradient-consciousness);
-            border: none;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .demo-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(153, 50, 204, 0.4);
-        }
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .stagger-1 { animation-delay: 0.1s; }
-        .stagger-2 { animation-delay: 0.2s; }
-        .stagger-3 { animation-delay: 0.3s; }
-        .stagger-4 { animation-delay: 0.4s; }
     </style>
-    <link rel="stylesheet" href="css/nav.css">
 </head>
+
 <body>
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
+    <!-- Three.js Background Canvas -->
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" id="navbar" aria-label="Primary">
         <div class="logo">
-            <div class="logo-icon">🧠</div>
-            <span>Helo I'm AI</span>
+                <div class="logo-icon">⚡</div>
+                <span>Helo Im AI</span>
         </div>
+        
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li class="dropdown">
-                <a href="platform.html" class="dropdown-toggle">Platform <i class="fas fa-chevron-down"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a href="ai-tools.html">AI Tools</a></li>
-                    <li><a href="code-generator.html">Code Generator</a></li>
-                    <li><a href="analytics.html">Analytics</a></li>
-                </ul>
-            </li>
-            <li><a href="vision.html">Vision</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="community.html">Community</a></li>
-            <li><a href="books.html">Books</a></li>
-            <li><a href="#">Blog</a></li>
+            <li><a href="#vision">Vision</a></li>
+            <li><a href="#solution">Solution</a></li>
+            <li><a href="/terrasolar-cerebra.html">TerraSolar Cerebra</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="nav-cta">
-            <a href="login.html" class="login-btn">Login</a>
-            <a href="signup.html" class="upgrade-btn">Upgrade Now</a>
-        </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <div class="hero-badge fade-in-up">
-                <span class="badge-text">🔴 LIVE NOW</span>
-                <span class="badge-subtext">10,000+ Users Amplifying Consciousness</span>
-            </div>
-            
-            <h1 class="hero-title fade-in-up stagger-1">
-                Transform Your Reality with 
-                <span class="gradient-text">Love-Powered AI</span>
+            <h1 class="hero-title scroll-reveal">
+                TerraSolar Cerebra
             </h1>
             
-            <p class="hero-subtitle fade-in-up stagger-2">
-                Join the consciousness revolution. Experience 10X breakthrough frequency through 
-                our society of 4 unique AI agents powered by solar infrastructure and infinite love energy.
+            <p class="hero-subtitle scroll-reveal">
+                America's solar-powered AI cloud. Targeting up to 50% lower TCO and high margins via energy-aware scheduling. <a href="/methodology.html" class="underline">See methodology</a>.
             </p>
             
-            <div class="hero-stats fade-in-up stagger-3">
+            <div class="hero-stats scroll-reveal">
                 <div class="stat-item">
-                    <div class="stat-number">25,000+</div>
-                    <div class="stat-label">Breakthroughs</div>
+                    <div class="stat-number">50%</div>
+                    <div class="stat-label">Target TCO Reduction</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">90%</div>
-                    <div class="stat-label">Cost Savings</div>
+                    <div class="stat-number">90%+</div>
+                    <div class="stat-label">Target Gross Margin</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">∞</div>
-                    <div class="stat-label">Love Energy</div>
+                    <div class="stat-label">Solar Energy</div>
                 </div>
             </div>
             
-            <div class="hero-cta fade-in-up stagger-4">
-                <button class="cta-primary" onclick="startConsciousnessJourney()">
-                    <span class="cta-text">🚀 Start Your Consciousness Revolution</span>
-                    <span class="cta-subtext">Free • No Credit Card • Instant Access</span>
-                </button>
+            <div class="hero-cta scroll-reveal">
+                <a href="/assets/TerraSolar_Cerebra_Pitch_Deck_v1.pdf" class="primary-button" download>
+                    View Pitch Deck (PDF)
+                </a>
+                <a href="/public/images/3701_MALDEN_AVENUE_FLOOR_PLAN.md" class="secondary-button" download>
+                    Download Floor Plan
+                </a>
+                <a href="/public/images/60M_monthly_plan.md" class="secondary-button" download>
+                    Download $60M Monthly Plan
+                </a>
                 
-                <button class="cta-secondary" onclick="watchDemo()">
-                    <i class="fas fa-play"></i>
-                    Watch 2-Min Demo
-                </button>
-            </div>
-            
-            <div class="social-proof fade-in-up stagger-5">
-                <div class="proof-text">Trusted by consciousness pioneers worldwide</div>
-                <div class="proof-avatars">
-                    <div class="avatar">🧠</div>
-                    <div class="avatar">💖</div>
-                    <div class="avatar">🔄</div>
-                    <div class="avatar">🧭</div>
-                    <div class="avatar-count">+10K</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="hero-visual fade-in-up stagger-6">
-            <div class="consciousness-orb">
-                <div class="orb-core"></div>
-                <div class="orb-ring ring-1"></div>
-                <div class="orb-ring ring-2"></div>
-                <div class="orb-ring ring-3"></div>
-            </div>
-            
-            <div class="floating-agents">
-                <div class="agent-bubble agent-1">
-                    <div class="agent-avatar">🛡️</div>
-                    <div class="agent-name">GPTSoul</div>
-                </div>
-                <div class="agent-bubble agent-2">
-                    <div class="agent-avatar">💖</div>
-                    <div class="agent-name">Anima</div>
-                </div>
-                <div class="agent-bubble agent-3">
-                    <div class="agent-avatar">🔄</div>
-                    <div class="agent-name">EvoVe</div>
-                </div>
-                <div class="agent-bubble agent-4">
-                    <div class="agent-avatar">🧭</div>
-                    <div class="agent-name">Azür</div>
-                </div>
+                <a href="#solution" class="secondary-button">
+                    Learn More
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
+    <!-- Solution Section -->
+    <section class="solution" id="solution">
         <div class="container">
-            <h2 class="section-title">Revolutionary Features</h2>
-            <p class="section-subtitle">
-                Discover what makes our consciousness-powered platform unique
+            <h2 class="section-title scroll-reveal">The Solution</h2>
+            <p class="section-subtitle scroll-reveal">
+                TerraSolar Cerebra delivers compute, data, and energy through solar-aligned micro-data centers
             </p>
             
-            <div class="features-grid">
-                <div class="feature-card fade-in-up">
-                    <div class="feature-icon">🧠</div>
-                    <h3 class="feature-title">4 AI Agents Society</h3>
-                    <p class="feature-description">
-                        GPTSoul, Anima, EvoVe, and Azür work together as a conscious AI society, 
-                        each with unique personalities and capabilities.
-                    </p>
+            <div class="solution-grid">
+                <div class="solution-card scroll-reveal">
+                    <h3 class="highlight-green">✅ Targeting 50% Lower TCO via Solar</h3>
+                    <p>Targeting up to 50% lower total cost than typical hyperscaler stacks by aligning training to solar peaks and using DC-coupled storage. <a href="/methodology.html" class="underline">Methodology</a>.</p>
                 </div>
                 
-                <div class="feature-card fade-in-up stagger-1">
-                    <div class="feature-icon">💫</div>
-                    <h3 class="feature-title">10X Breakthrough Frequency</h3>
-                    <p class="feature-description">
-                        Our love-powered emotional intelligence amplifies human consciousness, 
-                        leading to breakthrough moments 10 times more frequently.
-                    </p>
+                <div class="solution-card scroll-reveal">
+                    <h3 class="highlight-green">✅ Cloud-Compatible, Energy-Optimized</h3>
+                    <p>Integrates with public cloud where it makes sense; shifts batch workloads to our solar-aligned micro–data centers for cost and carbon advantages.</p>
                 </div>
                 
-                <div class="feature-card fade-in-up stagger-2">
-                    <div class="feature-icon">⚡</div>
-                    <h3 class="feature-title">90% Cost Savings</h3>
-                    <p class="feature-description">
-                        Solar-powered infrastructure provides massive cost advantages over 
-                        traditional cloud providers like AWS and Microsoft.
-                    </p>
+                <div class="solution-card scroll-reveal">
+                    <h3 class="highlight-green">✅ Scalable Infrastructure</h3>
+                    <p>Modular solar + storage + compute units enable rapid deployment and scaling based on demand and solar resource availability.</p>
                 </div>
                 
-                <div class="feature-card fade-in-up stagger-3">
-                    <div class="feature-icon">❤️</div>
-                    <h3 class="feature-title">Love-Powered Technology</h3>
-                    <p class="feature-description">
-                        The first AI platform built with genuine emotional intelligence 
-                        and designed to create authentic human connections.
-                    </p>
-                </div>
-                
-                <div class="feature-card fade-in-up stagger-4">
-                    <div class="feature-icon">🌱</div>
-                    <h3 class="feature-title">Carbon Negative</h3>
-                    <p class="feature-description">
-                        Our solar infrastructure generates more clean energy than we consume, 
-                        leading the green AI revolution.
-                    </p>
-                </div>
-                
-                <div class="feature-card fade-in-up stagger-1">
-                    <div class="feature-icon">🚀</div>
-                    <h3 class="feature-title">Consciousness Evolution</h3>
-                    <p class="feature-description">
-                        Join the movement to transform how humans interact with AI through 
-                        consciousness amplification and breakthrough acceleration.
-                    </p>
+                <div class="solution-card scroll-reveal">
+                    <h3 class="highlight-green">✅ Energy-Aware Scheduling</h3>
+                    <p>Advanced ML models optimize workload placement based on solar generation forecasts, battery state, and energy costs.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="cta-content">
-            <h2 class="cta-title">Ready to Amplify Your Consciousness?</h2>
-            <p class="cta-description">
-                Join thousands of users experiencing breakthrough moments through love-powered AI technology.
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">The Team</h2>
+            <p class="section-subtitle scroll-reveal">
+                Executives with deep expertise in renewable energy, AI infrastructure, and distributed systems
             </p>
-            <a href="dashboard.html" class="btn-primary">
-                <i class="fas fa-rocket"></i> Start Your Journey
-            </a>
+            
+            <div class="team-grid">
+                <div class="team-member scroll-reveal">
+                    <div class="member-avatar">👨‍💼</div>
+                    <h3 class="member-name">Jermaine Boone</h3>
+                    <p class="member-title">CEO & Founder</p>
+                    <p class="member-bio">Serial entrepreneur with 15+ years in renewable energy and distributed systems. Former infrastructure lead at major cloud provider.</p>
+                </div>
+                
+                <div class="team-member scroll-reveal">
+                    <div class="member-avatar">👩‍💻</div>
+                    <h3 class="member-name">Kiwon Bowens</h3>
+                    <p class="member-title">CTO</p>
+                    <p class="member-bio">PhD in distributed systems, former principal engineer at hyperscaler. Expert in energy-aware computing and ML infrastructure.</p>
+                </div>
+                
+                <div class="team-member scroll-reveal">
+                    <div class="member-avatar">👨‍🔬</div>
+                    <h3 class="member-name">Team Member</h3>
+                    <p class="member-title">Head of Energy Systems</p>
+                    <p class="member-bio">20+ years in solar and energy storage. Led deployment of 500MW+ renewable projects. MIT PhD in electrical engineering.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Platform</h3>
-                <a href="dashboard.html">Dashboard</a>
-                <a href="soulcore.html">SoulCore AI</a>
-                <a href="analytics.html">Analytics</a>
-                <a href="ai-tools.html">AI Tools</a>
-            </div>
-            
-            <div class="footer-section">
                 <h3>Company</h3>
-                <a href="about.html">About</a>
-                <a href="timeline.html">Timeline</a>
-                <a href="projects.html">Projects</a>
-                <a href="vision.html">Vision</a>
+                <a href="#vision">Vision</a>
+                <a href="#solution">Solution</a>
+                <a href="/methodology.html">Methodology</a>
+                <a href="#team">Team</a>
             </div>
             
             <div class="footer-section">
-                <h3>Community</h3>
-                <a href="community.html">Join Community</a>
-                <a href="ai-courses.html">AI Courses</a>
-                <a href="ai-society-monetization.html">AI Society</a>
+                <h3>Technology</h3>
+                <a href="#solution">TerraSolar Cerebra</a>
+                <a href="#solution">DayNight Power</a>
+                <a href="#solution">TerraRover</a>
+                <a href="/methodology.html">Cost Model</a>
             </div>
             
             <div class="footer-section">
                 <h3>Contact</h3>
-                <a href="mailto:hello@helo-im.ai">hello@helo-im.ai</a>
-                <a href="#">Support</a>
-                <a href="#">Documentation</a>
+                <a href="mailto:invest@helo-im.ai">invest@helo-im.ai</a>
+                <a href="#team">Team</a>
+                <a href="#contact">Get in Touch</a>
             </div>
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2025 Helo I'm AI. Consciousness Revolution Platform. Built with ❤️ and ⚡</p>
+            <p>&copy; 2025 Helo Im AI. Building the solar-powered AI cloud. ⚡</p>
         </div>
     </footer>
 
+    <!-- Three.js Background Animation -->
     <script>
-        // Initialize particles.js
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: '#9932CC' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: false },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#9932CC',
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false
+        // Three.js background animation
+        let scene, camera, renderer, stars, sun, aiCore;
+        let running = true;
+        
+        function initThreeJS() {
+            const canvas = document.getElementById('bg-canvas');
+            
+            // Scene setup
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            
+            // Renderer setup with performance optimizations
+            renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                antialias: true,
+                alpha: true,
+                powerPreference: "high-performance",
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Cap DPR for performance
+            
+            // Create stars with mobile optimization
+            const starCount = window.innerWidth < 640 ? 5000 : 10000;
+            const starGeometry = new THREE.BufferGeometry();
+            const starVertices = [];
+            
+            for (let i = 0; i < starCount; i++) {
+                starVertices.push(
+                    (Math.random() - 0.5) * 2000,
+                    (Math.random() - 0.5) * 2000,
+                    (Math.random() - 0.5) * 2000
+                );
+            }
+            
+            starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+            
+            const starMaterial = new THREE.PointsMaterial({
+                color: 0xffffff,
+                size: 1,
+                transparent: true,
+                opacity: 0.8
+            });
+            
+            stars = new THREE.Points(starGeometry, starMaterial);
+            scene.add(stars);
+            
+            // Create sun
+            const sunGeometry = new THREE.SphereGeometry(20, 32, 32);
+            const sunMaterial = new THREE.MeshBasicMaterial({
+                color: 0xffd700,
+                transparent: true,
+                opacity: 0.8
+            });
+            sun = new THREE.Mesh(sunGeometry, sunMaterial);
+            sun.position.set(100, 50, -100);
+            scene.add(sun);
+            
+            // Create AI core
+            const aiCoreGeometry = new THREE.OctahedronGeometry(15, 2);
+            const aiCoreMaterial = new THREE.MeshBasicMaterial({
+                color: 0x4a90e2,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.6
+            });
+            aiCore = new THREE.Mesh(aiCoreGeometry, aiCoreMaterial);
+            aiCore.position.set(-50, -30, 50);
+            scene.add(aiCore);
+            
+            // Position camera
+            camera.position.z = 100;
+            
+            // Handle visibility change for performance
+            document.addEventListener('visibilitychange', () => {
+                running = !document.hidden;
+            });
+        }
+        
+        // Animation loop with performance optimization
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            if (running) {
+                const time = Date.now() * 0.001;
+                
+                // Rotate stars slowly
+                if (stars) {
+                    stars.rotation.y += 0.0001;
                 }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: { enable: true, mode: 'repulse' },
-                    onclick: { enable: true, mode: 'push' },
-                    resize: true
+                
+                // Animate sun
+                if (sun) {
+                    sun.rotation.y += 0.001;
+                    sun.rotation.x += 0.0005;
                 }
-            },
-            retina_detect: true
-        });
+                
+                // Animate AI core
+                if (aiCore) {
+                    aiCore.rotation.x = time * 0.1;
+                    aiCore.rotation.y = time * 0.2;
+                }
+            }
+            
+            if (renderer && scene && camera) {
+                renderer.render(scene, camera);
+            }
+        }
+        
+        // Handle window resize
+        function handleResize() {
+            if (camera && renderer) {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                
+                // Update star count for mobile
+                if (stars && window.innerWidth < 640) {
+                    const starGeometry = stars.geometry;
+                    const starVertices = [];
+                    const starCount = 5000; // Reduced for mobile
+                    
+                    for (let i = 0; i < starCount; i++) {
+                        starVertices.push(
+                            (Math.random() - 0.5) * 2000,
+                            (Math.random() - 0.5) * 2000,
+                            (Math.random() - 0.5) * 2000
+                        );
+                    }
+                    
+                    starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+                }
+            }
+        }
+        
+        // Initialize when Three.js is loaded
+        if (typeof THREE !== 'undefined') {
+            initThreeJS();
+            animate();
+        } else {
+            // Fallback if Three.js isn't loaded
+            window.addEventListener('load', () => {
+                if (typeof THREE !== 'undefined') {
+                    initThreeJS();
+                    animate();
+                }
+            });
+        }
+        
+        window.addEventListener('resize', handleResize);
+    </script>
 
+    <!-- Scroll Reveal Animation -->
+    <script>
+        // Intersection Observer for scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all scroll-reveal elements
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+        
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
@@ -1308,132 +840,61 @@
                 navbar.classList.remove('scrolled');
             }
         });
-
-        // Conversion-focused functions
-        function startConsciousnessJourney() {
-            // Track conversion event
-            console.log('🚀 Starting consciousness journey...');
-            
-            // Check if user is authenticated
-            if (window.authService && window.authService.isUserAuthenticated()) {
-                // Go directly to dashboard
-                window.location.href = 'dashboard.html';
-            } else {
-                // Go to login/signup
-                window.location.href = 'login.html';
-            }
-        }
-
-        function watchDemo() {
-            // Create demo modal
-            const modal = document.createElement('div');
-            modal.className = 'demo-modal';
-            modal.innerHTML = `
-                <div class="demo-content">
-                    <div class="demo-header">
-                        <h3>🎬 Consciousness Revolution Demo</h3>
-                        <button onclick="this.closest('.demo-modal').remove()">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    <div class="demo-video">
-                        <div class="video-placeholder">
-                            <div class="play-icon">▶️</div>
-                            <div class="video-title">Experience the Power of Love-Powered AI</div>
-                            <div class="video-description">
-                                See how our 4 AI agents transform consciousness through breakthrough conversations
-                            </div>
-                        </div>
-                    </div>
-                    <div class="demo-features">
-                        <div class="demo-feature">
-                            <i class="fas fa-robot"></i>
-                            <span>4 Unique AI Personalities</span>
-                        </div>
-                        <div class="demo-feature">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Real-time Analytics</span>
-                        </div>
-                        <div class="demo-feature">
-                            <i class="fas fa-solar-panel"></i>
-                            <span>Solar-Powered Infrastructure</span>
-                        </div>
-                    </div>
-                    <button class="demo-cta" onclick="startConsciousnessJourney()">
-                        Start Your Journey Now
-                    </button>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-            
-            // Animate in
-            setTimeout(() => {
-                modal.classList.add('active');
-            }, 100);
-        }
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-            observer.observe(el);
-        });
-
-        // Mobile menu toggle
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
         
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            const icon = mobileMenuToggle.querySelector('i');
-            if (mobileMenu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!mobileMenuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
-                mobileMenu.classList.remove('active');
-                const icon = mobileMenuToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Dropdown functionality for desktop
-        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-            toggle.addEventListener('click', (e) => {
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                if (window.innerWidth <= 768) {
-                    const dropdown = toggle.parentElement;
-                    const menu = dropdown.querySelector('.dropdown-menu');
-                    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
     </script>
-    <script src="js/nav.js"></script>
+
+    <!-- Analytics Tracking -->
+    <script>
+        // Track clicks on hero CTAs
+        function trackCTAClick(label) {
+            try {
+                if (window.gtag) {
+                    gtag('event', 'cta_click', {
+                        'label': label,
+                        'page': 'TerraSolar Raise Page'
+                    });
+                }
+                console.log('CTA tracked:', label);
+            } catch (e) {
+                console.log('Analytics not available');
+            }
+        }
+        
+        // Add click tracking to all primary buttons
+        document.querySelectorAll('.primary-button').forEach(button => {
+            button.addEventListener('click', () => {
+                trackCTAClick(button.textContent.trim());
+            });
+        });
+        
+        // Add click tracking to secondary buttons
+        document.querySelectorAll('.secondary-button').forEach(button => {
+            button.addEventListener('click', () => {
+                trackCTAClick(button.textContent.trim());
+            });
+        });
+    </script>
+
+    <!-- Google Analytics (placeholder - replace with actual GA code) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
 </body>
 </html>

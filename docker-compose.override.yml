@@ -1,0 +1,28 @@
+version: '3.8'
+
+# Development overrides: mounts source into containers and runs dev servers (nodemon / live reload)
+services:
+  backend:
+    image: node:18
+    working_dir: /usr/src/app
+    volumes:
+      - ./backend:/usr/src/app:delegated
+      # keep container node_modules separate to avoid host-platform mismatches
+      - /usr/src/app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    command: sh -c "npm install --silent && npm run dev"
+    depends_on:
+      - frontend
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+    ports:
+      - "80:80"

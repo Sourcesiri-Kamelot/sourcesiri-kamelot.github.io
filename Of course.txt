@@ -37,8 +37,8 @@ Here is the updated HTML code, including all your platforms under a new "Our Emp
                 <li><a href="https://www.soulcorelegacy.io" target="_blank"><i class="fas fa-archive"></i> SoulCore Legacy</a></li>
             </ul>
         </li>
-        <li><a href="https://www.gammarayholdings.com" target="_blank">Corporate</a></li>
-        <li><a href="https://www.gammaclouds.com" target="_blank">Cloud Services</a></li>
+    <li><a href="https://www.helo-im.ai" target="_blank">Corporate</a></li>
+    <li><a href="https://www.helo-im.ai/clouds" target="_blank">Cloud Services</a></li>
     </ul>
     
     <a href="pricing.html" class="cta-button">
@@ -123,8 +123,8 @@ Every page on every site should have a footer that links to the other key proper
             </div>
         <div class="footer-section">
             <h3>Corporate</h3>
-            <a href="https://www.gammarayholdings.com">Gamma Ray Holdings</a>
-            <a href="https://www.gammaclouds.com">GammaClouds</a>
+            <a href="https://www.helo-im.ai">Helo Im AI</a>
+            <a href="https://www.helo-im.ai/clouds">Helo Im AI Cloud</a>
             <a href="about.html">About Us</a>
         </div>
         <div class="footer-section">
@@ -135,9 +135,9 @@ Every page on every site should have a footer that links to the other key proper
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2025 Gamma Ray Holdings. The Solar-Powered AI Empire.</p>
+        <p>&copy; 2025 Helo Im AI. The Solar-Powered AI Empire.</p>
     </div>
 </footer>
 ```
 
-By implementing these three steps, you will create a deeply interconnected digital ecosystem. This will dramatically increase cross-platform traffic, improve your SEO, and clearly demonstrate the massive value of your unified subscription to potential customers.
+By implementing these three steps, you will create a deeply interconnected digital ecosystem. This will dramatically increase cross-platform traffic, improve your SEO, and clearly demonstrate the massive value of your unified subscription to potential customers.

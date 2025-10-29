@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      # Example env variables you may want to set or override in an .env file
+      - FRONTEND_URL=http://localhost
+    # It's recommended to provide a backend/.env file for secrets and mount it as a volume
+    volumes:
+      - ./backend/.env:/usr/src/app/.env:ro
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend

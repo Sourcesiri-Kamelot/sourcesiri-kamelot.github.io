@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Methodology — Cost & Carbon</title>
+<link rel="stylesheet" href="/css/main.css">
+<style>
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0a0a0a;
+    color: #ffffff;
+    line-height: 1.6;
+    padding: 100px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  h2 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    color: #FFD700;
+    margin: 2rem 0 1rem 0;
+  }
+  
+  p, li {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+  }
+  
+  ul {
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  li {
+    margin-bottom: 0.5rem;
+  }
+  
+  strong {
+    color: #00FF88;
+  }
+  
+  a {
+    color: #FFD700;
+    text-decoration: underline;
+  }
+  
+  a:hover {
+    color: #FFA500;
+  }
+</style>
+</head><body class="container" style="padding-top:100px">
+  <h1>Methodology: Cost & Carbon</h1>
+  
+  <p><strong>Scope.</strong> Training/inference batch jobs aligned to solar yield on a DC-coupled PV+BESS micro–data center; PUE target ≤1.15; LFP 4-hour storage.</p>
+  
+  <ul>
+    <li><strong>Cost model.</strong> Levelized energy cost from PV+BESS, amortized CapEx (compute & facility), cooling, network, staffing; compare to typical public-cloud list pricing for equivalent workloads.</li>
+    <li><strong>Scheduling.</strong> Shift heavy training to solar peak; run inference/night ops from stored energy; curtail or defer as needed.</li>
+    <li><strong>Carbon.</strong> On-site PV primary; grid as backup; report location-based and market-based emissions.</li>
+  </ul>
+  
+  <p>Figures on the site labeled "targeting" or "projected" reflect these assumptions and will be updated as real-world data accrues.</p>
+  
+  <p><a href="/">← Back to main site</a></p>
+</body></html>

@@ -1,0 +1,12 @@
+# Ignore common files and folders that shouldn't be copied into the frontend image
+backend/
+node_modules/
+.git
+logs/
+mcp/
+*.log
+.env
+README.docker.md
+Dockerfile.frontend
+backend/Dockerfile
+docker-compose.override.yml
