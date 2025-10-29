@@ -7,12 +7,17 @@ let analyticsSocket = null;
 let marketDataInterval = null;
 let networkStatsInterval = null;
 
-// API endpoints (replace with actual endpoints)
-const API_ENDPOINTS = {
-  PRICE_FEED: 'wss://api.example.com/price-feed',
-  ANALYTICS: 'wss://api.example.com/analytics',
-  MARKET_DATA: 'https://api.example.com/market-data',
-  NETWORK_STATS: 'https://api.example.com/network-stats'
+// API endpoints - uses central config if available
+const API_ENDPOINTS = window.CONFIG ? {
+  PRICE_FEED: window.CONFIG.websocket.priceFeed,
+  ANALYTICS: window.CONFIG.websocket.analytics,
+  MARKET_DATA: window.CONFIG.external.marketData,
+  NETWORK_STATS: window.CONFIG.external.networkStats
+} : {
+  PRICE_FEED: 'wss://helo-im.ai/ws/price-feed',
+  ANALYTICS: 'wss://helo-im.ai/ws/analytics',
+  MARKET_DATA: 'https://helo-im.ai/api/market-data',
+  NETWORK_STATS: 'https://helo-im.ai/api/network-stats'
 };
 
 // Initialize real-time data feeds

@@ -1,6 +1,6 @@
 class DownloadTracker {
-  constructor(apiUrl = 'http://localhost:3000/api/v1/analytics') {
-    this.apiUrl = apiUrl;
+  constructor(apiUrl = null) {
+    this.apiUrl = apiUrl || (window.CONFIG ? `${window.CONFIG.getApiUrl()}/api/v1/analytics` : 'http://localhost:3000/api/v1/analytics');
   }
 
   async track(resource) {

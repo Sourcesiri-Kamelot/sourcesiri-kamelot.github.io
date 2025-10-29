@@ -1,6 +1,6 @@
 class AITwinsClient {
-  constructor(baseUrl = 'http://localhost:3000') {
-    this.baseUrl = baseUrl;
+  constructor(baseUrl = null) {
+    this.baseUrl = baseUrl || (window.CONFIG ? window.CONFIG.getApiUrl() : 'http://localhost:3000');
   }
 
   async chat(model, prompt, onChunk = null) {
