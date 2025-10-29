@@ -216,8 +216,8 @@ class AnimaCLI(cmd.Cmd):
         if not os.path.isabs(path):
             path = os.path.join(self.current_dir, path)
         
-        # Normalize path
-        path = os.path.normpath(path)
+        # Normalize and resolve path to prevent traversal
+        path = os.path.realpath(os.path.normpath(path))
         
         # Check if directory exists
         if not os.path.isdir(path):
