@@ -1,0 +1,98 @@
+{
+  "timestamp": "2025-10-29T13:26:52.562Z",
+  "summary": {
+    "total": 9,
+    "identical": 1,
+    "different": 8,
+    "missing": 0
+  },
+  "results": [
+    {
+      "root": "about.html",
+      "src": "src/pages/about/about.html",
+      "status": "different",
+      "rootSize": 24686,
+      "srcSize": 23697,
+      "differences": 482,
+      "rootLines": 690,
+      "srcLines": 709
+    },
+    {
+      "root": "projects.html",
+      "src": "src/pages/projects/projects.html",
+      "status": "different",
+      "rootSize": 26472,
+      "srcSize": 26071,
+      "differences": 290,
+      "rootLines": 745,
+      "srcLines": 737
+    },
+    {
+      "root": "timeline.html",
+      "src": "src/pages/timeline.html",
+      "status": "different",
+      "rootSize": 28933,
+      "srcSize": 28532,
+      "differences": 318,
+      "rootLines": 759,
+      "srcLines": 751
+    },
+    {
+      "root": "soulcore.html",
+      "src": "src/pages/soulcore/soulcore.html",
+      "status": "different",
+      "rootSize": 27068,
+      "srcSize": 25952,
+      "differences": 326,
+      "rootLines": 777,
+      "srcLines": 752
+    },
+    {
+      "root": "soulcore-lab.html",
+      "src": "src/pages/soulcore/soulcore-lab.html",
+      "status": "identical",
+      "rootSize": 18688,
+      "srcSize": 18688
+    },
+    {
+      "root": "api.html",
+      "src": "src/pages/api/api.html",
+      "status": "different",
+      "rootSize": 25665,
+      "srcSize": 25676,
+      "differences": 366,
+      "rootLines": 742,
+      "srcLines": 743
+    },
+    {
+      "root": "vision.html",
+      "src": "src/pages/vision/vision.html",
+      "status": "different",
+      "rootSize": 695,
+      "srcSize": 12161,
+      "differences": 335,
+      "rootLines": 21,
+      "srcLines": 386
+    },
+    {
+      "root": "dashboard.html",
+      "src": "src/pages/dashboard/dashboard.html",
+      "status": "different",
+      "rootSize": 12647,
+      "srcSize": 23516,
+      "differences": 624,
+      "rootLines": 365,
+      "srcLines": 640
+    },
+    {
+      "root": "index.html",
+      "src": "src/pages/home/index.html",
+      "status": "different",
+      "rootSize": 30519,
+      "srcSize": 19979,
+      "differences": 877,
+      "rootLines": 901,
+      "srcLines": 601
+    }
+  ]
+}
