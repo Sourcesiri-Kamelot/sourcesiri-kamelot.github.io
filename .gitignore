@@ -11,7 +11,13 @@ config/secrets*
 
 # Python
 __pycache__/
-*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
 *$py.class
 *.so
 .Python
@@ -32,6 +38,9 @@ wheels/
 *.egg
 MANIFEST
 venv/
+.venv/
+venv*/
+.envrc
 env/
 ENV/
 
@@ -68,13 +77,33 @@ logs/
 *.tmp
 *.temp
 .cache/
+.cache
 .temp/
+
+# Build outputs
+out/
+*.lock-wscript
+
+# Misc
+*.lock
+tmp/
+
+# Rust/Cargo
+.cargo/
 
 # MCP sensitive data
 mcp/*config*.json
 mcp/*secret*
 mcp/*key*
+# MCP server data
+mcp/data/
 mcp/logs/
+
+# Hugging Face & datasets
+~/.cache/huggingface/
+huggingface/
+datasets/
+data/cache/
 
 # Azure CLI
 .azure/
@@ -86,3 +115,25 @@ mcp/logs/
 
 # Git credentials
 .git-credentials
+
+# --- Big binaries you normally shouldn't version ---
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+*.dmg
+*.pkg
+*.iso
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.psd
+*.ai
+*.blend
+*.pt
+*.bin
+*.safetensors
+*.onnx
